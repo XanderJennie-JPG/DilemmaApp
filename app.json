@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "dilemma-app",
-    "slug": "dilemma-app",
+    "name": "Dilemma",
+    "slug": "Dilemma",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
