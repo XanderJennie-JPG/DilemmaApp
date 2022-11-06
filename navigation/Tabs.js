@@ -3,15 +3,39 @@ import HomeScreen from "../screens/HomeScreen";
 import ResultsScreen from "../screens/ResultsScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 import { StyleSheet } from "react-native";
+import { Image } from "react-native";
+import { SvgUri } from "react-native-svg";
 
 const Tab = createBottomTabNavigator();
+
+const homeName = "Home";
+const settingsName = "Settings";
+const ResultsName = "Results";
 
 const Tabs = () => {
   return (
     <Tab.Navigator
-      initialRouteName="Home"
-      component={HomeScreen}
-      screenOptions={{
+      initialRouteName={homeName}
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+          let rn = route.name;
+          if (rn === homeName) {
+            iconName = focused ? "Home" : "Home-empty";
+          } else if (rn === settingsName) {
+            iconName = focused ? "Instellingen" : "Instellingen-empty";
+          } else if (rn === ResultsName) {
+            iconName = focused ? "Resultaten" : "Resultaten-empty";
+          }
+
+          return (
+            <SvgUri
+              width="100%"
+              height="100%"
+              uri="https://dev.w3.org/SVG/tools/svgweb/samples/svg-files/debian.svg"
+            />
+          );
+        },
         headerTransparent: true,
         tabBarShowLabel: false,
         headerShown: false,
@@ -28,7 +52,7 @@ const Tabs = () => {
           position: "absolute",
           ...styles.shadow,
         },
-      }}
+      })}
     >
       <Tab.Screen name="Resultaten" component={ResultsScreen} />
       <Tab.Screen name="Home" component={HomeScreen} />
