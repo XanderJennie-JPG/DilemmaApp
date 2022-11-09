@@ -16,16 +16,17 @@ const InputName = ({navigation}) => {
             <View>
                 <Text style={styles.header1}>Dilemma app</Text>
             </View>
-            <View style={styles.InputContainer}>
+            <View style={[styles.InputContainer, styles.elevation]}>
                 <Text style={styles.text}>Vul een naam in{"\n"}die u wilt gebruiken voor de app</Text>
                 <TextInput
-                    style={styles.input}
+                    style={[styles.input]}
                     placeholder="Vul hier een naam in...">
                 </TextInput>
             </View>
             <Pressable 
-                style={styles.GaDoorButton}
+                style={[styles.GaDoorButton,styles.shadow]}
                 onPress={showToast}>
+                
             </Pressable>
         </Container>
     );
@@ -105,9 +106,24 @@ const styles = StyleSheet.create({
         fontSize: 18,
         lineHeight: 27,
         borderRadius:20,
-        top: 350
+        top: 350,
+        background: '#eef6fa',
+    },
+    shadow: {
+        shadowColor: "#7F5DF0",
+        shadowOffset: {
+          width: 0,
+          height: 10,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.5,
+        elevation: 5,
+      },
+    elevation: {
+        elevation: 20,
+        shadowColor: '#52006A',
     },
     InputContainer: {
-        alignItems: 'center'
+        alignItems: 'center',
     }
 })
