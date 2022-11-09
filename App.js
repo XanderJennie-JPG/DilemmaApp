@@ -8,7 +8,7 @@ import { StyleSheet } from "react-native";
 
 const Stack = createNativeStackNavigator();
 
-const App = ({ children }) => {
+const App = () => {
   let [fontsLoaded] = useFonts({
     Montserrat: Montserrat_400Regular,
   });
