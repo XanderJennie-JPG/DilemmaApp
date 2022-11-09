@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Image, Text, TextInput, Pressable, ToastAndroid } from 'react-native';
+import { View, StyleSheet, Image, Text, TextInput, Pressable, ToastAndroid, TouchableOpacity } from 'react-native';
 import Container from '../components/Container';
 
 const showToast = () => {
@@ -18,16 +18,20 @@ const InputName = ({navigation}) => {
             </View>
             <View style={[styles.InputContainer, styles.elevation]}>
                 <Text style={styles.text}>Vul een naam in{"\n"}die u wilt gebruiken voor de app</Text>
+            </View>
                 <TextInput
-                    style={[styles.input]}
+                    style={[styles.input, styles.shadow]}
                     placeholder="Vul hier een naam in...">
                 </TextInput>
-            </View>
-            <Pressable 
-                style={[styles.GaDoorButton,styles.shadow]}
+            <TouchableOpacity
+                style={[styles.GaDoorButton, styles.shadow, styles.elevation]}
                 onPress={showToast}>
-                
-            </Pressable>
+                    <Text style={styles.buttonText}>Ga door naar de app</Text>
+                <Image
+                    style={styles.tinyLogo}
+                    source={require("../assets/ArrowRight.png")}
+                /> 
+            </TouchableOpacity>
         </Container>
     );
 }
@@ -46,13 +50,14 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.8392156862745098,
         shadowOffset: {
         width: 5,
-        height: 5
+        height: 5,
         },
         shadowRadius: 10,
         width: 286,
         height: 47,
         left: 50,
-        top: 500,
+        top: 600,
+        flexDirection: 'row',
     },
     logoContainer:{
         position: 'absolute',   
@@ -97,9 +102,9 @@ const styles = StyleSheet.create({
         top: 281.5
     },
     input: {
-        height: 40,
+        height: 55,
         margin: 12,
-        borderWidth: 1,
+        borderWidth: 0,
         padding: 10,
         opacity: 0.36000001430511475,
         backgroundColor: 'EEF6FA',
@@ -107,7 +112,16 @@ const styles = StyleSheet.create({
         lineHeight: 27,
         borderRadius:20,
         top: 350,
-        background: '#eef6fa',
+        opacity: 1,
+        backgroundColor: 'rgba(238, 246, 250, 1)',
+        shadowColor: 'rgb(203,  221,  230)',
+        shadowOffset: {
+        width: 5,
+        height: 5,
+        },
+        shadowRadius: 10,
+        width: 285,
+        alignSelf: 'center'
     },
     shadow: {
         shadowColor: "#7F5DF0",
@@ -120,10 +134,23 @@ const styles = StyleSheet.create({
         elevation: 5,
       },
     elevation: {
-        elevation: 20,
+        elevation: 10, //original was 20
         shadowColor: '#52006A',
     },
     InputContainer: {
         alignItems: 'center',
-    }
+    },
+    tinyLogo: {
+        width: 50,
+        height: 50,
+        resizeMode: 'contain',
+      },
+    buttonText: {
+        marginTop: 10,
+        marginLeft: 20,
+        fontSize: 20,
+        flex: 1,
+        textAlign: 'center',
+        color: '#134392'
+    },
 })

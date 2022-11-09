@@ -34,7 +34,7 @@ const Tabs = () => {
       <Tab.Screen name="Resultaten" component={ResultsScreen} />
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Instellingen" component={SettingsScreen} />
-      <Tab.Screen name = "Naam" component={InputName} />
+      <Tab.Screen name = "Naam" component={InputName} options={{tabBarStyle: {display: 'none'}}} />
     </Tab.Navigator>
   );
 };
