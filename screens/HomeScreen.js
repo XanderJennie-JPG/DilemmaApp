@@ -14,22 +14,16 @@ const HomeScreen = ({ navigation }) => {
           Goedemiddag, {"\n"}
           {user}
         </Text>
-      </View>
-      <View>
         <Text style={[GlobalStyle.CustomFont]}>
           Het is vandaag{"\n"}
           <Datum />
         </Text>
-      </View>
-      <View>
         <Text style={[GlobalStyle.CustomFont]}>
           Wij hebben het dilemma spel {"\n"}geupdate op{" "}
           <Text style={{ fontWeight: "bold" }}>
             <Datum />
           </Text>
         </Text>
-      </View>
-      <View>
         <TouchableOpacity>
           <Text style={[styles.Button, GlobalStyle.CustomFont]}>
             Begin het dilemma spel
@@ -39,6 +33,7 @@ const HomeScreen = ({ navigation }) => {
     </Container>
   );
 };
+
 export default HomeScreen;
 
 const styles = StyleSheet.create({
