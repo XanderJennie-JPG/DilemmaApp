@@ -4,6 +4,7 @@ import ResultsScreen from "../screens/ResultsScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 import { StyleSheet } from "react-native";
 import InputName from "../screens/InputName";
+import ChooseDepartment from "../screens/ChooseDepartment";
 
 const Tab = createBottomTabNavigator();
 
@@ -34,7 +35,7 @@ const Tabs = () => {
       <Tab.Screen name="Resultaten" component={ResultsScreen} />
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Instellingen" component={SettingsScreen} />
-      <Tab.Screen name = "Naam" component={InputName} options={{tabBarStyle: {display: 'none'}}} />
+      <Tab.Screen name = "ChooseDepartment" component={ChooseDepartment} options={{tabBarStyle: {display: 'none'}}} />
     </Tab.Navigator>
   );
 };
