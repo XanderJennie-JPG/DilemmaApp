@@ -3,6 +3,7 @@ import React from "react-native";
 import Tabs from "./navigation/Tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useFonts, Montserrat_400Regular } from "@expo-google-fonts/montserrat";
+import { NavigationContainer } from "@react-navigation/native";
 
 const Stack = createNativeStackNavigator();
 
@@ -16,9 +17,11 @@ const App = () => {
   }
 
   return (
-    <Tabs>
-      <StatusBar style="default" />
-    </Tabs>
+    <NavigationContainer>
+      <Tabs>
+        <StatusBar style="default" />
+      </Tabs>
+    </NavigationContainer>
   );
 };
 

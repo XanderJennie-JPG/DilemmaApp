@@ -15,7 +15,6 @@ const ResultsName = "Resultaten";
 
 export default function Tabs() {
   return (
-    <NavigationContainer>
       <Tab.Navigator
         initialRouteName={homeName}
         screenOptions={({ route }) => ({
@@ -56,7 +55,6 @@ export default function Tabs() {
         <Tab.Screen name={homeName} component={HomeScreen} />
         <Tab.Screen name={settingsName} component={SettingsScreen} />
       </Tab.Navigator>
-    </NavigationContainer>
   );
 }
 

@@ -24,8 +24,8 @@ const HomeScreen = ({ navigation }) => {
             <Datum />
           </Text>
         </Text>
-        <TouchableOpacity>
-          <Text style={[styles.Button, GlobalStyle.CustomFont]}>
+        <TouchableOpacity style={styles.Button}>
+          <Text style={[styles.ButtonText, GlobalStyle.CustomFont]}>
             Begin het dilemma spel
           </Text>
         </TouchableOpacity>
@@ -45,9 +45,11 @@ const styles = StyleSheet.create({
   Button: {
     backgroundColor: "#ffffff",
     borderRadius: 20,
-    fontSize: 20,
   },
   Header: {
     fontSize: 30,
+  },
+  ButtonText: {
+    fontSize: 20,
   },
 });
