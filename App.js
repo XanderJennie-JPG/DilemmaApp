@@ -18,9 +18,7 @@ const App = () => {
 
   return (
     <NavigationContainer>
-      <Tabs>
-        <StatusBar style="default" />
-      </Tabs>
+      <Tabs />
     </NavigationContainer>
   );
 };

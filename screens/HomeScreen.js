@@ -24,7 +24,10 @@ const HomeScreen = ({ navigation }) => {
             <Datum />
           </Text>
         </Text>
-        <TouchableOpacity style={styles.Button}>
+        <TouchableOpacity
+          style={styles.Button}
+          onPress={() => navigation.navigate("Uitleg")}
+        >
           <Text style={[styles.ButtonText, GlobalStyle.CustomFont]}>
             Begin het dilemma spel
           </Text>
