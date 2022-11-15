@@ -1,29 +1,41 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React from "react";
+import React from "react-native";
 import Container from "../components/Container";
 import Datum from "../components/Datum";
+import GlobalStyle from "../components/GlobalStyle";
 
-const HomeScreen = ({ navigation }) => (
-  <Container>
-    <View>
-      <Text>Goedemiddag, {"\n"}</Text>
-    </View>
-    <View>
-      <Text>
-        Het is vandaag{"\n"}
-        <Datum />
-      </Text>
-    </View>
-    <View>
-      <Text>Wij hebben het dilemma spel {"\n"} geupdate op</Text>
-    </View>
-    <View>
-      <TouchableOpacity>
-        <Text style={[styles.Button]}>Begin het dilemma spel</Text>
-      </TouchableOpacity>
-    </View>
-  </Container>
-);
+const user = "Placeholder";
+
+const HomeScreen = ({ navigation }) => {
+  return (
+    <Container>
+      <View>
+        <Text style={[GlobalStyle.CustomFont, styles.Header]}>
+          Goedemiddag, {"\n"}
+          {user}
+        </Text>
+        <Text style={[GlobalStyle.CustomFont]}>
+          Het is vandaag{"\n"}
+          <Datum />
+        </Text>
+        <Text style={[GlobalStyle.CustomFont]}>
+          Wij hebben het dilemma spel {"\n"}geupdate op{" "}
+          <Text style={{ fontWeight: "bold" }}>
+            <Datum />
+          </Text>
+        </Text>
+        <TouchableOpacity
+          style={styles.Button}
+          onPress={() => navigation.navigate("Uitleg")}
+        >
+          <Text style={[styles.ButtonText, GlobalStyle.CustomFont]}>
+            Begin het dilemma spel
+          </Text>
+        </TouchableOpacity>
+      </View>
+    </Container>
+  );
+};
 
 export default HomeScreen;
 
@@ -34,8 +46,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   Button: {
-    overflow: "hidden",
     backgroundColor: "#ffffff",
     borderRadius: 20,
+  },
+  Header: {
+    fontSize: 30,
+  },
+  ButtonText: {
+    fontSize: 20,
   },
 });
