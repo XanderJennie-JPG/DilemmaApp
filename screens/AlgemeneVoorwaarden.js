@@ -96,6 +96,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
         textAlign: 'center',
         lineHeight: 27,
+        fontWeight: 'bold'
     },
     scrollView: {
         maxHeight: 450
