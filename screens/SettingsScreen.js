@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import Container from "../components/Container";
+import { Divider } from '@rneui/themed';
 
 
 const SettingsScreen = ({ navigation }) => {
