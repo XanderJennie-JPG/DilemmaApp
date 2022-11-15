@@ -6,6 +6,11 @@ import { Divider } from '@rneui/themed';
 const SettingsScreen = ({ navigation }) => {
 	return (
 		<Container>
+            <View>
+                <TouchableOpacity>
+                <Image style={[{top: 40}]} source={require("../assets/Back-arrow.png")}/>
+                </TouchableOpacity>
+            </View>
 			<View style={styles.logoContainer}>
                 <Image style={styles.hhsLogo} source={require("../assets/HaagseLogo.png")}/>
                 <Image style={styles.hmcLogo} source={require("../assets/HMCLogo.png")}/>
