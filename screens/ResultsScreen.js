@@ -1,15 +1,20 @@
 import React from 'react';
 import { View, StyleSheet, Image, Text, TouchableOpacity } from 'react-native';
 import Container from '../components/Container';
+import PieChart from 'react-native-expo-pie-chart';
+import strokeLinecap from 'react-native-svg';
+import { DonutChart } from "react-native-circular-chart";
 
-const ResultScreen = ({navigation}) => {
+
+
+const ResultScreen = ({navigation, props}) => {
     const [selected, setSelected] = React.useState("");
   
     const data = [
-    {key:'Poli urologie', value:'Poli urologie'}, // disabled: true to disable
-    {key:'Poli chirurgie', value:'Poli chirurgie'},
-    {key:'Poli gynaecologie', value:'Poli gynaecologie'},
-    {key:'Poli cardiologie', value:'Poli cardiologie'},
+    {name:'Privacy', value:30, color:'blue'}, 
+    {name:'Integriteit', value:20, color:'green'},
+    {name:'Collegialiteit', value:15, color:'pink'},
+    {name:'Slaap', value:35, color:'red'},
     ]
     return (
         <Container>
@@ -24,6 +29,19 @@ const ResultScreen = ({navigation}) => {
               <View style={[{alignItems: 'center'}]}>
                   <Text style={[styles.text, {top:30}]}>Hier kunt u uw eigen score en de algemene score van uw afdeling bekijken</Text>
               </View>
+              <View style={{alignSelf: 'center'}}>
+              <DonutChart
+                data={data}
+                strokeWidth={15}
+                radius={100}
+                containerWidth={500}
+                containerHeight={500}
+                type="butt"
+                startAngle={0}
+                endAngle={360}
+                animationType="slide"
+              />
+              </View>
             </View>
             <TouchableOpacity
                 style={[styles.GaDoorButton, styles.shadow, {alignSelf: "flex-end"}]}>
@@ -36,6 +54,25 @@ const ResultScreen = ({navigation}) => {
 export default ResultScreen;
 
 const styles = StyleSheet.create({
+    sectionWrapper: {
+        justifyContent: "center",
+        alignItems: "center",
+        borderWidth: 1,
+        borderRadius: 8,
+        borderColor: "lightgray",
+        backgroundColor: "#ffffff",
+        marginVertical: 8,
+    
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 1,
+        },
+        shadowOpacity: 0.2,
+        shadowRadius: 1.41,
+    
+        elevation: 2,
+      },
     box: {
       opacity: 1,
       backgroundColor: '#FFFFFF',
