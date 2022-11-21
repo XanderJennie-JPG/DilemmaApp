@@ -1,14 +1,11 @@
-import React from 'react';
-import { View, StyleSheet, Image, Text, TouchableOpacity } from 'react-native';
+import {React, useState} from 'react';
+import { View, StyleSheet, Image, Text, TouchableOpacity, Switch } from 'react-native';
 import Container from '../components/Container';
-import PieChart from 'react-native-expo-pie-chart';
-import strokeLinecap from 'react-native-svg';
 import { DonutChart } from "react-native-circular-chart";
 
 
 
-const ResultScreen = ({navigation, props}) => {
-    const [selected, setSelected] = React.useState("");
+const ResultScreen = ({navigation}) => {
   
     const data = [
     {name:'Privacy', value:30, color:'blue'}, 
@@ -16,6 +13,10 @@ const ResultScreen = ({navigation, props}) => {
     {name:'Collegialiteit', value:15, color:'pink'},
     {name:'Slaap', value:35, color:'red'},
     ]
+
+const [isEnabled, setIsEnabled] = useState(false);
+const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+    
     return (
         <Container>
             <View style={styles.logoContainer}>
@@ -29,18 +30,26 @@ const ResultScreen = ({navigation, props}) => {
               <View style={[{alignItems: 'center'}]}>
                   <Text style={[styles.text, {top:30}]}>Hier kunt u uw eigen score en de algemene score van uw afdeling bekijken</Text>
               </View>
+              <View style={{alignSelf: 'flex-start'}}>
+                <Switch
+                    trackColor={{ false: "#767577", true: "#81b0ff" }}
+                    thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
+                    onValueChange={toggleSwitch}
+                    value={isEnabled}
+                />
+              </View>
               <View style={{alignSelf: 'center'}}>
-              <DonutChart
-                data={data}
-                strokeWidth={15}
-                radius={100}
-                containerWidth={500}
-                containerHeight={500}
-                type="butt"
-                startAngle={0}
-                endAngle={360}
-                animationType="slide"
-              />
+                <DonutChart
+                    data={data}
+                    strokeWidth={15}
+                    radius={100}
+                    containerWidth={500}
+                    containerHeight={500}
+                    type="butt"
+                    startAngle={0}
+                    endAngle={360}
+                    animationType="slide"
+                />
               </View>
             </View>
             <TouchableOpacity
