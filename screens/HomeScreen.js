@@ -31,48 +31,44 @@ const HomeScreen = ({ navigation }) => {
           <Datum />
         </Text>
       </Text>
-
-      <View
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 75,
-          justifyContent: "center",
-          alignItems: "center",
-        }}
+      <ImageBackground
+        style={[styles.bgmiddle, { marginTop: 50 }]}
+        blurRadius={8.5}
       >
-        <Image
-          resizeMode="contain"
-          source={require("../assets/Medtap.png")}
-        ></Image>
-      </View>
-      <View
-        style={{
-          position: "absolute",
-          top: 275,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <TouchableOpacity
-          style={[styles.Button, styles.shadow, { flexDirection: "row" }]}
-          onPress={() => navigation.navigate("Uitleg")}
+        <View
+          style={{
+            alignContent: "center",
+            alignItems: "center",
+            flex: 1,
+          }}
         >
-          <Text style={[styles.ButtonText, GlobalStyle.CustomFontBold]}>
-            Begin het dilemma spel
-          </Text>
-          <Ionicons
-            name="arrow-forward-sharp"
-            size="20"
-            style={{ paddingLeft: 3 }}
-          ></Ionicons>
-        </TouchableOpacity>
-      </View>
+          <Image
+            source={require("../assets/Medtap.png")}
+            resizeMode="cover"
+            style={{ width: 300, marginTop: 20 }}
+          ></Image>
+        </View>
+        <View
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <TouchableOpacity
+            style={[styles.Button, styles.shadow]}
+            onPress={() => navigation.navigate("Uitleg")}
+          >
+            <Text style={[styles.ButtonText, GlobalStyle.CustomFontBold]}>
+              Begin het dilemma spel
+            </Text>
+            <Ionicons
+              name="arrow-forward-sharp"
+              size="20"
+              style={{ paddingLeft: 3 }}
+            ></Ionicons>
+          </TouchableOpacity>
+        </View>
+      </ImageBackground>
     </Container>
   );
 };
@@ -80,34 +76,48 @@ const HomeScreen = ({ navigation }) => {
 export default HomeScreen;
 
 const styles = StyleSheet.create({
+  bgmiddle: {
+    backgroundColor: "rgba(255,255,255,0.15)",
+    height: 400,
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.18)",
+    borderRadius: 20,
+    shadowColor: "rgba(31,38,135,0.37)",
+    shadowOffset: {
+      width: 0,
+      height: 8,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+    elevation: 4,
+  },
   TextBetween: {
     marginBottom: 18,
   },
-  SquareBox: {
-    backgroundColor: "rgba(255, 255, 255, 0.15)",
-    borderRadius: 20,
-    border: 1,
-  },
   Button: {
     backgroundColor: "#ffffff",
-    paddingVertical: 25,
-    paddingHorizontal: 15,
     borderRadius: 20,
+    flexDirection: "row",
+    width: 250,
+    marginBottom: 40,
+    justifyContent: "center",
+    alignItems: "center",
   },
   Header: {
     fontSize: 30,
   },
   ButtonText: {
     fontSize: 15,
+    paddingVertical: 30,
   },
   shadow: {
     shadowColor: "#7F5DF0",
     shadowOffset: {
       width: 0,
-      height: 10,
+      height: 8,
     },
     shadowOpacity: 0.2,
-    shadowRadius: 2.5,
+    shadowRadius: 3,
     elevation: 4,
   },
 });
