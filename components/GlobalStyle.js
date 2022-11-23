@@ -5,4 +5,8 @@ export default StyleSheet.create({
     fontFamily: "Montserrat",
     color: "#134392",
   },
+  CustomFontBold: {
+    fontFamily: "MontserratBold",
+    color: "#134392",
+  },
 });

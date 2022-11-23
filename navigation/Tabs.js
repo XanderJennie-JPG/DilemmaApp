@@ -37,18 +37,17 @@ export default function Tabs() {
         headerShown: false,
         tabBarStyle: {
           borderRadius: 50,
-          marginBottom: 35,
+          marginBottom: 70,
           marginTop: 5,
-          paddingHorizontal: 12,
+          paddingHorizontal: 50,
           paddingTop: 25,
-          height: 90,
+          height: 100,
           elevation: 0,
           borderColor: "#fff",
           marginHorizontal: 5,
           backgroundColor: "transparent",
           borderTopWidth: 0,
           position: "absolute",
-          ...styles.shadow,
         },
       })}
     >
@@ -59,15 +58,4 @@ export default function Tabs() {
   );
 }
 
-const styles = StyleSheet.create({
-  shadow: {
-    shadowColor: "#7F5DF0",
-    shadowOffset: {
-      width: 0,
-      height: 10,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.5,
-    elevation: 5,
-  },
-});
+const styles = StyleSheet.create({});
