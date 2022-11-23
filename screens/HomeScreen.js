@@ -17,22 +17,27 @@ const user = "Placeholder";
 const HomeScreen = ({ navigation }) => {
   return (
     <Container>
-      <Text style={[GlobalStyle.CustomFont, styles.Header, styles.TextBetween]}>
-        Goedemiddag, {"\n"}
-        {user}
-      </Text>
-      <Text style={[GlobalStyle.CustomFont, styles.TextBetween]}>
-        Het is vandaag{"\n"}
-        <Datum />
-      </Text>
-      <Text style={[GlobalStyle.CustomFont]}>
-        Wij hebben het dilemma spel {"\n"}geupdate op{" "}
-        <Text style={{ fontWeight: "bold" }}>
+      <View>
+        <Text
+          style={[GlobalStyle.CustomFont, styles.Header, styles.TextBetween]}
+        >
+          Goedemiddag, {"\n"}
+          {user}
+        </Text>
+        <Text style={[GlobalStyle.CustomFont, styles.TextBetween]}>
+          Het is vandaag{"\n"}
           <Datum />
         </Text>
-      </Text>
+        <Text style={[GlobalStyle.CustomFont]}>
+          Wij hebben het dilemma spel {"\n"}geupdate op{" "}
+          <Text style={[GlobalStyle.CustomFontBold]}>
+            <Datum />.
+          </Text>
+        </Text>
+      </View>
+
       <ImageBackground
-        style={[styles.bgmiddle, { marginTop: 50 }]}
+        style={[styles.bgmiddle, { marginTop: 25 }]}
         blurRadius={8.5}
       >
         <View
@@ -92,7 +97,7 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
   TextBetween: {
-    marginBottom: 18,
+    marginBottom: 16,
   },
   Button: {
     backgroundColor: "#ffffff",
