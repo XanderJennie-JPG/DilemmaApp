@@ -68,7 +68,6 @@ const HomeScreen = ({ navigation }) => {
             </Text>
             <Ionicons
               name="arrow-forward-sharp"
-              size="20"
               style={{ paddingLeft: 3 }}
             ></Ionicons>
           </TouchableOpacity>
