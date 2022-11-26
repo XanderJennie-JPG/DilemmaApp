@@ -14,6 +14,7 @@ const homeName = "Home";
 const settingsName = "Instellingen";
 const ResultsName = "Resultaten";
 
+//Navbar is ABSOLUTE positioned causing inconsistency issues.
 export default function Tabs() {
   return (
     <Tab.Navigator
