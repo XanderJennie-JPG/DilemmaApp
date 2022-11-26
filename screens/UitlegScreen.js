@@ -6,7 +6,7 @@ import { TouchableOpacity } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import GlobalStyle from "../components/GlobalStyle";
 
-const UitlegScreen = ({ navigation: { goBack } }) => {
+const UitlegScreen = ({ navigation: { goBack, navigate } }) => {
   return (
     <Container>
       <TopLogo />
@@ -44,13 +44,13 @@ const UitlegScreen = ({ navigation: { goBack } }) => {
           justifyContent: "center",
           alignItems: "center",
           marginTop: "auto",
-          //TODO: Remove when Navbar not ABSOLUTE positioned.
+          //TODO: Remove when Navbar not ABSOLUTE
           marginBottom: 175,
         }}
       >
         <TouchableOpacity
           style={[styles.Button, styles.shadow, { marginTop: "auto" }]}
-          onPress={() => navigation.navigate("Dilemma")}
+          onPress={() => navigate("Dilemma")}
         >
           <Text style={[styles.ButtonText, GlobalStyle.CustomFontBold, ,]}>
             Door naar het spel
