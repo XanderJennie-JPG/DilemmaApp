@@ -1,5 +1,5 @@
 # Hello! We are team Dilemma! :stethoscope:	
-## We are a group of final year students at THUAS :nerd_face:
+## We are a group of final year students at THUAS 
 
 We are a team that consists of four students 🧑‍🎓.
 
