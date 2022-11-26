@@ -1,20 +1,19 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, SafeAreaView } from "react-native";
 import React from "react";
 import Container from "../components/Container";
+import TopLogo from "../components/TopLogo";
 
 
 const PrivacyPolicy = ({ navigation }) => {
 	return (
 		<Container>
+            <TopLogo/>
             <View>
                 <TouchableOpacity>
                 <Image style={[{top: 40}]} source={require("../assets/Back-arrow.png")}/>
                 </TouchableOpacity>
             </View>
-			<View style={styles.logoContainer}>
-                <Image style={styles.hhsLogo} source={require("../assets/HaagseLogo.png")}/>
-                <Image style={styles.hmcLogo} source={require("../assets/HMCLogo.png")}/>
-            </View>
+			
             <View>
                 <Text style={[styles.header1, {top: 70}]}>Privacy Policy Dilemma app</Text>
             </View>

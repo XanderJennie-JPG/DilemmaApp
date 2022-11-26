@@ -11,12 +11,14 @@ import Container from "../components/Container";
 import Datum from "../components/Datum";
 import GlobalStyle from "../components/GlobalStyle";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import TopLogo from "../components/TopLogo";
 
 const user = "Placeholder";
 
 const HomeScreen = ({ navigation }) => {
   return (
     <Container>
+      <TopLogo />
       <View>
         <Text
           style={[GlobalStyle.CustomFont, styles.Header, styles.TextBetween]}
@@ -108,7 +110,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   Header: {
-    fontSize: 30,
+    fontSize: 27,
   },
   ButtonText: {
     fontSize: 15,
