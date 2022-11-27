@@ -8,14 +8,6 @@ const SettingsScreen = ({ navigation }) => {
   return (
     <Container>
       <TopLogo />
-      <View>
-        <TouchableOpacity>
-          <Image
-            style={[{ top: 40 }]}
-            source={require("../assets/Back-arrow.png")}
-          />
-        </TouchableOpacity>
-      </View>
 
       <View>
         <Text style={[styles.header1, { top: 150 }]}>Instellingen</Text>
@@ -24,7 +16,10 @@ const SettingsScreen = ({ navigation }) => {
         <Text style={[styles.header2, { top: 200 }]}>Placeholder Afdeling</Text>
       </View>
       <View style={{ alignItems: "center" }}>
-        <TouchableOpacity style={[styles.Options, { top: 308 }]}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("Afdeling")}
+          style={[styles.Options, { top: 308 }]}
+        >
           <Image
             styles={styles.Icon_Pencil}
             source={require("../assets/Pencil-icon.png")}
@@ -38,7 +33,10 @@ const SettingsScreen = ({ navigation }) => {
           inset={true}
           insetType="middle"
         />
-        <TouchableOpacity style={[styles.Options, { top: 389 }]}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("Privacy")}
+          style={[styles.Options, { top: 389 }]}
+        >
           <Image
             styles={styles.Icon_PP}
             source={require("../assets/PP-icon.png")}
@@ -57,7 +55,10 @@ const SettingsScreen = ({ navigation }) => {
             styles={styles.Icon_AV}
             source={require("../assets/AV-icon.png")}
           />
-          <Text style={[styles.AlgemeneVoorwaardenText]}>
+          <Text
+            onPress={() => navigation.navigate("Voorwaarden")}
+            style={[styles.AlgemeneVoorwaardenText]}
+          >
             {" "}
             Algemene Voorwaarden
           </Text>

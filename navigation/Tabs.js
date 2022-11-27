@@ -1,12 +1,12 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import * as React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import HomeScreen from "../screens/HomeScreen";
 import ResultsScreen from "../screens/ResultsScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { StyleSheet } from "react-native";
 import HomeStack from "../navigation/HomeStack";
+import ResultatenStack from "../navigation/ResultatenStack";
+import InstellingenStack from "../navigation/InstellingenStack";
 
 const Tab = createBottomTabNavigator();
 
@@ -14,7 +14,6 @@ const homeName = "Home";
 const settingsName = "Instellingen";
 const ResultsName = "Resultaten";
 
-//Navbar is ABSOLUTE positioned causing inconsistency issues.
 export default function Tabs() {
   return (
     <Tab.Navigator
@@ -38,11 +37,12 @@ export default function Tabs() {
         headerShown: false,
         tabBarStyle: {
           borderRadius: 50,
-          marginBottom: 70,
+          marginBottom: 55,
           marginTop: 5,
-          paddingHorizontal: 50,
           paddingTop: 25,
           height: 100,
+          left: 50,
+          right: 50,
           elevation: 0,
           borderColor: "#fff",
           marginHorizontal: 5,
@@ -52,9 +52,9 @@ export default function Tabs() {
         },
       })}
     >
-      <Tab.Screen name={ResultsName} component={ResultsScreen} />
+      <Tab.Screen name={ResultsName} component={ResultatenStack} />
       <Tab.Screen name={homeName} component={HomeStack} />
-      <Tab.Screen name={settingsName} component={SettingsScreen} />
+      <Tab.Screen name={settingsName} component={InstellingenStack} />
     </Tab.Navigator>
   );
 }

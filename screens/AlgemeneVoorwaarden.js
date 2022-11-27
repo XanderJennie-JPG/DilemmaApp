@@ -12,12 +12,12 @@ import Container from "../components/Container";
 import { Divider } from "@rneui/themed";
 import TopLogo from "../components/TopLogo";
 
-const AlgemeneVoorwaarden = ({ navigation }) => {
+const AlgemeneVoorwaarden = ({ navigation: { goBack, navigate } }) => {
   return (
     <Container>
       <TopLogo />
       <View>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => goBack()}>
           <Image
             style={[{ top: 40 }]}
             source={require("../assets/Back-arrow.png")}
