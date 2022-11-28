@@ -34,7 +34,7 @@ const InputName = ({ navigation }) => {
       ></TextInput>
       <TouchableOpacity
         style={[styles.GaDoorButton, styles.shadow, styles.elevation]}
-        onPress={showToast}
+        onPress={() => navigation.navigate("HomeStack")}
       >
         <Text style={styles.buttonText}>Ga door naar de app</Text>
         <Image

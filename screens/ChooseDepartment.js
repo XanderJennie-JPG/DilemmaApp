@@ -48,7 +48,7 @@ const ChooseDepartment = ({ navigation }) => {
       />
       <TouchableOpacity style={[styles.GaDoorButton, styles.shadow]}>
         <Text style={styles.buttonText}>Laten we beginnen!</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> 
     </Container>
   );
 };

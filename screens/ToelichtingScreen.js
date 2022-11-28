@@ -25,7 +25,9 @@ const ToelichtingScreen = ({ navigation }) => {
           { alignSelf: "flex-start" },
         ]}
       >
-        <Text style={styles.buttonText}>Terug</Text>
+        <Text style={styles.buttonText}
+        onPress={() => navigation.navigate("ResultsStack")}
+        >Terug</Text>
       </TouchableOpacity>
     </Container>
   );
@@ -51,7 +53,7 @@ const styles = StyleSheet.create({
     width: 370,
     height: 525,
     alignSelf: "center",
-    top: 125,
+    top: 100,
   },
   GaDoorButton: {
     opacity: 1,
@@ -69,7 +71,7 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
     width: 160,
     height: 40,
-    top: 135,
+    top: 110,
   },
   logoContainer: {
     position: "absolute",

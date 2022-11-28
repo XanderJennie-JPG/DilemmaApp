@@ -59,6 +59,7 @@ const ResultScreen = ({ navigation }) => {
       </View>
       <TouchableOpacity
         style={[styles.GaDoorButton, styles.shadow, { alignSelf: "flex-end" }]}
+        onPress={() => navigation.navigate("Toelichting")}
       >
         <Text style={styles.buttonText}>Toelichting</Text>
       </TouchableOpacity>
@@ -105,7 +106,7 @@ const styles = StyleSheet.create({
     width: 370,
     height: 525,
     alignSelf: "center",
-    top: 125,
+    top: 100,
   },
   GaDoorButton: {
     opacity: 1,
@@ -123,7 +124,7 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
     width: 160,
     height: 40,
-    top: 135,
+    top: 110,
   },
   DropDown: {
     opacity: 1,
