@@ -20,6 +20,7 @@ const DilemmasScreen = ({ navigation: { goBack } }) => {
           </Text>
         </Text>
       </View>
+      <View></View>
     </Container>
   );
 };
