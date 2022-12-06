@@ -12,17 +12,17 @@ import TopLogo from "../components/TopLogo";
 
 const ResultScreen = ({ navigation }) => {
   const [isEnabled, setIsEnabled] = useState(false);
-  const enabledData = [
+  const disabledData = [
     { name: "Privacy", value: 30, color: "blue" },
     { name: "Integriteit", value: 20, color: "green" },
     { name: "Collegialiteit", value: 15, color: "pink" },
     { name: "Slaap", value: 35, color: "red" },
   ];
-  const disabledData = [
-    { name: "Honor", value: 50, color: "red" },
-    { name: "Usage 2", value: 10, color: "pink" },
-    { name: "Usage 3", value: 10, color: "green" },
-    { name: "Usage 4", value: 30, color: "blue" },
+  const enabledData = [
+    { name: "Privacy", value: 50, color: "blue" },
+    { name: "Integriteit", value: 10, color: "green" },
+    { name: "Collegialiteit", value: 10, color: "pink" },
+    { name: "Slaap", value: 30, color: "red" },
   ]
   const toggleSwitch = () => {
     setIsEnabled(!isEnabled);
