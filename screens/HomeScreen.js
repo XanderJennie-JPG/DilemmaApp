@@ -19,27 +19,17 @@ const HomeScreen = ({ navigation }) => {
   return (
     <Container>
       <TopLogo />
-      <View>
+      <View style={{top: 75}}>
         <Text
-          style={[GlobalStyle.CustomFont, styles.Header, styles.TextBetween]}
+          style={[GlobalStyle.CustomFont, styles.Header]}
         >
           Goedemiddag, {"\n"}
           {user}
         </Text>
-        <Text style={[GlobalStyle.CustomFont, styles.TextBetween]}>
-          Het is vandaag{"\n"}
-          <Datum />
-        </Text>
-        <Text style={[GlobalStyle.CustomFont]}>
-          Wij hebben het dilemma spel {"\n"}geupdate op{" "}
-          <Text style={[GlobalStyle.CustomFontBold]}>
-            <Datum />.
-          </Text>
-        </Text>
       </View>
-
+      <View style={styles.center}>
       <ImageBackground
-        style={[styles.bgmiddle, { marginTop: 25 }]}
+        style={[styles.bgmiddle]}
         blurRadius={8.5}
       >
         <View
@@ -75,6 +65,7 @@ const HomeScreen = ({ navigation }) => {
           </TouchableOpacity>
         </View>
       </ImageBackground>
+      </View>
     </Container>
   );
 };
@@ -97,8 +88,11 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
     elevation: 4,
   },
-  TextBetween: {
-    marginBottom: 16,
+  center: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: -50,
   },
   Button: {
     backgroundColor: "#ffffff",
@@ -110,7 +104,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   Header: {
-    fontSize: 27,
+    fontSize: 29,
   },
   ButtonText: {
     fontSize: 15,
