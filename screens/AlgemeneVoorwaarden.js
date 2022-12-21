@@ -19,18 +19,17 @@ const AlgemeneVoorwaarden = ({ navigation: { goBack, navigate } }) => {
       <View>
         <TouchableOpacity onPress={() => goBack()}>
           <Image
-            style={[{ top: 40 }]}
             source={require("../assets/Back-arrow.png")}
           />
         </TouchableOpacity>
       </View>
 
       <View>
-        <Text style={[styles.header1, { top: 70 }]}>
+        <Text style={[styles.header1, { top: 10 }]}>
           Algemene voorwaarden Dilemma app
         </Text>
       </View>
-      <SafeAreaView style={[{ alignItems: "center", flex: 1, top: 100 }]}>
+      <SafeAreaView style={[{ alignItems: "center", flex: 1, marginTop: 10}]}>
         <ScrollView style={styles.scrollView}>
           <Text style={styles.text}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -109,6 +108,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   scrollView: {
-    maxHeight: 450,
+    maxHeight: '80%',
   },
 });

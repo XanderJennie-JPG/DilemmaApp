@@ -4,41 +4,31 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  Image,
 } from "react-native";
 import Container from "../components/Container";
-import { SelectList } from "react-native-dropdown-select-list";
-import TopLogo from "../components/TopLogo";
 
 const ChooseDepartment = ({ navigation }) => {
   const [selected, setSelected] = React.useState("");
 
   return (
     <Container>
-      <TopLogo />
       <View>
-        <Text style={[styles.header1, { alignContent: "center" }]}>Dilemma app</Text>
+        <Text style={[styles.header1, {marginTop: 50}]}>Welkom op de Dilemma app{"\n"}</Text>
+        <Text style={styles.text}>Deze app is mogelijk gemaakt door</Text>
       </View>
-      <View style={styles.InputContainer}>
-        <Text style={[styles.header1, { top: 350 }]}>Hallo!</Text>
-        <Text style={[styles.header2, { top: 375 }]}>Kies uw afdeling</Text>
+      <View>
+        <Image style={styles.logos} source={require("../assets/HMCLogo.png")} />
+        <Image style={[styles.logos, {marginTop: -225}]} source={require("../assets/HaagseLogo.png")} />
       </View>
-      <SelectList
-        setSelected={(val) => setSelected(val)}
-        data={data}
-        save="value"
-        placeholder="Kiezen"
-        searchPlaceholder=""
-        boxStyles={[styles.DropDown, styles.shadow, styles.elevation]}
-        inputStyles={[styles.DropDownText, styles.header2]}
-        dropdownStyles={[styles.DropDownList]}
-        dropdownTextStyles={styles.header2}
-        search="false"
-        defaultOption={{ key: "Poli urologie", value: "Poli urologie" }}
-        maxHeight={150}
-      />
-      <TouchableOpacity style={[styles.GaDoorButton, styles.shadow]}>
-        <Text style={styles.buttonText}>Laten we beginnen!</Text>
+      <View style={styles.bottom}>
+      <TouchableOpacity
+      style={[styles.GaDoorButton, styles.shadow]}
+      onPress={() => navigation.navigate("Afdeling")}
+      >
+        <Text style={styles.buttonText}>Volgende!</Text>
       </TouchableOpacity> 
+      </View>
     </Container>
   );
 };
@@ -62,70 +52,7 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
     width: 286,
     height: 50,
-    left: 50,
-    top: 550,
-    flexDirection: "row",
-  },
-  DropDown: {
-    opacity: 1,
-    backgroundColor: "rgba(238, 246, 250, 1)",
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
-    shadowColor: "rgb(203,  221,  230)",
-    shadowOpacity: 0.8392156862745098,
-    shadowOffset: {
-      width: 5,
-      height: 5,
-    },
-    shadowRadius: 10,
-    width: 286,
-    height: 59,
-    left: 50,
-    top: 400,
-  },
-  DropDownText: {
-    fontSize: 25,
-    textAlign: "center",
-  },
-  DropDownList: {
-    top: 410,
-    opacity: 1,
-    backgroundColor: "rgba(238, 246, 250, 1)",
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
-    shadowColor: "rgb(203,  221,  230)",
-    shadowOpacity: 0.8392156862745098,
-    shadowOffset: {
-      width: 5,
-      height: 5,
-    },
-    shadowRadius: 10,
-  },
-  DropDownListText: {},
-  logoContainer: {
-    position: "absolute",
-    top: 5,
-    right: 1,
-  },
-  hhsLogo: {
-    opacity: 1,
-    position: "absolute",
-    width: 175,
-    height: 50,
-    right: 6,
-    top: 105,
-  },
-  hmcLogo: {
-    opacity: 1,
-    position: "absolute",
-    width: 175,
-    height: 50,
-    right: 6,
-    top: 50,
+    alignSelf: "center",
   },
   header1: {
     fontSize: 25,
@@ -144,37 +71,10 @@ const styles = StyleSheet.create({
   },
   text: {
     opacity: 1,
-    position: "absolute",
-    backgroundColor: "rgba(255, 255, 255, 0)",
     color: "rgba(19, 67, 146, 1)",
-    fontSize: 18,
+    fontSize: 19,
     textAlign: "center",
     lineHeight: 27,
-    width: 276,
-    height: 60,
-    top: 281.5,
-  },
-  input: {
-    height: 55,
-    margin: 12,
-    borderWidth: 0,
-    padding: 10,
-    opacity: 0.36000001430511475,
-    backgroundColor: "EEF6FA",
-    fontSize: 18,
-    lineHeight: 27,
-    borderRadius: 20,
-    top: 350,
-    opacity: 1,
-    backgroundColor: "rgba(238, 246, 250, 1)",
-    shadowColor: "rgb(203,  221,  230)",
-    shadowOffset: {
-      width: 5,
-      height: 5,
-    },
-    shadowRadius: 10,
-    width: 285,
-    alignSelf: "center",
   },
   shadow: {
     shadowColor: "#7F5DF0",
@@ -186,18 +86,6 @@ const styles = StyleSheet.create({
     shadowRadius: 3.5,
     elevation: 5,
   },
-  elevation: {
-    elevation: 10, //original was 20
-    shadowColor: "#52006A",
-  },
-  InputContainer: {
-    alignItems: "center",
-  },
-  tinyLogo: {
-    width: 50,
-    height: 50,
-    resizeMode: "contain",
-  },
   buttonText: {
     marginTop: 10,
     marginLeft: 20,
@@ -205,5 +93,15 @@ const styles = StyleSheet.create({
     flex: 1,
     textAlign: "center",
     color: "#134392",
+  },
+  logos: {
+    resizeMode: "contain",
+    maxWidth: '100%',
+    maxHeight: '100%',
+  },
+  bottom: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    marginBottom: 36
   },
 });
