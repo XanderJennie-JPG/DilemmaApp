@@ -2,7 +2,6 @@ import { React, useState } from "react";
 import {
   View,
   StyleSheet,
-  Image,
   Text,
   TouchableOpacity,
   Switch,
@@ -12,16 +11,22 @@ import { DonutChart } from "react-native-circular-chart";
 import TopLogo from "../components/TopLogo";
 
 const ResultScreen = ({ navigation }) => {
-  const data = [
+  const [isEnabled, setIsEnabled] = useState(false);
+  const disabledData = [
     { name: "Privacy", value: 30, color: "blue" },
     { name: "Integriteit", value: 20, color: "green" },
     { name: "Collegialiteit", value: 15, color: "pink" },
     { name: "Slaap", value: 35, color: "red" },
   ];
-
-  const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
-
+  const enabledData = [
+    { name: "Privacy", value: 50, color: "blue" },
+    { name: "Integriteit", value: 10, color: "green" },
+    { name: "Collegialiteit", value: 10, color: "pink" },
+    { name: "Slaap", value: 30, color: "red" },
+  ]
+  const toggleSwitch = () => {
+    setIsEnabled(!isEnabled);
+  };
   return (
     <Container>
       <TopLogo />
@@ -45,7 +50,7 @@ const ResultScreen = ({ navigation }) => {
         </View>
         <View style={{ alignSelf: "center" }}>
           <DonutChart
-            data={data}
+            data={isEnabled ? enabledData : disabledData}
             strokeWidth={15}
             radius={100}
             containerWidth={500}
