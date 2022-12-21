@@ -32,27 +32,16 @@ const PrivacyPolicy = ({ navigation: { goBack, navigate } }) => {
       <SafeAreaView style={[{ alignItems: "center", flex: 1, top: 100 }]}>
         <ScrollView style={styles.scrollView}>
           <Text style={styles.text}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum
-            dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-            ea commodo consequat. Duis aute irure dolor in reprehenderit in
-            voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-            officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit
-            amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-            ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-            nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-            esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-            cupidatat non proident, sunt in culpa qui officia deserunt mollit
-            anim id est laborum.
+          Wat doen we met uw gegevens?{"\n"}
+          Als u meedoet met de dilemma app dan geeft u ook toestemming om uw gegevens te verzamelen, gebruiken en bewaren voor onderzoeksdoeleinden.{"\n"}
+          Welke gegevens bewaren we? 
+          We bewaren deze gegevens 
+          - Uw zelfgekozen gebruikersnaam gekoppeld aan uw afdeling{"\n"}
+          - Uw antwoorden op de dilemmas{"\n"}
+          Waarom verzamelen, gebruiken en bewaren we uw gegevens?{"\n"}
+          We verzamelen, gebruiken en bewaren uw gegevens om de vraag van het onderzoek “hoe gaan medewerkers om met dilemmas op het gebied van informatiebeveiliging en privacy?” te kunnen beantwoorden.{"\n"}
+          Hoe beschermen we uw privacy?{"\n"}
+          Om uw privacy te beschermen slaan we uw gegevens op op een afgeschermde server van de Haagse Hogeschool, waartoe alleen de onderzoekers toegang hebben. In rapporten en publicaties over het onderzoek wordt niet op persoonsniveau gerapporteerd zodat niemand kan terughalen dat het over u ging. 
           </Text>
         </ScrollView>
       </SafeAreaView>
