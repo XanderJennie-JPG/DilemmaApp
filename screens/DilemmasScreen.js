@@ -89,6 +89,7 @@ const DilemmasScreen = ({ navigation: { goBack } }) => {
       {shuffleAnswers(questions[currentQuestion - 1].answers).map(
         (answer, index) => (
           <View style={{ flexDirection: "row" }} key={answer.value}>
+            {/*A, B and C. fromCharCode converts unicode to characters.*/}
             <Text>{String.fromCharCode(65 + index)}:</Text>
             <TouchableOpacity onPress={() => handleAnswer(answer.value)}>
               <Text>{answer.text}</Text>
