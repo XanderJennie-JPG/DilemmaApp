@@ -42,11 +42,11 @@ const DilemmasScreen = ({ navigation: { goBack } }) => {
 
   const handleAnswer = (option) => {
     if (option === "A") {
-      setPatiëntenbelang(Patiëntenbelang + 10);
+      SetPatiëntenbelang(Patiëntenbelang + 10);
     } else if (option === "B") {
-      IntegriteitPoints(setIntegriteitPoints + 10);
+      SetIntegriteitPoints(IntegriteitPoints + 10);
     } else if (option === "C") {
-      Informatiebeveiliging(setInformatiebeveiliging + 10);
+      SetInformatiebeveiliging(Informatiebeveiliging + 10);
     }
 
     setAnswers([...answers, { [option]: true }]);
