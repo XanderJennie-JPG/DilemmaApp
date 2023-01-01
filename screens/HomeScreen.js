@@ -1,4 +1,5 @@
 import {
+  React,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -6,7 +7,6 @@ import {
   ImageBackground,
   Image,
 } from "react-native";
-import React from "react-native";
 import Container from "../components/Container";
 import Datum from "../components/Datum";
 import GlobalStyle from "../components/GlobalStyle";
@@ -26,10 +26,16 @@ const HomeScreen = ({ navigation }) => {
           Goedemiddag, {"\n"}
           {user}
         </Text>
+        <Text style={[GlobalStyle.CustomFont]}>
+          Wij hebben het dilemma spel {"\n"}geupdate op{" "}
+          <Text style={[GlobalStyle.CustomFontBold]}>
+            <Datum />.
+          </Text>
+        </Text>
       </View>
       <View style={styles.center}>
       <ImageBackground
-        style={[styles.bgmiddle]}
+        style={[styles.bgmiddle, { marginTop: 55 }]}
         blurRadius={8.5}
       >
         <View

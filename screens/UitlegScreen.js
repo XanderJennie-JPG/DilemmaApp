@@ -10,12 +10,10 @@ const UitlegScreen = ({ navigation: { goBack, navigate } }) => {
   return (
     <Container>
       <TopLogo />
-      <TouchableOpacity onPress={() => goBack()}>
-        <Image source={require("../assets/Back-arrow.png")} />
-      </TouchableOpacity>
+
       <View
         style={[
-          { alignContent: "center", alignItems: "center" },
+          { alignContent: "center", alignItems: "center", paddingTop: 60 },
           styles.TextBetween,
         ]}
       >
@@ -23,7 +21,7 @@ const UitlegScreen = ({ navigation: { goBack, navigate } }) => {
           style={[
             GlobalStyle.CustomFontBold,
             styles.Header,
-            styles.TextBetween,
+            { paddingBottom: 5 },
           ]}
         >
           Dilemma's
@@ -75,7 +73,7 @@ const styles = StyleSheet.create({
     alignContent: "center",
   },
   TextBetween: {
-    marginBottom: 16,
+    marginBottom: 20,
   },
 
   ButtonText: {
