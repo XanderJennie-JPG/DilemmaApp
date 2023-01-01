@@ -19,7 +19,7 @@ const HomeScreen = ({ navigation }) => {
   return (
     <Container>
       <TopLogo />
-      <View style={{top: 75}}>
+      <View style={{top: 30}}>
         <Text
           style={[GlobalStyle.CustomFont, styles.Header]}
         >
@@ -111,6 +111,7 @@ const styles = StyleSheet.create({
   },
   Header: {
     fontSize: 29,
+    marginBottom: 5,
   },
   ButtonText: {
     fontSize: 15,
