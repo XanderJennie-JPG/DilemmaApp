@@ -1,11 +1,58 @@
-import { React, TouchableOpacity, Image, Text, StyleSheet, View} from "react-native";
-import { useState } from "react";
+import React, { useState } from "react";
+import { View, Image, Text, TouchableOpacity, StyleSheet } from "react-native";
 import Container from "../components/Container";
 import GlobalStyle from "../components/GlobalStyle";
-import QuizSet from "../components/QuizSet"
 
 const DilemmasScreen = ({ navigation: { goBack } }) => {
-  const [count, setCount] = useState(1);
+  const [currentQuestion, setCurrentQuestion] = useState(1);
+  const [Patiëntenbelang, setPatiëntenbelang] = useState(0);
+  const [IntegriteitPoints, setIntegriteitPoints] = useState(0);
+  const [Informatiebeveiliging, setInformatiebeveiliging] = useState(0);
+
+  const [answers, setAnswers] = useState([]);
+
+  const questions = [
+    {
+      text: "Je zit aan een balie en vindt daar een afdelingsbezettingsoverzicht (abo). Je staat onder druk om nog snel een rapportage op te stellen. Wat doe je?",
+      answers: [
+        {
+          text: "Je pakt het abo en gooit het weg in de daarvoor papierbak voor vertrouwelijke informatie. Je spreekt je collega’s niet aan want je vindt dat het ieders eigen verantwoordelijkheid is om de regels na te leven.",
+          value: "A",
+        },
+        {
+          text: "Je laat het abo liggen. Een collega heeft dit vast nodig.",
+          value: "B",
+        },
+        { text: "Je pakt het abo op en spreekt je collega’s aan.", value: "C" },
+      ],
+    },
+    {
+      text: "Een collega is nogal chaotisch en vergeet snel inloggegevens. Als je langs de werkplek van de collega loopt zie je een post-it briefje op het bureau geplakt met daarop de inloggegevens genoteerd. Vorige week heb je ook al een vervelende woordenwisseling gehad  met deze collega. Wat doe je?",
+      answers: [
+        { text: "Je spreekt je collega aan..", value: "A" },
+        { text: "Je laat het er maar bij voor deze keer,  je ziet dat je collega het druk heeft en herinnert je nog de discussie van vorige week.", value: "B" },
+        { text: "Er komen toch nooit onbevoegden op deze werkplek, laat maar zitten.", value: "C" },
+      ],
+    },
+  ];
+
+  const shuffleAnswers = (answers) => {
+    return answers.sort(() => Math.random() - 0.5);
+  };
+
+  const handleAnswer = (option) => {
+    if (option === "A") {
+      setPatiëntenbelang(Patiëntenbelang + 10);
+    } else if (option === "B") {
+      IntegriteitPoints(setIntegriteitPoints + 10);
+    } else if (option === "C") {
+      Informatiebeveiliging(setInformatiebeveiliging + 10);
+    }
+
+    setAnswers([...answers, { [option]: true }]);
+    setCurrentQuestion(currentQuestion + 1);
+  };
+
   return (
     <Container>
       <View style={styles.rowone}>
@@ -15,28 +62,21 @@ const DilemmasScreen = ({ navigation: { goBack } }) => {
         <Text style={[GlobalStyle.CustomFont, { alignSelf: "center" }]}>
           Dilemma{" "}
           <Text style={[GlobalStyle.CustomFontBold, { fontSize: 30 }]}>
-            {count}/10
+            {currentQuestion}/{questions.length}
           </Text>
         </Text>
       </View>
-      <View style={[styles.box, styles.shadow]} blurRadius={8.5}>
-        <View style={[styles.styleA]}>
-          <Text style={[styles.ButtonText, styles.question, { marginTop: 25 }]}>
-            q
-          </Text>
-          <TouchableOpacity
-            style={[styles.Button, styles.shadow, { marginTop: 20 }]}
-          >
-            <Text style={[styles.ButtonText, { left: 5 }]}>a</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={[styles.Button, styles.shadow]}>
-            <Text style={[styles.ButtonText, { left: 5 }]}>b</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={[styles.Button, styles.shadow]}>
-            <Text style={[styles.ButtonText, { left: 5 }]}>c</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
+      <Text>{questions[currentQuestion - 1].text}</Text>
+      {shuffleAnswers(questions[currentQuestion - 1].answers).map(
+        (answer, index) => (
+          <View style={{ flexDirection: "row" }} key={answer.value}>
+            <Text>{String.fromCharCode(65 + index)}:</Text>
+            <TouchableOpacity onPress={() => handleAnswer(answer.value)}>
+              <Text>{answer.text}</Text>
+            </TouchableOpacity>
+          </View>
+        )
+      )}
     </Container>
   );
 };
