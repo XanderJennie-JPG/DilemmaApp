@@ -3,12 +3,15 @@ import { View, Image, Text, TouchableOpacity, StyleSheet } from "react-native";
 import Container from "../components/Container";
 import GlobalStyle from "../components/GlobalStyle";
 
+//TODO: separate the logic for rendering the question and answers from the DilemmasScreen component to make the code easier to read.
+//TODO: adding some conditional rendering to show a "Next" button or a "Finish" button based on whether the current question is the last question or not.
 const DilemmasScreen = ({ navigation: { goBack } }) => {
   const [currentQuestion, setCurrentQuestion] = useState(1);
   const [Patiëntenbelang, setPatiëntenbelang] = useState(0);
   const [IntegriteitPoints, setIntegriteitPoints] = useState(0);
   const [Informatiebeveiliging, setInformatiebeveiliging] = useState(0);
 
+  //State variable that keeps track of the answers
   const [answers, setAnswers] = useState([]);
 
   const questions = [
@@ -30,8 +33,14 @@ const DilemmasScreen = ({ navigation: { goBack } }) => {
       text: "Een collega is nogal chaotisch en vergeet snel inloggegevens. Als je langs de werkplek van de collega loopt zie je een post-it briefje op het bureau geplakt met daarop de inloggegevens genoteerd. Vorige week heb je ook al een vervelende woordenwisseling gehad  met deze collega. Wat doe je?",
       answers: [
         { text: "Je spreekt je collega aan..", value: "A" },
-        { text: "Je laat het er maar bij voor deze keer,  je ziet dat je collega het druk heeft en herinnert je nog de discussie van vorige week.", value: "B" },
-        { text: "Er komen toch nooit onbevoegden op deze werkplek, laat maar zitten.", value: "C" },
+        {
+          text: "Je laat het er maar bij voor deze keer,  je ziet dat je collega het druk heeft en herinnert je nog de discussie van vorige week.",
+          value: "B",
+        },
+        {
+          text: "Er komen toch nooit onbevoegden op deze werkplek, laat maar zitten.",
+          value: "C",
+        },
       ],
     },
   ];
@@ -40,13 +49,23 @@ const DilemmasScreen = ({ navigation: { goBack } }) => {
     return answers.sort(() => Math.random() - 0.5);
   };
 
-  const handleAnswer = (option) => {
+  const handleAnswer = async (option) => {
     if (option === "A") {
       SetPatiëntenbelang(Patiëntenbelang + 10);
     } else if (option === "B") {
       SetIntegriteitPoints(IntegriteitPoints + 10);
     } else if (option === "C") {
       SetInformatiebeveiliging(Informatiebeveiliging + 10);
+    }
+
+    // send the answers to the backend, comment out if this is giving you errors.
+    try {
+      const response = await axios.post("/api/submitAnswers", {
+        answers: [...answers, { [option]: true }],
+      });
+      console.log("Success:", response);
+    } catch (error) {
+      console.error("Error:", error);
     }
 
     setAnswers([...answers, { [option]: true }]);
