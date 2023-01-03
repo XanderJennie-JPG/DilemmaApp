@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { View, Image, Text, TouchableOpacity, StyleSheet } from "react-native";
 import Container from "../components/Container";
 import GlobalStyle from "../components/GlobalStyle";
+import axios from 'axios';
 
 //TODO: separate the logic for rendering the question and answers from the DilemmasScreen component to make the code easier to read.
 //TODO: adding some conditional rendering to show a "Next" button or a "Finish" button based on whether the current question is the last question or not.
@@ -51,11 +52,11 @@ const DilemmasScreen = ({ navigation: { goBack } }) => {
 
   const handleAnswer = async (option) => {
     if (option === "A") {
-      SetPatiëntenbelang(Patiëntenbelang + 10);
+      setPatiëntenbelang(Patiëntenbelang + 10);
     } else if (option === "B") {
-      SetIntegriteitPoints(IntegriteitPoints + 10);
+      setIntegriteitPoints(IntegriteitPoints + 10);
     } else if (option === "C") {
-      SetInformatiebeveiliging(Informatiebeveiliging + 10);
+      setInformatiebeveiliging(Informatiebeveiliging + 10);
     }
 
     // send the answers to the backend, comment out if this is giving you errors.
