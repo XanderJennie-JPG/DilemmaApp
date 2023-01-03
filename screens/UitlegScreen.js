@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, ImageBackground, Image } from "react-native";
 import React from "react-native";
 import Container from "../components/Container";
 import TopLogo from "../components/TopLogo";
@@ -10,6 +10,20 @@ const UitlegScreen = ({ navigation: { goBack, navigate } }) => {
   return (
     <Container>
       <TopLogo />
+      <ImageBackground
+        resizeMode="cover"
+        style={[
+          styles.backgroundTop,
+          {
+            transform: [{ rotate: "-15deg" }],
+            height: 250,
+            width: 450,
+            top: -20,
+            left: -50,
+          },
+        ]}
+        source={require("../assets/background-top.png")}
+      ></ImageBackground>
 
       <View
         style={[
@@ -37,6 +51,19 @@ const UitlegScreen = ({ navigation: { goBack, navigate } }) => {
       <Text style={[GlobalStyle.CustomFont, styles.TextBetween]}>
         Is deze tekst goed te lezen?
       </Text>
+      <ImageBackground
+        resizeMode="cover"
+        style={[
+          {
+            transform: [{ rotate: "15deg" }],
+            height: 300,
+            width: 450,
+            left: -75,
+            top: 75,
+          },
+        ]}
+        source={require("../assets/background-top.png")}
+      ></ImageBackground>
       <View
         style={{
           justifyContent: "center",
@@ -71,6 +98,12 @@ const styles = StyleSheet.create({
     fontSize: 35,
     alignItems: "center",
     alignContent: "center",
+  },
+  backgroundTop: {
+    position: "absolute",
+    top: -10,
+    left: 10,
+    right: 0,
   },
   TextBetween: {
     marginBottom: 20,

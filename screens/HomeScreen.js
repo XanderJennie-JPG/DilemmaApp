@@ -18,59 +18,71 @@ const user = "Placeholder";
 const HomeScreen = ({ navigation }) => {
   return (
     <Container>
-      <TopLogo />
-      <View style={{top: 30}}>
-        <Text
-          style={[GlobalStyle.CustomFont, styles.Header]}
-        >
-          Goedemiddag, {"\n"}
-          {user}
-        </Text>
-        <Text style={[GlobalStyle.CustomFont]}>
-          Wij hebben het dilemma spel {"\n"}geupdate op{" "}
-          <Text style={[GlobalStyle.CustomFontBold]}>
-            <Datum />.
+      <ImageBackground
+        resizeMode="cover"
+        style={[
+          styles.backgroundTop,
+          {
+            transform: [{ rotate: "-15deg" }],
+            height: 250,
+            width: 450,
+            top: -20,
+            left: -50,
+          },
+        ]}
+        source={require("../assets/background-top.png")}
+      ></ImageBackground>
+      <View>
+        <TopLogo />
+
+        <View style={{ marginTop: 30 }}>
+          <Text style={[GlobalStyle.CustomFont, styles.Header]}>
+            Goedemiddag, {"\n"}
+            {user}
           </Text>
-        </Text>
+          <Text style={[GlobalStyle.CustomFont]}>
+            Wij hebben het dilemma spel {"\n"}geupdate op{" "}
+            <Text style={[GlobalStyle.CustomFontBold]}>
+              <Datum />.
+            </Text>
+          </Text>
+        </View>
       </View>
       <View style={styles.center}>
-      <ImageBackground
-        style={[styles.bgmiddle, { marginTop: 55 }]}
-        blurRadius={8.5}
-      >
-        <View
-          style={{
-            alignContent: "center",
-            alignItems: "center",
-            flex: 1,
-          }}
-        >
-          <Image
-            source={require("../assets/Medtap.png")}
-            resizeMode="cover"
-            style={{ width: 300, marginTop: 20 }}
-          ></Image>
-        </View>
-        <View
-          style={{
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <TouchableOpacity
-            style={[styles.Button, styles.shadow]}
-            onPress={() => navigation.navigate("Uitleg")}
+        <ImageBackground style={[styles.bgmiddle]} blurRadius={8.5}>
+          <View
+            style={{
+              alignContent: "center",
+              alignItems: "center",
+              flex: 1,
+            }}
           >
-            <Text style={[styles.ButtonText, GlobalStyle.CustomFontBold]}>
-              Begin het dilemma spel
-            </Text>
-            <Ionicons
-              name="arrow-forward-sharp"
-              style={{ paddingLeft: 3 }}
-            ></Ionicons>
-          </TouchableOpacity>
-        </View>
-      </ImageBackground>
+            <Image
+              source={require("../assets/Medtap.png")}
+              resizeMode="cover"
+              style={{ width: 300, marginTop: 20 }}
+            ></Image>
+          </View>
+          <View
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <TouchableOpacity
+              style={[styles.Button, styles.shadow]}
+              onPress={() => navigation.navigate("Uitleg")}
+            >
+              <Text style={[styles.ButtonText, GlobalStyle.CustomFontBold]}>
+                Begin het dilemma spel
+              </Text>
+              <Ionicons
+                name="arrow-forward-sharp"
+                style={{ paddingLeft: 3 }}
+              ></Ionicons>
+            </TouchableOpacity>
+          </View>
+        </ImageBackground>
       </View>
     </Container>
   );
@@ -93,6 +105,12 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 3,
     elevation: 4,
+  },
+  backgroundTop: {
+    position: "absolute",
+    top: -10,
+    left: 10,
+    right: 0,
   },
   center: {
     flex: 1,
