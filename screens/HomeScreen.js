@@ -31,7 +31,21 @@ const HomeScreen = ({ navigation }) => {
           },
         ]}
         source={require("../assets/background-top.png")}
-      ></ImageBackground>
+      />
+      <ImageBackground
+        resizeMode="cover"
+        style={[
+          styles.backgroundBottom,
+          {
+            transform: [{ rotate: "15deg" }],
+            height: 250,
+            width: 450,
+            top: 475,
+            alignSelf: "center",
+          },
+        ]}
+        source={require("../assets/background-top.png")}
+      />
       <View>
         <TopLogo />
 
@@ -43,13 +57,18 @@ const HomeScreen = ({ navigation }) => {
           <Text style={[GlobalStyle.CustomFont]}>
             Wij hebben het dilemma spel {"\n"}geupdate op{" "}
             <Text style={[GlobalStyle.CustomFontBold]}>
-              <Datum />.
+              <Datum />
             </Text>
           </Text>
         </View>
       </View>
       <View style={styles.center}>
-        <ImageBackground style={[styles.bgmiddle]} blurRadius={8.5}>
+        <ImageBackground
+          resizeMode="contain"
+          style={styles.backgroundPlus}
+          source={require("../assets/Kruis.png")}
+        />
+        <View style={[styles.bgmiddle]} blurRadius={8.5}>
           <View
             style={{
               alignContent: "center",
@@ -82,7 +101,7 @@ const HomeScreen = ({ navigation }) => {
               ></Ionicons>
             </TouchableOpacity>
           </View>
-        </ImageBackground>
+        </View>
       </View>
     </Container>
   );
@@ -92,7 +111,7 @@ export default HomeScreen;
 
 const styles = StyleSheet.create({
   bgmiddle: {
-    backgroundColor: "rgba(255,255,255,0.15)",
+    backgroundColor: "rgba(255,255,255,0.4)",
     height: 400,
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.18)",
@@ -111,6 +130,16 @@ const styles = StyleSheet.create({
     top: -10,
     left: 10,
     right: 0,
+  },
+  backgroundBottom: {
+    position: "absolute",
+  },
+  backgroundPlus: {
+    position: "absolute",
+    height: 500,
+    width: 400,
+    alignSelf: "center",
+    opacity: 0.2,
   },
   center: {
     flex: 1,
