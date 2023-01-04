@@ -1,39 +1,38 @@
 import React from "react";
-import {
-  View,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  Image,
-} from "react-native";
+import { View, StyleSheet, Text, TouchableOpacity, Image } from "react-native";
 import Container from "../components/Container";
 
-const ChooseDepartment = ({ navigation }) => {
+const WelcomeScreen = ({ navigation }) => {
   const [selected, setSelected] = React.useState("");
 
   return (
     <Container>
       <View>
-        <Text style={[styles.header1, {marginTop: 50}]}>Welkom op de Dilemma app{"\n"}</Text>
+        <Text style={[styles.header1, { marginTop: 50 }]}>
+          Welkom op de Dilemma app{"\n"}
+        </Text>
         <Text style={styles.text}>Deze app is mogelijk gemaakt door</Text>
       </View>
       <View>
         <Image style={styles.logos} source={require("../assets/HMCLogo.png")} />
-        <Image style={[styles.logos, {marginTop: -225}]} source={require("../assets/HaagseLogo.png")} />
+        <Image
+          style={[styles.logos, { marginTop: -225 }]}
+          source={require("../assets/HaagseLogo.png")}
+        />
       </View>
       <View style={styles.bottom}>
-      <TouchableOpacity
-      style={[styles.GaDoorButton, styles.shadow]}
-      onPress={() => navigation.navigate("Afdeling")}
-      >
-        <Text style={styles.buttonText}>Volgende!</Text>
-      </TouchableOpacity> 
+        <TouchableOpacity
+          style={[styles.GaDoorButton, styles.shadow]}
+          onPress={() => navigation.navigate("Afdeling")}
+        >
+          <Text style={styles.buttonText}>Volgende!</Text>
+        </TouchableOpacity>
       </View>
     </Container>
   );
 };
 
-export default ChooseDepartment;
+export default WelcomeScreen;
 
 const styles = StyleSheet.create({
   GaDoorButton: {
@@ -96,12 +95,12 @@ const styles = StyleSheet.create({
   },
   logos: {
     resizeMode: "contain",
-    maxWidth: '100%',
-    maxHeight: '100%',
+    maxWidth: "100%",
+    maxHeight: "100%",
   },
   bottom: {
     flex: 1,
-    justifyContent: 'flex-end',
-    marginBottom: 36
+    justifyContent: "flex-end",
+    marginBottom: 36,
   },
 });

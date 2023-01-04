@@ -13,6 +13,7 @@ import Container from "../components/Container";
 import { SelectList } from "react-native-dropdown-select-list";
 import TopLogo from "../components/TopLogo";
 
+
 const ChooseDepartment = ({ navigation }) => {
   const [selected, setSelected] = React.useState("");
 
