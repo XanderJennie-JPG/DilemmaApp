@@ -90,7 +90,7 @@ const HomeScreen = ({ navigation }) => {
           >
             <TouchableOpacity
               style={[styles.Button, styles.shadow]}
-              onPress={() => navigation.navigate("Uitleg")}
+              onPress={() => navigation.navigate("UitlegScreen")}
             >
               <Text style={[styles.ButtonText, GlobalStyle.CustomFontBold]}>
                 Begin het dilemma spel

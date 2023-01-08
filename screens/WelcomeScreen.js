@@ -23,7 +23,7 @@ const WelcomeScreen = ({ navigation }) => {
       <View style={styles.bottom}>
         <TouchableOpacity
           style={[styles.GaDoorButton, styles.shadow]}
-          onPress={() => navigation.navigate("Afdeling")}
+          onPress={() => navigation.navigate("ChooseDepartment")}
         >
           <Text style={styles.buttonText}>Volgende!</Text>
         </TouchableOpacity>

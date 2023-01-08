@@ -9,7 +9,13 @@ import GlobalStyle from "../components/GlobalStyle";
 const UitlegScreen = ({ navigation: { goBack, navigate } }) => {
   return (
     <Container>
+      <View style={{ zIndex: 1 }}>
+        <TouchableOpacity onPress={() => goBack()}>
+          <Image source={require("../assets/Back-arrow.png")} />
+        </TouchableOpacity>
+      </View>
       <TopLogo />
+
       <ImageBackground
         resizeMode="cover"
         style={[
@@ -75,7 +81,7 @@ const UitlegScreen = ({ navigation: { goBack, navigate } }) => {
       >
         <TouchableOpacity
           style={[styles.Button, styles.shadow, { marginTop: "auto" }]}
-          onPress={() => navigate("Dilemma")}
+          onPress={() => navigate("QuizScreen")}
         >
           <Text style={[styles.ButtonText, GlobalStyle.CustomFontBold, ,]}>
             Door naar het spel
@@ -98,6 +104,10 @@ const styles = StyleSheet.create({
     fontSize: 35,
     alignItems: "center",
     alignContent: "center",
+  },
+  rowone: {
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   backgroundTop: {
     position: "absolute",
