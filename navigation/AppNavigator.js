@@ -11,43 +11,57 @@ import UitlegScreen from "../screens/UitlegScreen";
 const WelcomeStack = createStackNavigator();
 
 function WelcomeStackScreen() {
-	return (
-		<WelcomeStack.Navigator
-			initialRouteName="Welcome"
-			screenOptions={{ headerShown: false }}
-		>
-			<WelcomeStack.Screen name="Welcome" component={WelcomeScreen} />
-			<WelcomeStack.Screen
-				name="ChooseDepartment"
-				component={ChooseDepartment}
-			/>
-		</WelcomeStack.Navigator>
-	);
+  return (
+    <WelcomeStack.Navigator
+      initialRouteName="Welcome"
+      screenOptions={{ headerShown: false }}
+    >
+      <WelcomeStack.Screen name="Welcome" component={WelcomeScreen} />
+      <WelcomeStack.Screen
+        name="ChooseDepartment"
+        component={ChooseDepartment}
+      />
+    </WelcomeStack.Navigator>
+  );
 }
 
 const HomeTab = createBottomTabNavigator();
 
 function HomeTabScreen() {
-	return (
-		<HomeTab.Navigator
-			screenOptions={{ headerShown: false }}
-			initialRouteName="Home">
-			<HomeTab.Screen name="Results" component={ResultsScreen} />
-			<HomeTab.Screen name="Home" component={HomeScreen} />
-			<HomeTab.Screen name="Settings" component={SettingsScreen} />
-		</HomeTab.Navigator>
-	);
+  return (
+    <HomeTab.Navigator
+      screenOptions={{ headerShown: false }}
+      initialRouteName="Home"
+    >
+      <HomeTab.Screen name="Results" component={ResultsScreen} />
+      <HomeTab.Screen name="Home" component={HomeScreen} />
+      <HomeTab.Screen name="Settings" component={SettingsScreen} />
+    </HomeTab.Navigator>
+  );
 }
 
 const AppNavigator = createStackNavigator();
 
-export default function AppNavigatorScreen() {
-	return (
-		<AppNavigator.Navigator screenOptions={{ headerShown: false }}>
-			<AppNavigator.Screen name="WelcomeStack" component={WelcomeStackScreen} />
-			<AppNavigator.Screen name="HomeTab" component={HomeTabScreen} />
-			<AppNavigator.Screen name="QuizScreen" component={DilemmasScreen} />
-			<AppNavigator.Screen name="UitlegScreen" component={UitlegScreen} />
-		</AppNavigator.Navigator>
-	);
+export default function AppNavigatorScreen({ hasSeenWelcome }) {
+  if (hasSeenWelcome) {
+    return (
+      <AppNavigator.Navigator screenOptions={{ headerShown: false }}>
+        <AppNavigator.Screen name="HomeTab" component={HomeTabScreen} />
+        <AppNavigator.Screen name="QuizScreen" component={DilemmasScreen} />
+        <AppNavigator.Screen name="UitlegScreen" component={UitlegScreen} />
+      </AppNavigator.Navigator>
+    );
+  } else {
+    return (
+      <AppNavigator.Navigator screenOptions={{ headerShown: false }}>
+        <AppNavigator.Screen
+          name="WelcomeStack"
+          component={WelcomeStackScreen}
+        />
+        <AppNavigator.Screen name="HomeTab" component={HomeTabScreen} />
+        <AppNavigator.Screen name="QuizScreen" component={DilemmasScreen} />
+        <AppNavigator.Screen name="UitlegScreen" component={UitlegScreen} />
+      </AppNavigator.Navigator>
+    );
+  }
 }
