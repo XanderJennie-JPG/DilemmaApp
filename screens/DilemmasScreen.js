@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { View, Image, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Image, Text, TouchableOpacity, StyleSheet, ImageBackground } from "react-native";
 import Container from "../components/Container";
 import GlobalStyle from "../components/GlobalStyle";
-import axios from 'axios';
+import axios from "axios";
 
 //TODO: separate the logic for rendering the question and answers from the DilemmasScreen component to make the code easier to read.
 //TODO: adding some conditional rendering to show a "Next" button or a "Finish" button based on whether the current question is the last question or not.
@@ -75,6 +75,34 @@ const DilemmasScreen = ({ navigation: { goBack } }) => {
 
   return (
     <Container>
+      <ImageBackground
+        resizeMode="cover"
+        style={[
+          styles.backgroundTop,
+          {
+            transform: [{ rotate: "-15deg" }],
+            height: 250,
+            width: 450,
+            top: -20,
+            left: -50,
+          },
+        ]}
+        source={require("../assets/background-top.png")}
+      />
+      <ImageBackground
+        resizeMode="cover"
+        style={[
+          styles.backgroundBottom,
+          {
+            transform: [{ rotate: "15deg" }],
+            height: 250,
+            width: 450,
+            top: 475,
+            alignSelf: "center",
+          },
+        ]}
+        source={require("../assets/background-top.png")}
+      />
       <View style={styles.rowone}>
         <TouchableOpacity onPress={() => goBack()}>
           <Image source={require("../assets/Back-arrow.png")} />
@@ -86,18 +114,26 @@ const DilemmasScreen = ({ navigation: { goBack } }) => {
           </Text>
         </Text>
       </View>
-      <Text>{questions[currentQuestion - 1].text}</Text>
-      {shuffleAnswers(questions[currentQuestion - 1].answers).map(
-        (answer, index) => (
-          <View style={{ flexDirection: "row" }} key={answer.value}>
-            {/*A, B and C. fromCharCode converts unicode to characters.*/}
-            <Text>{String.fromCharCode(65 + index)}:</Text>
-            <TouchableOpacity onPress={() => handleAnswer(answer.value)}>
-              <Text>{answer.text}</Text>
-            </TouchableOpacity>
-          </View>
-        )
-      )}
+      <View style={[styles.box, styles.shadow]} blurRadius={8.5}>
+        <View style={styles.styleA}>
+        <Text style={[styles.ButtonText, styles.question, {marginTop: 25}]}>{questions[currentQuestion - 1].text}</Text>
+        {shuffleAnswers(questions[currentQuestion - 1].answers).map(
+          (answer, index) => (
+            <View style={{ flexDirection: "row" }} key={answer.value}>
+              {/*A, B and C. fromCharCode converts unicode to characters.*/}
+              <View style={{flex: 1}}>
+              <Text style={[styles.ButtonText, {alignSelf: "center", top: 50, fontWeight: "bold", fontSize: 23}]}>{String.fromCharCode(65 + index)}</Text>
+              </View>
+              <TouchableOpacity 
+              style={[styles.Button, styles.shadow]}
+              onPress={() => handleAnswer(answer.value)}>
+                <Text style={[styles.ButtonText, { left: 5 }]}>{answer.text}</Text>
+              </TouchableOpacity>
+            </View>
+          )
+        )}
+        </View>
+      </View>
     </Container>
   );
 };
@@ -105,6 +141,15 @@ const DilemmasScreen = ({ navigation: { goBack } }) => {
 export default DilemmasScreen;
 
 const styles = StyleSheet.create({
+  backgroundTop: {
+    position: "absolute",
+    top: -10,
+    left: 10,
+    right: 0,
+  },
+  backgroundBottom: {
+    position: "absolute",
+  },
   rowone: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -113,8 +158,8 @@ const styles = StyleSheet.create({
     fontSize: 30,
   },
   bgmiddle: {
-    backgroundColor: "rgba(255,255,255,0.15)",
-    height: 575,
+    backgroundColor: "rgba(255,255,255,0.4)",
+    height: 400,
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.18)",
     borderRadius: 20,
@@ -158,7 +203,7 @@ const styles = StyleSheet.create({
   },
   box: {
     opacity: 1,
-    backgroundColor: "#cceff9",
+    backgroundColor: "#cceff9", //change to "rgba(255,255,255,0.8)" for android?
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     borderBottomLeftRadius: 20,
