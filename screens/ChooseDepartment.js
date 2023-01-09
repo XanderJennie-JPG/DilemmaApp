@@ -46,9 +46,13 @@ const ChooseDepartment = ({ navigation }) => {
         defaultOption={{ key: "Poli urologie", value: "Poli urologie" }}
         maxHeight={150}
       />
-      <TouchableOpacity style={[styles.GaDoorButton, styles.shadow]}>
+
+      <TouchableOpacity
+        onPress={() => navigation.navigate("HomeTab")}
+        style={[styles.GaDoorButton, styles.shadow]}
+      >
         <Text style={styles.buttonText}>Laten we beginnen!</Text>
-      </TouchableOpacity> 
+      </TouchableOpacity>
     </Container>
   );
 };
