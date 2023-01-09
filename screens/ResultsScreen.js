@@ -15,14 +15,12 @@ const ResultScreen = ({ navigation }) => {
   const disabledData = [
     { name: "Privacy", value: 30, color: "blue" },
     { name: "Integriteit", value: 20, color: "green" },
-    { name: "Collegialiteit", value: 15, color: "pink" },
-    { name: "Slaap", value: 35, color: "red" },
+    { name: "Collegialiteit", value: 15, color: "red" },
   ];
   const enabledData = [
     { name: "Privacy", value: 50, color: "blue" },
     { name: "Integriteit", value: 10, color: "green" },
-    { name: "Collegialiteit", value: 10, color: "pink" },
-    { name: "Slaap", value: 30, color: "red" },
+    { name: "Collegialiteit", value: 10, color: "red" },
   ]
   const toggleSwitch = () => {
     setIsEnabled(!isEnabled);
@@ -56,8 +54,8 @@ const ResultScreen = ({ navigation }) => {
             containerWidth={500}
             containerHeight={500}
             type="butt"
-            startAngle={0}
-            endAngle={360}
+            startAngle={-90}
+            endAngle={90}
             animationType="slide"
           />
         </View>
