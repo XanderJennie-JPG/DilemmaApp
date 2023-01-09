@@ -1,15 +1,12 @@
 import { createStackNavigator } from "@react-navigation/stack";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import HomeScreen from "../screens/HomeScreen";
 import ChooseDepartment from "../screens/ChooseDepartment";
 import WelcomeScreen from "../screens/WelcomeScreen";
-import ResultsScreen from "../screens/ResultsScreen";
-import SettingsScreen from "../screens/SettingsScreen";
 import DilemmasScreen from "../screens/DilemmasScreen";
 import UitlegScreen from "../screens/UitlegScreen";
 import AlgemeneVoorwaarden from "../screens/AlgemeneVoorwaarden";
 import PrivacyPolicy from "../screens/PrivacyPolicy";
 import ToelichtingScreen from "../screens/ToelichtingScreen";
+import HomeTabScreen from "./HomeTab";
 
 const WelcomeStack = createStackNavigator();
 
@@ -25,21 +22,6 @@ function WelcomeStackScreen() {
         component={ChooseDepartment}
       />
     </WelcomeStack.Navigator>
-  );
-}
-
-const HomeTab = createBottomTabNavigator();
-
-function HomeTabScreen() {
-  return (
-    <HomeTab.Navigator
-      screenOptions={{ headerShown: false }}
-      initialRouteName="Home"
-    >
-      <HomeTab.Screen name="Results" component={ResultsScreen} />
-      <HomeTab.Screen name="Home" component={HomeScreen} />
-      <HomeTab.Screen name="Settings" component={SettingsScreen} />
-    </HomeTab.Navigator>
   );
 }
 
