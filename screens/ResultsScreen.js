@@ -54,8 +54,8 @@ const ResultScreen = ({ navigation }) => {
             containerWidth={500}
             containerHeight={500}
             type="butt"
-            startAngle={-90}
-            endAngle={90}
+            startAngle={-115}
+            endAngle={115}
             animationType="slide"
           />
         </View>
