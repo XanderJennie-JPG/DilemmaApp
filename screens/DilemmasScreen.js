@@ -5,7 +5,7 @@ import GlobalStyle from "../components/GlobalStyle";
 import axios from "axios";
 import questions from "../components/Questions";
 
-//Note: This is hard to read. The deadline is soon. Gotta do what you gotta do. I added comments everywhere to clarify it a little bit for everyone.
+//Note: This is hard to read due to deadline. I added comments everywhere to clarify it a little bit for everyone. - Nabil
 
 //TODO: separate the logic for rendering the question and answers from the DilemmasScreen component to make the code easier to read.
 //TODO: adding some conditional rendering to show a "Next" button or a "Finish" button based on whether the current question is the last question or not.
@@ -29,9 +29,17 @@ const DilemmasScreen = ({ navigation: { goBack } }) => {
     return answers.sort(() => Math.random() - 0.5);
   };
 
+  //Remove previous answer when selecting a new one
   const removePreviousAnswer = () => {
     if (answers[currentQuestion]) {
       answers[currentQuestion] = null;
+    }
+  };
+
+  //Go back a question
+  const handlePrevious = () => {
+    if (currentQuestion > 1) {
+      setCurrentQuestion(currentQuestion - 1);
     }
   };
 
@@ -87,15 +95,30 @@ const DilemmasScreen = ({ navigation: { goBack } }) => {
           </TouchableOpacity>
         </View>
       ))}
-      <TouchableOpacity
-        style={styles.nextButton}
-        disabled={selectedAnswer === null}
-        onPress={() => {
-          handleNext();
-        }}
-      >
-        <Text style={styles.nextButtonText}>Next</Text>
-      </TouchableOpacity>
+      <View style={styles.rowtwo}>
+        <TouchableOpacity
+          onPress={handlePrevious}
+          disabled={currentQuestion - 1 == 0}
+        >
+          <Text style={styles.previousButton}>Previous</Text>
+        </TouchableOpacity>
+
+        {currentQuestion - 1 === questions.length ? (
+          <TouchableOpacity onPress={handleFinish}>
+            <Text>Finish</Text>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity
+            style={styles.nextButton}
+            disabled={selectedAnswer === null}
+            onPress={() => {
+              handleNext();
+            }}
+          >
+            <Text style={styles.nextButtonText}>Next</Text>
+          </TouchableOpacity>
+        )}
+      </View>
     </Container>
   );
 };
@@ -106,6 +129,11 @@ const styles = StyleSheet.create({
   rowone: {
     flexDirection: "row",
     justifyContent: "space-between",
+  },
+  rowtwo: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 50,
   },
   dilemmatext: {
     fontSize: 30,
