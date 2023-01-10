@@ -5,7 +5,6 @@ import {
 	Image,
 	Text,
 	TextInput,
-	Pressable,
 	ToastAndroid,
 	TouchableOpacity,
 } from "react-native";

@@ -9,7 +9,6 @@ import {
 } from "react-native";
 import React from "react";
 import Container from "../components/Container";
-import { Divider } from "@rneui/themed";
 import TopLogo from "../components/TopLogo";
 
 const AlgemeneVoorwaarden = ({ navigation: { goBack, navigate } }) => {
