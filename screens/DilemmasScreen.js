@@ -5,42 +5,71 @@ import GlobalStyle from "../components/GlobalStyle";
 import axios from "axios";
 import questions from "../components/Questions";
 
+//Note: This is hard to read due to deadline. I added comments everywhere to clarify it a little bit for everyone. - Nabil
+
 //TODO: separate the logic for rendering the question and answers from the DilemmasScreen component to make the code easier to read.
 //TODO: adding some conditional rendering to show a "Next" button or a "Finish" button based on whether the current question is the last question or not.
 const DilemmasScreen = ({ navigation: { goBack } }) => {
+  //Here, we keep track of the current question for rendering purposes.
   const [currentQuestion, setCurrentQuestion] = useState(1);
+  //Here, we store the scores.
   const [Patiëntenbelang, setPatiëntenbelang] = useState(0);
   const [IntegriteitPoints, setIntegriteitPoints] = useState(0);
   const [Informatiebeveiliging, setInformatiebeveiliging] = useState(0);
 
-  //State variable that keeps track of the answers
-  const [answers, setAnswers] = useState([]);
+  //State variable that keeps track of the selected answers
+  const [answers, setAnswers] = useState({});
+  console.log(answers);
 
+  //State variable that keeps track of the currently selected answer
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
+
+  //Randomizes the answers so the user doesnt ''game'' the system
   const shuffleAnswers = (answers) => {
     return answers.sort(() => Math.random() - 0.5);
   };
 
+  //Remove previous answer when selecting a new one
+  const removePreviousAnswer = () => {
+    if (answers[currentQuestion]) {
+      answers[currentQuestion] = null;
+    }
+  };
+
+  //Go back a question
+  const handlePrevious = () => {
+    if (currentQuestion > 1) {
+      setCurrentQuestion(currentQuestion - 1);
+    }
+  };
+
   const handleAnswer = async (option) => {
-    if (option === "A") {
+    //We check if the users answer is different from the previously selected answer in the current question. If yes then..
+    if (selectedAnswer !== option) {
+      removePreviousAnswer();
+      //We set what the user has selected
+      setSelectedAnswer(option);
+      setAnswers({ ...answers, [currentQuestion]: option });
+    }
+  };
+
+  //The handling of the users chosen questions when pressing next.
+  const handleNext = async (option) => {
+    if (selectedAnswer === "A") {
       setPatiëntenbelang(Patiëntenbelang + 10);
-    } else if (option === "B") {
+    } else if (selectedAnswer === "B") {
       setIntegriteitPoints(IntegriteitPoints + 10);
-    } else if (option === "C") {
+    } else if (selectedAnswer === "C") {
       setInformatiebeveiliging(Informatiebeveiliging + 10);
     }
 
-    // send the answers to the backend, comment out if this is giving you errors.
-    try {
-      const response = await axios.post("/api/submitAnswers", {
-        answers: [...answers, { [option]: true }],
-      });
-      console.log("Success:", response);
-    } catch (error) {
-      console.error("Error:", error);
+    //Here, when the backend is done, we need to add an axios call to store in backend.
+    if (currentQuestion < questions.length) {
+      setCurrentQuestion(currentQuestion + 1);
     }
 
-    setAnswers([...answers, { [option]: true }]);
-    setCurrentQuestion(currentQuestion + 1);
+    //Reset selected answer when going to next.
+    setSelectedAnswer(null);
   };
 
   return (
@@ -57,17 +86,39 @@ const DilemmasScreen = ({ navigation: { goBack } }) => {
         </Text>
       </View>
       <Text>{questions[currentQuestion - 1].text}</Text>
-      {shuffleAnswers(questions[currentQuestion - 1].answers).map(
-        (answer, index) => (
-          <View style={{ flexDirection: "row" }} key={answer.value}>
-            {/*A, B and C. fromCharCode converts unicode to characters.*/}
-            <Text>{String.fromCharCode(65 + index)}:</Text>
-            <TouchableOpacity onPress={() => handleAnswer(answer.value)}>
-              <Text>{answer.text}</Text>
-            </TouchableOpacity>
-          </View>
-        )
-      )}
+      {questions[currentQuestion - 1].answers.map((answer, index) => (
+        <View style={{ flexDirection: "row" }} key={answer.value}>
+          {/*A, B and C. fromCharCode converts unicode to characters.*/}
+          <Text>{String.fromCharCode(65 + index)}:</Text>
+          <TouchableOpacity onPress={() => handleAnswer(answer.value)}>
+            <Text> {answer.text}</Text>
+          </TouchableOpacity>
+        </View>
+      ))}
+      <View style={styles.rowtwo}>
+        <TouchableOpacity
+          onPress={handlePrevious}
+          disabled={currentQuestion - 1 == 0}
+        >
+          <Text style={styles.previousButton}>Previous</Text>
+        </TouchableOpacity>
+
+        {currentQuestion - 1 === questions.length ? (
+          <TouchableOpacity onPress={handleFinish}>
+            <Text>Finish</Text>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity
+            style={styles.nextButton}
+            disabled={selectedAnswer === null}
+            onPress={() => {
+              handleNext();
+            }}
+          >
+            <Text style={styles.nextButtonText}>Next</Text>
+          </TouchableOpacity>
+        )}
+      </View>
     </Container>
   );
 };
@@ -78,6 +129,11 @@ const styles = StyleSheet.create({
   rowone: {
     flexDirection: "row",
     justifyContent: "space-between",
+  },
+  rowtwo: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 50,
   },
   dilemmatext: {
     fontSize: 30,

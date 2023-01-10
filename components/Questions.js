@@ -55,15 +55,15 @@ const questions = [
     text: "Je bent patiëntendossiers aan het bijwerken. Een collega vraagt je even te helpen bij een patiënt (om recht op te gaan zitten/gemakkelijk in bed te laten liggen) in de kamer tegenover,  Je bent al een paar keer eerder weggeroepen.",
     answers: [
       {
-        text: "Omdat je snel weer terug bent laat je de PC openstaan (inloggen na vergrendelen kost een minuut of twee.",
+        text: "Omdat je snel weer terug bent laat je de PC openstaan (inloggen na vergrendelen kost een minuut of twee).",
         value: "A",
       },
       {
-        text: "Je gaat snel helpen en vraagt de collega even op te letten..",
+        text: "Je gaat snel helpen en vraagt de collega even op te letten.",
         value: "B",
       },
       {
-        text: "Je vergrendelt je PC..",
+        text: "Je vergrendelt je PC.",
         value: "C",
       },
     ],
@@ -124,7 +124,7 @@ const questions = [
   },
   {
     //8
-    text: "Er is een tekort aan personeel op de afdeling. Er is gelukkig een nieuwe collega ingeroosterd die patiënten aan het helpen is. Ze heeft alleen nog geen account gekregen. Ze vraagt j hulp om toch te kunnen rapporteren.",
+    text: "Er is een tekort aan personeel op de afdeling. Er is gelukkig een nieuwe collega ingeroosterd die patiënten aan het helpen is. Ze heeft alleen nog geen account gekregen. Ze vraagt je hulp om toch te kunnen rapporteren.",
     answers: [
       {
         text: "Je zet je scherm open zodat je collega kan rapporteren op eigen naam..",
