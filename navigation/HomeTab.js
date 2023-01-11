@@ -7,6 +7,9 @@ import { StyleSheet } from "react-native";
 const HomeTab = createBottomTabNavigator();
 
 export default function HomeTabScreen() {
+  
+
+
   return (
     <HomeTab.Navigator
       initialRouteName="Home"

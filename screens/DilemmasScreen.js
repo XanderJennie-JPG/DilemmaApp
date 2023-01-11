@@ -8,8 +8,7 @@ import questions from "../components/Questions";
 //Note: This is hard to read due to deadline. I added comments everywhere to clarify it a little bit for everyone. - Nabil
 
 //TODO: separate the logic for rendering the question and answers from the DilemmasScreen component to make the code easier to read.
-//TODO: adding some conditional rendering to show a "Next" button or a "Finish" button based on whether the current question is the last question or not.
-const DilemmasScreen = ({ navigation: { goBack } }) => {
+const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
   //Here, we keep track of the current question for rendering purposes.
   const [currentQuestion, setCurrentQuestion] = useState(1);
   //Here, we store the scores.
@@ -40,6 +39,20 @@ const DilemmasScreen = ({ navigation: { goBack } }) => {
   const handlePrevious = () => {
     if (currentQuestion > 1) {
       setCurrentQuestion(currentQuestion - 1);
+    }
+  };
+
+  const handleFinish = () => {
+    if (currentQuestion === questions.length) {
+      // navigate to the results screen when the user reaches the last question
+      navigate("HomeTab", {
+        screen: "Results",
+        params: {
+        Patiëntenbelang,
+        IntegriteitPoints,
+        Informatiebeveiliging,
+        }
+      });
     }
   };
 
@@ -103,7 +116,7 @@ const DilemmasScreen = ({ navigation: { goBack } }) => {
           <Text style={styles.previousButton}>Previous</Text>
         </TouchableOpacity>
 
-        {currentQuestion - 1 === questions.length ? (
+        {currentQuestion === questions.length ? (
           <TouchableOpacity onPress={handleFinish}>
             <Text>Finish</Text>
           </TouchableOpacity>
