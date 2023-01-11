@@ -48,10 +48,10 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
       navigate("HomeTab", {
         screen: "Results",
         params: {
-        Patiëntenbelang,
-        IntegriteitPoints,
-        Informatiebeveiliging,
-        }
+          Patiëntenbelang: Patiëntenbelang,
+          Integriteit: IntegriteitPoints,
+          Informatiebeveiliging: Informatiebeveiliging,
+        },
       });
     }
   };

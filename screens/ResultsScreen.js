@@ -4,17 +4,21 @@ import Container from "../components/Container";
 import { DonutChart } from "react-native-circular-chart";
 import TopLogo from "../components/TopLogo";
 
-const ResultScreen = ({ navigation }) => {
+const ResultScreen = ({ navigation, route }) => {
+  const Patiëntenbelang = route.params?.Patiëntenbelang || 0;
+  const Integriteit = route.params?.Integriteit || 0;
+  const Informatiebeveiliging = route.params?.Informatiebeveiliging || 0;
   const [isEnabled, setIsEnabled] = useState(false);
+
   const disabledData = [
-    { name: "Privacy", value: 30, color: "blue" },
+    { name: "Patiëntenbelang", value: 30, color: "blue" },
     { name: "Integriteit", value: 20, color: "green" },
-    { name: "Collegialiteit", value: 15, color: "red" },
+    { name: "Informatiebeveiliging ", value: 15, color: "red" },
   ];
   const enabledData = [
-    { name: "Privacy", value: 50, color: "blue" },
+    { name: "Patiëntenbelang", value: 50, color: "blue" },
     { name: "Integriteit", value: 10, color: "green" },
-    { name: "Collegialiteit", value: 10, color: "red" },
+    { name: "Informatiebeveiliging", value: 10, color: "red" },
   ];
   const toggleSwitch = () => {
     setIsEnabled(!isEnabled);
