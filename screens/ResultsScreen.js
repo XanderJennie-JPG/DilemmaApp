@@ -10,7 +10,18 @@ const ResultScreen = ({ navigation, route }) => {
   let Integriteit = route.params?.Integriteit || 0;
   let Informatiebeveiliging = route.params?.Informatiebeveiliging || 0;
 
-  const data = [
+  let checkData = () => {
+    if (
+      Patiëntenbelang == 0 ||
+      (null && Integriteit == 0) ||
+      (null && Informatiebeveiliging == 0) ||
+      null
+    ) {
+      return true;
+    }
+  };
+
+  let data = [
     {
       name: "Patiëntenbelang",
       population: Patiëntenbelang,
@@ -62,16 +73,22 @@ const ResultScreen = ({ navigation, route }) => {
           </Text>
         </View>
         <View style={[{ alignItems: "center", top: 90, right: 110 }]}>
-          <PieChart
-            data={data}
-            width={700}
-            height={210}
-            center={[160, 0]}
-            chartConfig={chartConfig}
-            accessor="population"
-            backgroundColor="transparent"
-            paddingLeft="15"
-          />
+          {checkData == true ? (
+            <PieChart
+              data={data}
+              width={700}
+              height={210}
+              center={[160, 0]}
+              chartConfig={chartConfig}
+              accessor="population"
+              backgroundColor="transparent"
+              paddingLeft="15"
+            />
+          ) : (
+            <Text style={[styles.text, { left: 145, top: 50 }]}>
+              Geen data om te laten zien. Maak eerst {"\n"} de quiz af!
+            </Text>
+          )}
         </View>
       </View>
       <TouchableOpacity
@@ -147,8 +164,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: "center",
     lineHeight: 27,
-    height: 60,
-    top: 281.5,
   },
   shadow: {
     shadowColor: "#7F5DF0",
