@@ -4,8 +4,7 @@ import Container from "../components/Container";
 import GlobalStyle from "../components/GlobalStyle";
 import axios from "axios";
 import questions from "../components/Questions";
-
-//Note: This is hard to read due to deadline. I added comments everywhere to clarify it a little bit for everyone. - Nabil
+import sendData from "../services/ScoreApi";
 
 //TODO: separate the logic for rendering the question and answers from the DilemmasScreen component to make the code easier to read.
 const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
@@ -42,9 +41,16 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
     }
   };
 
-  const handleFinish = () => {
+  const handleFinish = async () => {
     if (currentQuestion === questions.length) {
       // navigate to the results screen when the user reaches the last question
+      const scores = {
+        Patiëntenbelang: Patiëntenbelang,
+        Integriteit: IntegriteitPoints,
+        Informatiebeveiliging: Informatiebeveiliging,
+      };
+      const res = await sendData(scores);
+      console.log(res);
       navigate("HomeTab", {
         screen: "Results",
         params: {
