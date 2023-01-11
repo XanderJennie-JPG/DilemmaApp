@@ -7,6 +7,7 @@ import AlgemeneVoorwaarden from "../screens/AlgemeneVoorwaarden";
 import PrivacyPolicy from "../screens/PrivacyPolicy";
 import ToelichtingScreen from "../screens/ToelichtingScreen";
 import HomeTabScreen from "./HomeTab";
+import ResultScreen from "../screens/ResultsScreen";
 
 const WelcomeStack = createStackNavigator();
 
@@ -69,6 +70,7 @@ function CommonScreensStackScreen() {
         name="Toelichting"
         component={ToelichtingScreen}
       />
+      <CommonScreensStack.Screen name="Results" component={ResultScreen} />
     </CommonScreensStack.Navigator>
   );
 }
