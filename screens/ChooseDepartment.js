@@ -3,11 +3,7 @@ import React from "react";
 import {
   View,
   StyleSheet,
-  Image,
   Text,
-  TextInput,
-  Pressable,
-  ToastAndroid,
   TouchableOpacity,
 } from "react-native";
 import Container from "../components/Container";
