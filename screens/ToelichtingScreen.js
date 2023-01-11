@@ -1,9 +1,9 @@
 import { React } from "react";
-import { View, StyleSheet, Image, Text, TouchableOpacity } from "react-native";
+import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import Container from "../components/Container";
 import TopLogo from "../components/TopLogo";
 
-const ToelichtingScreen = ({ navigation }) => {
+const ToelichtingScreen = ({ navigation: { goBack } }) => {
   return (
     <Container>
       <TopLogo />
@@ -25,9 +25,9 @@ const ToelichtingScreen = ({ navigation }) => {
           { alignSelf: "flex-start" },
         ]}
       >
-        <Text style={styles.buttonText}
-        onPress={() => navigation.navigate("ResultsStack")}
-        >Terug</Text>
+        <Text style={styles.buttonText} onPress={() => goBack()}>
+          Terug
+        </Text>
       </TouchableOpacity>
     </Container>
   );

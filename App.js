@@ -1,5 +1,8 @@
+import "react-native-gesture-handler";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { StatusBar } from "expo-status-bar";
 import React from "react-native";
+import { useEffect, useState } from "react";
 import {
   useFonts,
   Montserrat_400Regular,
@@ -13,13 +16,28 @@ const App = () => {
     MontserratBold: Montserrat_700Bold,
   });
 
+  const [hasSeenWelcome, setHasSeenWelcome] = useState(false);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const value = await AsyncStorage.getItem("hasSeenWelcome");
+        if (value !== null) {
+          setHasSeenWelcome(true);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, []);
+
   if (!fontsLoaded) {
     return null;
   }
 
   return (
     <NavigationContainer>
-      <AppNavigatorScreen />
+      <AppNavigatorScreen hasSeenWelcome={hasSeenWelcome} />
       <StatusBar style="dark" />
     </NavigationContainer>
   );

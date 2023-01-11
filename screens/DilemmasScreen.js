@@ -3,74 +3,86 @@ import { View, Image, Text, TouchableOpacity, StyleSheet, ImageBackground } from
 import Container from "../components/Container";
 import GlobalStyle from "../components/GlobalStyle";
 import axios from "axios";
+import questions from "../components/Questions";
+
+//Note: This is hard to read due to deadline. I added comments everywhere to clarify it a little bit for everyone. - Nabil
 
 //TODO: separate the logic for rendering the question and answers from the DilemmasScreen component to make the code easier to read.
-//TODO: adding some conditional rendering to show a "Next" button or a "Finish" button based on whether the current question is the last question or not.
-const DilemmasScreen = ({ navigation: { goBack } }) => {
+const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
+  //Here, we keep track of the current question for rendering purposes.
   const [currentQuestion, setCurrentQuestion] = useState(1);
+  //Here, we store the scores.
   const [Patiëntenbelang, setPatiëntenbelang] = useState(0);
   const [IntegriteitPoints, setIntegriteitPoints] = useState(0);
   const [Informatiebeveiliging, setInformatiebeveiliging] = useState(0);
 
-  //State variable that keeps track of the answers
-  const [answers, setAnswers] = useState([]);
+  //State variable that keeps track of the selected answers
+  const [answers, setAnswers] = useState({});
+  console.log(answers);
 
-  const questions = [
-    {
-      text: "Je zit aan een balie en vindt daar een afdelingsbezettingsoverzicht (abo). Je staat onder druk om nog snel een rapportage op te stellen. Wat doe je?",
-      answers: [
-        {
-          text: "Je pakt het abo en gooit het weg in de daarvoor papierbak voor vertrouwelijke informatie. Je spreekt je collega’s niet aan want je vindt dat het ieders eigen verantwoordelijkheid is om de regels na te leven.",
-          value: "A",
-        },
-        {
-          text: "Je laat het abo liggen. Een collega heeft dit vast nodig.",
-          value: "B",
-        },
-        { text: "Je pakt het abo op en spreekt je collega’s aan.", value: "C" },
-      ],
-    },
-    {
-      text: "Een collega is nogal chaotisch en vergeet snel inloggegevens. Als je langs de werkplek van de collega loopt zie je een post-it briefje op het bureau geplakt met daarop de inloggegevens genoteerd. Vorige week heb je ook al een vervelende woordenwisseling gehad  met deze collega. Wat doe je?",
-      answers: [
-        { text: "Je spreekt je collega aan..", value: "A" },
-        {
-          text: "Je laat het er maar bij voor deze keer,  je ziet dat je collega het druk heeft en herinnert je nog de discussie van vorige week.",
-          value: "B",
-        },
-        {
-          text: "Er komen toch nooit onbevoegden op deze werkplek, laat maar zitten.",
-          value: "C",
-        },
-      ],
-    },
-  ];
+  //State variable that keeps track of the currently selected answer
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
 
+  //Randomizes the answers so the user doesnt ''game'' the system
   const shuffleAnswers = (answers) => {
     return answers.sort(() => Math.random() - 0.5);
   };
 
+  //Remove previous answer when selecting a new one
+  const removePreviousAnswer = () => {
+    if (answers[currentQuestion]) {
+      answers[currentQuestion] = null;
+    }
+  };
+
+  //Go back a question
+  const handlePrevious = () => {
+    if (currentQuestion > 1) {
+      setCurrentQuestion(currentQuestion - 1);
+    }
+  };
+
+  const handleFinish = () => {
+    if (currentQuestion === questions.length) {
+      // navigate to the results screen when the user reaches the last question
+      navigate("HomeTab", {
+        screen: "Results",
+        params: {
+          Patiëntenbelang: Patiëntenbelang,
+          Integriteit: IntegriteitPoints,
+          Informatiebeveiliging: Informatiebeveiliging,
+        },
+      });
+    }
+  };
+
   const handleAnswer = async (option) => {
-    if (option === "A") {
+    //We check if the users answer is different from the previously selected answer in the current question. If yes then..
+    if (selectedAnswer !== option) {
+      removePreviousAnswer();
+      //We set what the user has selected
+      setSelectedAnswer(option);
+      setAnswers({ ...answers, [currentQuestion]: option });
+    }
+  };
+
+  //The handling of the users chosen questions when pressing next.
+  const handleNext = async (option) => {
+    if (selectedAnswer === "A") {
       setPatiëntenbelang(Patiëntenbelang + 10);
-    } else if (option === "B") {
+    } else if (selectedAnswer === "B") {
       setIntegriteitPoints(IntegriteitPoints + 10);
-    } else if (option === "C") {
+    } else if (selectedAnswer === "C") {
       setInformatiebeveiliging(Informatiebeveiliging + 10);
     }
 
-    // send the answers to the backend, comment out if this is giving you errors.
-    try {
-      const response = await axios.post("/api/submitAnswers", {
-        answers: [...answers, { [option]: true }],
-      });
-      console.log("Success:", response);
-    } catch (error) {
-      console.error("Error:", error);
+    //Here, when the backend is done, we need to add an axios call to store in backend.
+    if (currentQuestion < questions.length) {
+      setCurrentQuestion(currentQuestion + 1);
     }
 
-    setAnswers([...answers, { [option]: true }]);
-    setCurrentQuestion(currentQuestion + 1);
+    //Reset selected answer when going to next.
+    setSelectedAnswer(null);
   };
 
   return (
@@ -115,24 +127,46 @@ const DilemmasScreen = ({ navigation: { goBack } }) => {
         </Text>
       </View>
       <View style={[styles.box, styles.shadow]} blurRadius={8.5}>
-        <View style={styles.styleA}>
-        <Text style={[styles.ButtonText, styles.question, {marginTop: 25}]}>{questions[currentQuestion - 1].text}</Text>
-        {shuffleAnswers(questions[currentQuestion - 1].answers).map(
-          (answer, index) => (
-            <View style={{ flexDirection: "row" }} key={answer.value}>
-              {/*A, B and C. fromCharCode converts unicode to characters.*/}
-              <View style={{flex: 1}}>
-              <Text style={[styles.ButtonText, {alignSelf: "center", top: 50, fontWeight: "bold", fontSize: 23}]}>{String.fromCharCode(65 + index)}</Text>
-              </View>
-              <TouchableOpacity 
-              style={[styles.Button, styles.shadow]}
-              onPress={() => handleAnswer(answer.value)}>
-                <Text style={[styles.ButtonText, { left: 5 }]}>{answer.text}</Text>
-              </TouchableOpacity>
-            </View>
-          )
-        )}
+      <View style={styles.styleA}>
+      <Text style={[styles.ButtonText, styles.question, {marginTop: 25}]}>{questions[currentQuestion - 1].text}</Text>
+      {questions[currentQuestion - 1].answers.map((answer, index) => (
+        <View style={{ flexDirection: "row" }} key={answer.value}>
+          {/*A, B and C. fromCharCode converts unicode to characters.*/}
+          <View style={{flex: 1}}>
+          <Text style={[styles.ButtonText, {alignSelf: "center", top: 50, fontWeight: "bold", fontSize: 23}]}>{String.fromCharCode(65 + index)}:</Text>
+          </View>
+          <TouchableOpacity 
+          style={[styles.Button, styles.shadow]}
+          onPress={() => handleAnswer(answer.value)}>
+            <Text style={[styles.ButtonText, { left: 5 }]}> {answer.text}</Text>
+          </TouchableOpacity>
         </View>
+      ))}
+      </View>
+      </View>
+      <View style={styles.rowtwo}>
+        <TouchableOpacity
+          onPress={handlePrevious}
+          disabled={currentQuestion - 1 == 0}
+        >
+          <Text style={styles.previousButton}>Previous</Text>
+        </TouchableOpacity>
+
+        {currentQuestion === questions.length ? (
+          <TouchableOpacity onPress={handleFinish}>
+            <Text>Finish</Text>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity
+            style={styles.nextButton}
+            disabled={selectedAnswer === null}
+            onPress={() => {
+              handleNext();
+            }}
+          >
+            <Text style={styles.nextButtonText}>Next</Text>
+          </TouchableOpacity>
+        )}
       </View>
     </Container>
   );
@@ -153,6 +187,11 @@ const styles = StyleSheet.create({
   rowone: {
     flexDirection: "row",
     justifyContent: "space-between",
+  },
+  rowtwo: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 50,
   },
   dilemmatext: {
     fontSize: 30,

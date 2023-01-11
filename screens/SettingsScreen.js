@@ -17,7 +17,7 @@ const SettingsScreen = ({ navigation }) => {
       </View>
       <View style={{ alignItems: "center" }}>
         <TouchableOpacity
-          onPress={() => navigation.navigate("Afdeling")}
+          onPress={() => navigation.navigate("ChooseDepartment")}
           style={[styles.Options, { top: 308 }]}
         >
           <Image
@@ -34,7 +34,7 @@ const SettingsScreen = ({ navigation }) => {
           insetType="middle"
         />
         <TouchableOpacity
-          onPress={() => navigation.navigate("Privacy")}
+          onPress={() => navigation.navigate("PrivacyPolicy")}
           style={[styles.Options, { top: 389 }]}
         >
           <Image
@@ -56,7 +56,7 @@ const SettingsScreen = ({ navigation }) => {
             source={require("../assets/AV-icon.png")}
           />
           <Text
-            onPress={() => navigation.navigate("Voorwaarden")}
+            onPress={() => navigation.navigate("AlgemeneVoorwaarden")}
             style={[styles.AlgemeneVoorwaardenText]}
           >
             {" "}

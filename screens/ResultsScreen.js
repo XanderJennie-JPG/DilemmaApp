@@ -1,29 +1,25 @@
 import { React, useState } from "react";
-import {
-  View,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  Switch,
-} from "react-native";
+import { View, StyleSheet, Text, TouchableOpacity, Switch } from "react-native";
 import Container from "../components/Container";
 import { DonutChart } from "react-native-circular-chart";
 import TopLogo from "../components/TopLogo";
 
-const ResultScreen = ({ navigation }) => {
+const ResultScreen = ({ navigation, route }) => {
+  const Patiëntenbelang = route.params?.Patiëntenbelang || 0;
+  const Integriteit = route.params?.Integriteit || 0;
+  const Informatiebeveiliging = route.params?.Informatiebeveiliging || 0;
   const [isEnabled, setIsEnabled] = useState(false);
+
   const disabledData = [
-    { name: "Privacy", value: 30, color: "blue" },
+    { name: "Patiëntenbelang", value: 30, color: "blue" },
     { name: "Integriteit", value: 20, color: "green" },
-    { name: "Collegialiteit", value: 15, color: "pink" },
-    { name: "Slaap", value: 35, color: "red" },
+    { name: "Informatiebeveiliging ", value: 15, color: "red" },
   ];
   const enabledData = [
-    { name: "Privacy", value: 50, color: "blue" },
+    { name: "Patiëntenbelang", value: 50, color: "blue" },
     { name: "Integriteit", value: 10, color: "green" },
-    { name: "Collegialiteit", value: 10, color: "pink" },
-    { name: "Slaap", value: 30, color: "red" },
-  ]
+    { name: "Informatiebeveiliging", value: 10, color: "red" },
+  ];
   const toggleSwitch = () => {
     setIsEnabled(!isEnabled);
   };
@@ -56,8 +52,8 @@ const ResultScreen = ({ navigation }) => {
             containerWidth={500}
             containerHeight={500}
             type="butt"
-            startAngle={0}
-            endAngle={360}
+            startAngle={-115}
+            endAngle={115}
             animationType="slide"
           />
         </View>
@@ -111,7 +107,7 @@ const styles = StyleSheet.create({
     width: 370,
     height: 525,
     alignSelf: "center",
-    top: 100,
+    top: 65,
   },
   GaDoorButton: {
     opacity: 1,
@@ -129,7 +125,7 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
     width: 160,
     height: 40,
-    top: 110,
+    top: 75,
   },
   DropDown: {
     opacity: 1,

@@ -1,12 +1,9 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import React from "react";
 import {
   View,
   StyleSheet,
-  Image,
   Text,
-  TextInput,
-  Pressable,
-  ToastAndroid,
   TouchableOpacity,
 } from "react-native";
 import Container from "../components/Container";
@@ -48,7 +45,10 @@ const ChooseDepartment = ({ navigation }) => {
       />
 
       <TouchableOpacity
-        onPress={() => navigation.navigate("HomeTab")}
+        onPress={() => {
+          AsyncStorage.setItem("hasSeenWelcome", "true");
+          navigation.navigate("HomeTab");
+        }}
         style={[styles.GaDoorButton, styles.shadow]}
       >
         <Text style={styles.buttonText}>Laten we beginnen!</Text>
