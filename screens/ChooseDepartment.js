@@ -1,45 +1,51 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React from "react";
-import {
-  View,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-} from "react-native";
+import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import Container from "../components/Container";
 import { SelectList } from "react-native-dropdown-select-list";
 import TopLogo from "../components/TopLogo";
+import GlobalStyle from "../components/GlobalStyle";
+import sendDepartment from "../services/DepartmentApi";
 
 const ChooseDepartment = ({ navigation }) => {
   const [selected, setSelected] = React.useState("");
 
   const data = [
-    { key: "Poli urologie", value: "Poli urologie" }, // disabled: true to disable
-    { key: "Poli chirurgie", value: "Poli chirurgie" },
-    { key: "Poli gynaecologie", value: "Poli gynaecologie" },
-    { key: "Poli cardiologie", value: "Poli cardiologie" },
+    { key: "Urologie", value: "Poli urologie" },
+    { key: "Chirurgie", value: "Poli chirurgie" },
+    { key: "Gynaecologie", value: "Poli gynaecologie" },
+    { key: "Cardiologie", value: "Poli cardiologie" },
   ];
   return (
     <Container>
       <TopLogo />
       <View>
-        <Text style={[styles.header1, { top: 150 }]}>Dilemma app</Text>
+        <Text
+          style={[
+            GlobalStyle.CustomFontBold,
+            { top: 100, fontSize: 30, alignSelf: "center" },
+          ]}
+        >
+          Dilemma app
+        </Text>
       </View>
       <View style={styles.InputContainer}>
-        <Text style={[styles.header1, { top: 350 }]}>Hallo!</Text>
-        <Text style={[styles.header2, { top: 375 }]}>Kies uw afdeling</Text>
+        <Text style={[GlobalStyle.CustomFontBold, { fontSize: 27, top: 275 }]}>
+          Hallo!
+        </Text>
+        <Text style={[styles.header2, { top: 300 }]}>Kies uw afdeling</Text>
       </View>
       <SelectList
         setSelected={(val) => setSelected(val)}
         data={data}
         save="value"
+        search={false}
         placeholder="Kiezen"
         searchPlaceholder=""
         boxStyles={[styles.DropDown, styles.shadow, styles.elevation]}
         inputStyles={[styles.DropDownText, styles.header2]}
         dropdownStyles={[styles.DropDownList]}
         dropdownTextStyles={styles.header2}
-        search="false"
         defaultOption={{ key: "Poli urologie", value: "Poli urologie" }}
         maxHeight={150}
       />
@@ -47,9 +53,14 @@ const ChooseDepartment = ({ navigation }) => {
       <TouchableOpacity
         onPress={() => {
           AsyncStorage.setItem("hasSeenWelcome", "true");
-          navigation.navigate("HomeTab");
+          navigation.navigate("CommonScreens");
+          sendDepartment(selected);
         }}
-        style={[styles.GaDoorButton, styles.shadow]}
+        style={[
+          styles.GaDoorButton,
+          styles.shadow,
+          { position: "absolute", bottom: 75 },
+        ]}
       >
         <Text style={styles.buttonText}>Laten we beginnen!</Text>
       </TouchableOpacity>
@@ -77,7 +88,7 @@ const styles = StyleSheet.create({
     width: 286,
     height: 50,
     left: 50,
-    top: 550,
+
     flexDirection: "row",
   },
   DropDown: {
@@ -97,14 +108,14 @@ const styles = StyleSheet.create({
     width: 286,
     height: 59,
     left: 50,
-    top: 400,
+    top: 325,
   },
   DropDownText: {
     fontSize: 25,
     textAlign: "center",
   },
   DropDownList: {
-    top: 410,
+    top: 330,
     opacity: 1,
     backgroundColor: "rgba(238, 246, 250, 1)",
     borderTopLeftRadius: 20,
@@ -125,30 +136,7 @@ const styles = StyleSheet.create({
     top: 5,
     right: 1,
   },
-  hhsLogo: {
-    opacity: 1,
-    position: "absolute",
-    width: 175,
-    height: 50,
-    right: 6,
-    top: 105,
-  },
-  hmcLogo: {
-    opacity: 1,
-    position: "absolute",
-    width: 175,
-    height: 50,
-    right: 6,
-    top: 50,
-  },
-  header1: {
-    fontSize: 25,
-    fontWeight: "700",
-    fontStyle: "normal",
-    fontFamily: "Montserrat",
-    color: "rgba(19, 67, 146, 1)",
-    textAlign: "center",
-  },
+
   header2: {
     fontSize: 25,
     fontStyle: "normal",
@@ -200,21 +188,14 @@ const styles = StyleSheet.create({
     shadowRadius: 3.5,
     elevation: 5,
   },
-  elevation: {
-    elevation: 10, //original was 20
-    shadowColor: "#52006A",
-  },
+
   InputContainer: {
     alignItems: "center",
   },
-  tinyLogo: {
-    width: 50,
-    height: 50,
-    resizeMode: "contain",
-  },
+
   buttonText: {
     marginTop: 10,
-    marginLeft: 20,
+    marginLeft: 10,
     fontSize: 20,
     flex: 1,
     textAlign: "center",

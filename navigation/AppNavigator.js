@@ -28,22 +28,6 @@ function WelcomeStackScreen() {
 
 const SettingsStack = createStackNavigator();
 
-function SettingsStackScreen() {
-  return (
-    <SettingsStack.Navigator>
-      <SettingsStack.Screen
-        name="ChooseDepartment"
-        component={ChooseDepartment}
-      />
-      <SettingsStack.Screen name="PrivacyPolicy" component={PrivacyPolicy} />
-      <SettingsStack.Screen
-        name="AlgemeneVoorwaarden"
-        component={AlgemeneVoorwaarden}
-      />
-    </SettingsStack.Navigator>
-  );
-}
-
 const CommonScreensStack = createStackNavigator();
 
 //The common screens used for navigation. New screen? Add here.

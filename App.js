@@ -21,6 +21,7 @@ const App = () => {
   useEffect(() => {
     (async () => {
       try {
+        //AsyncStorage.clear();
         const value = await AsyncStorage.getItem("hasSeenWelcome");
         if (value !== null) {
           setHasSeenWelcome(true);
