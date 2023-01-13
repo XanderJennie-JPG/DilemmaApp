@@ -1,4 +1,3 @@
-import "react-native-gesture-handler";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { StatusBar } from "expo-status-bar";
 import React from "react-native";
