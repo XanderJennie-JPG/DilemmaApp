@@ -1,10 +1,18 @@
 import React, { useState } from "react";
-import { View, Image, Text, TouchableOpacity, StyleSheet } from "react-native";
+import {
+  View,
+  Image,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  ImageBackground,
+} from "react-native";
 import Container from "../components/Container";
 import GlobalStyle from "../components/GlobalStyle";
 import axios from "axios";
 import questions from "../components/Questions";
 import sendData from "../services/ScoreApi";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 //TODO: separate the logic for rendering the question and answers from the DilemmasScreen component to make the code easier to read.
 const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
@@ -93,6 +101,34 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
 
   return (
     <Container>
+      <ImageBackground
+        resizeMode="cover"
+        style={[
+          styles.backgroundTop,
+          {
+            transform: [{ rotate: "-15deg" }],
+            height: 250,
+            width: 450,
+            top: -20,
+            left: -50,
+          },
+        ]}
+        source={require("../assets/background-top.png")}
+      />
+      <ImageBackground
+        resizeMode="cover"
+        style={[
+          styles.backgroundBottom,
+          {
+            transform: [{ rotate: "15deg" }],
+            height: 250,
+            width: 450,
+            top: 475,
+            alignSelf: "center",
+          },
+        ]}
+        source={require("../assets/background-top.png")}
+      />
       <View style={styles.rowone}>
         <TouchableOpacity onPress={() => goBack()}>
           <Image source={require("../assets/Back-arrow.png")} />
@@ -104,27 +140,65 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
           </Text>
         </Text>
       </View>
-      <Text>{questions[currentQuestion - 1].text}</Text>
-      {questions[currentQuestion - 1].answers.map((answer, index) => (
-        <View style={{ flexDirection: "row" }} key={answer.value}>
-          {/*A, B and C. fromCharCode converts unicode to characters.*/}
-          <Text>{String.fromCharCode(65 + index)}:</Text>
-          <TouchableOpacity onPress={() => handleAnswer(answer.value)}>
-            <Text> {answer.text}</Text>
-          </TouchableOpacity>
+      <View style={styles.box} blurRadius={8.5}>
+        <View style={styles.styleA}>
+          <Text style={[styles.ButtonText, styles.question, { marginTop: 25 }]}>
+            {questions[currentQuestion - 1].text}
+          </Text>
+          {questions[currentQuestion - 1].answers.map((answer, index) => (
+            <View style={{ flexDirection: "row" }} key={answer.value}>
+              {/*A, B and C. fromCharCode converts unicode to characters.*/}
+              <View style={{ flex: 1 }}>
+                <Text
+                  style={[
+                    styles.ButtonText,
+                    {
+                      alignSelf: "center",
+                      top: 50,
+                      fontWeight: "bold",
+                      fontSize: 23,
+                    },
+                  ]}
+                >
+                  {String.fromCharCode(65 + index)}
+                </Text>
+              </View>
+              <TouchableOpacity
+                style={[styles.Button, styles.shadow]}
+                onPress={() => handleAnswer(answer.value)}
+              >
+                <Text style={[styles.ButtonText, { left: 5 }]}>
+                  {answer.text}
+                </Text>
+              </TouchableOpacity>
+            </View>
+          ))}
         </View>
-      ))}
+      </View>
       <View style={styles.rowtwo}>
         <TouchableOpacity
+          style={styles.nextButton}
           onPress={handlePrevious}
           disabled={currentQuestion - 1 == 0}
         >
-          <Text style={styles.previousButton}>Previous</Text>
+          <Ionicons
+            name="arrow-back"
+            style={{ paddingLeft: 3, fontSize: 30, color: "#134392" }}
+          ></Ionicons>
+          <Text style={[styles.previousButton, styles.nextButtonText]}>
+            Previous
+          </Text>
         </TouchableOpacity>
 
         {currentQuestion === questions.length ? (
-          <TouchableOpacity onPress={handleFinish}>
-            <Text>Finish</Text>
+          <TouchableOpacity 
+          style={styles.nextButton}
+           onPress={handleFinish}>
+            <Ionicons
+								name="checkmark-circle"
+								style={{ paddingLeft: 3, fontSize: 30, color: "#134392" }}
+							></Ionicons>
+          <Text style={[styles.previousButton, styles.nextButtonText]}>Finish</Text>
           </TouchableOpacity>
         ) : (
           <TouchableOpacity
@@ -134,6 +208,10 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
               handleNext();
             }}
           >
+            <Ionicons
+              name="arrow-forward-sharp"
+              style={{ paddingLeft: 3, fontSize: 30, color: "#134392" }}
+            ></Ionicons>
             <Text style={styles.nextButtonText}>Next</Text>
           </TouchableOpacity>
         )}
@@ -145,6 +223,30 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
 export default DilemmasScreen;
 
 const styles = StyleSheet.create({
+  nextButton: {
+    borderRadius: 125,
+    backgroundColor: "#ffffff",
+    height: 100,
+    width: 100,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  nextButtonText: {
+    alignSelf: "center",
+    fontSize: 15,
+    fontWeight: "bold",
+    color: "#134392",
+  },
+  backgroundTop: {
+    position: "absolute",
+    top: -10,
+    left: 10,
+    right: 0,
+  },
+  backgroundBottom: {
+    position: "absolute",
+  },
   rowone: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -152,7 +254,7 @@ const styles = StyleSheet.create({
   rowtwo: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginTop: 50,
+    marginTop: 15,
   },
   dilemmatext: {
     fontSize: 30,
@@ -192,7 +294,7 @@ const styles = StyleSheet.create({
     alignSelf: "flex-end",
   },
   shadow: {
-    shadowColor: "#7F5DF0",
+    shadowColor: "rgba(31,38,135,0.37)",
     shadowOffset: {
       width: 0,
       height: 8,
@@ -202,19 +304,9 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
   box: {
-    opacity: 1,
-    backgroundColor: "#cceff9",
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
-    shadowColor: "rgb(203,  221,  230)",
-    shadowOpacity: 0.8392156862745098,
-    shadowOffset: {
-      width: 5,
-      height: 5,
-    },
-    shadowRadius: 10,
+    backgroundColor: "rgba(255,255,255,0.6)", //change to "rgba(255,255,255,0.8)" for android?
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
     width: 360,
     height: 580,
     alignSelf: "center",
