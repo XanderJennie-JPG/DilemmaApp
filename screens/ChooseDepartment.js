@@ -52,9 +52,7 @@ const ChooseDepartment = ({ navigation }) => {
 
       <TouchableOpacity
         onPress={() => {
-          AsyncStorage.setItem("hasSeenWelcome", "true");
-          navigation.navigate("CommonScreens");
-          sendDepartment(selected);
+          navigation.navigate("InputName");
         }}
         style={[
           styles.GaDoorButton,

@@ -8,6 +8,7 @@ import PrivacyPolicy from "../screens/PrivacyPolicy";
 import ToelichtingScreen from "../screens/ToelichtingScreen";
 import HomeTabScreen from "./HomeTab";
 import ResultScreen from "../screens/ResultsScreen";
+import InputName from "../screens/InputName";
 
 const WelcomeStack = createStackNavigator();
 
@@ -21,6 +22,10 @@ function WelcomeStackScreen() {
       <WelcomeStack.Screen
         name="ChooseDepartment"
         component={ChooseDepartment}
+      />
+      <WelcomeStack.Screen
+        name="InputName"
+        component={InputName}
       />
     </WelcomeStack.Navigator>
   );

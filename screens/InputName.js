@@ -1,21 +1,33 @@
-import React from "react";
+import React, {useState} from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
 	View,
 	StyleSheet,
 	Image,
 	Text,
 	TextInput,
-	ToastAndroid,
 	TouchableOpacity,
 } from "react-native";
 import Container from "../components/Container";
 import TopLogo from "../components/TopLogo";
 
-const showToast = () => {
-	ToastAndroid.show("Pressed", ToastAndroid.SHORT);
-};
-
 const InputName = ({ navigation }) => {
+	const [username, setUsername] = useState('');
+
+	const handleName = async () => {
+		if (!username.trim()) {
+			alert('Please fill in a name')
+		} else {
+			navigation.navigate("CommonScreens", {
+				screen: "Home",
+				params: {
+					username: username,
+				},
+			});
+			console.log(username)
+			AsyncStorage.setItem("hasSeenWelcome", "true");
+		}
+	}
 	return (
 		<Container>
 			<TopLogo />
@@ -30,10 +42,11 @@ const InputName = ({ navigation }) => {
 			<TextInput
 				style={[styles.input, styles.shadow]}
 				placeholder="Vul hier een naam in..."
-			></TextInput>
+				onChangeText={text => setUsername(text)}
+			/>
 			<TouchableOpacity
 				style={[styles.GaDoorButton, styles.shadow, styles.elevation]}
-				onPress={() => navigation.navigate("HomeStack")}
+				onPress={handleName}
 			>
 				<Text style={styles.buttonText}>Ga door naar de app</Text>
 				<Image

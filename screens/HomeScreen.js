@@ -13,9 +13,10 @@ import GlobalStyle from "../components/GlobalStyle";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import TopLogo from "../components/TopLogo";
 
-const user = "Placeholder";
+const HomeScreen = ({ navigation, route }) => {
+	let username = route.params?.username;
+	{console.log(username)}
 
-const HomeScreen = ({ navigation }) => {
 	return (
 		<Container>
 			<ImageBackground
@@ -52,7 +53,7 @@ const HomeScreen = ({ navigation }) => {
 				<View style={{ marginTop: 30 }}>
 					<Text style={[GlobalStyle.CustomFont, styles.Header]}>
             Goedemiddag, {"\n"}
-						{user}
+						{username}
 					</Text>
 					<Text style={[GlobalStyle.CustomFont]}>
             Wij hebben het dilemma spel {"\n"}geupdate op{" "}
