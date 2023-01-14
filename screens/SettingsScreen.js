@@ -10,12 +10,12 @@ const SettingsScreen = ({ navigation }) => {
       <TopLogo />
 
       <View>
-        <Text style={[styles.header1, { top: 150 }]}>Instellingen</Text>
+        <Text style={[styles.header1, { top: 100 }]}>Instellingen</Text>
       </View>
       <View style={[{ alignItems: "center" }]}>
-        <Text style={[styles.header2, { top: 200 }]}>Placeholder Afdeling</Text>
+        <Text style={[styles.header2, { top: 150 }]}>Placeholder Afdeling</Text>
       </View>
-      <View style={{ alignItems: "center" }}>
+      <View style={{ alignItems: "center"}}>
         <TouchableOpacity
           onPress={() => navigation.navigate("ChooseDepartment")}
           style={[styles.Options, { top: 308 }]}
