@@ -12,13 +12,13 @@ const ResultScreen = ({ navigation, route }) => {
 
   let checkData = () => {
     if (
-      Patiëntenbelang == 0 ||
-      (null && Integriteit == 0) ||
-      (null && Informatiebeveiliging == 0) ||
-      null
+      Patiëntenbelang == 0 &&
+      Integriteit == 0 &&
+      Informatiebeveiliging == 0
     ) {
-      return true;
+      return false;
     }
+    return true;
   };
 
   let data = [
@@ -73,7 +73,7 @@ const ResultScreen = ({ navigation, route }) => {
           </Text>
         </View>
         <View style={[{ alignItems: "center", top: 90, right: 110 }]}>
-          {checkData == true ? (
+          {checkData() ? (
             <PieChart
               data={data}
               width={700}

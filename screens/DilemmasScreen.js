@@ -57,8 +57,8 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
         Integriteit: IntegriteitPoints,
         Informatiebeveiliging: Informatiebeveiliging,
       };
-      const res = await sendData(scores);
-      console.log(res);
+      //const res = await sendData(scores);
+      //console.log(res);
       navigate("HomeTab", {
         screen: "Results",
         params: {
@@ -191,14 +191,14 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
         </TouchableOpacity>
 
         {currentQuestion === questions.length ? (
-          <TouchableOpacity 
-          style={styles.nextButton}
-           onPress={handleFinish}>
+          <TouchableOpacity style={styles.nextButton} onPress={handleFinish}>
             <Ionicons
-								name="checkmark-circle"
-								style={{ paddingLeft: 3, fontSize: 30, color: "#134392" }}
-							></Ionicons>
-          <Text style={[styles.previousButton, styles.nextButtonText]}>Finish</Text>
+              name="checkmark-circle"
+              style={{ paddingLeft: 3, fontSize: 30, color: "#134392" }}
+            ></Ionicons>
+            <Text style={[styles.previousButton, styles.nextButtonText]}>
+              Finish
+            </Text>
           </TouchableOpacity>
         ) : (
           <TouchableOpacity
