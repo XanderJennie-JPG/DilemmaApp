@@ -93,7 +93,14 @@ const ResultScreen = ({ navigation, route }) => {
       </View>
       <TouchableOpacity
         style={[styles.GaDoorButton, styles.shadow, { alignSelf: "flex-end" }]}
-        onPress={() => navigation.navigate("Toelichting")}
+        disabled={!checkData()}
+        onPress={() =>
+          navigation.navigate("Toelichting", {
+            Patiëntenbelang: Patiëntenbelang,
+            Integriteit: Integriteit,
+            Informatiebeveiliging: Informatiebeveiliging,
+          })
+        }
       >
         <Text style={styles.buttonText}>Toelichting</Text>
       </TouchableOpacity>

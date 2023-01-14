@@ -42,6 +42,13 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
     }
   };
 
+  //Resets scores incase of re-take
+  const resetScores = () => {
+    setPatiëntenbelang(0);
+    setIntegriteitPoints(0);
+    setInformatiebeveiliging(0);
+  };
+
   //Go back a question
   const handlePrevious = () => {
     if (currentQuestion > 1) {
@@ -50,6 +57,7 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
   };
 
   const handleFinish = async () => {
+    resetScores();
     if (currentQuestion === questions.length) {
       // navigate to the results screen when the user reaches the last question
       const scores = {
@@ -191,7 +199,11 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
         </TouchableOpacity>
 
         {currentQuestion === questions.length ? (
-          <TouchableOpacity style={styles.nextButton} onPress={handleFinish}>
+          <TouchableOpacity
+            style={styles.nextButton}
+            disabled={selectedAnswer === null}
+            onPress={handleFinish}
+          >
             <Ionicons
               name="checkmark-circle"
               style={{ paddingLeft: 3, fontSize: 30, color: "#134392" }}

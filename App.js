@@ -1,3 +1,7 @@
+//This needs to be at top level
+import "react-native-gesture-handler";
+//''Note: If you are building for Android or iOS, do not skip this step, or your app may crash in production even if it works fine in development. This is not applicable to other platforms.''
+
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { StatusBar } from "expo-status-bar";
 import React from "react-native";

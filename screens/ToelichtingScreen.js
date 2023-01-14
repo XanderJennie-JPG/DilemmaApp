@@ -1,9 +1,15 @@
-import { React } from "react";
+import React from "react";
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import Container from "../components/Container";
 import TopLogo from "../components/TopLogo";
+import ExplanationText from "../components/ExplanationText";
 
-const ToelichtingScreen = ({ navigation: { goBack } }) => {
+const ToelichtingScreen = ({ route, navigation: { goBack, navigate } }) => {
+  let Patiëntenbelang = route.params?.Patiëntenbelang || 0;
+  let Integriteit = route.params?.Integriteit || 0;
+  let Informatiebeveiliging = route.params?.Informatiebeveiliging || 0;
+  console.log(Informatiebeveiliging + "hi");
+
   return (
     <Container>
       <TopLogo />
@@ -11,11 +17,12 @@ const ToelichtingScreen = ({ navigation: { goBack } }) => {
         <View>
           <Text style={[styles.header1, { top: 25 }]}>Resultaten</Text>
         </View>
-        <View style={[{ alignItems: "center" }]}>
-          <Text style={[styles.text, { top: 30 }]}>
-            Hier komt tekst waarin de betekenis van uw resultaten wordt
-            uitgelegd.
-          </Text>
+        <View style={[{ alignItems: "center", top: 30 }]}>
+          <ExplanationText
+            score={Informatiebeveiliging}
+            type="Informatiebeveiliging"
+            style={styles.explanation}
+          />
         </View>
       </View>
       <TouchableOpacity
@@ -24,10 +31,9 @@ const ToelichtingScreen = ({ navigation: { goBack } }) => {
           styles.shadow,
           { alignSelf: "flex-start" },
         ]}
+        onPress={() => goBack()}
       >
-        <Text style={styles.buttonText} onPress={() => goBack()}>
-          Terug
-        </Text>
+        <Text style={styles.buttonText}>Terug</Text>
       </TouchableOpacity>
     </Container>
   );
@@ -73,27 +79,7 @@ const styles = StyleSheet.create({
     height: 40,
     top: 110,
   },
-  logoContainer: {
-    position: "absolute",
-    top: 5,
-    right: 1,
-  },
-  hhsLogo: {
-    opacity: 1,
-    position: "absolute",
-    width: 175,
-    height: 50,
-    right: 6,
-    top: 105,
-  },
-  hmcLogo: {
-    opacity: 1,
-    position: "absolute",
-    width: 175,
-    height: 50,
-    right: 6,
-    top: 50,
-  },
+
   header1: {
     fontSize: 25,
     fontWeight: "700",
@@ -104,6 +90,16 @@ const styles = StyleSheet.create({
   },
   header2: {
     fontSize: 25,
+    fontStyle: "normal",
+    fontFamily: "Montserrat",
+    color: "rgba(19, 67, 146, 1)",
+    textAlign: "center",
+  },
+  explanation: {
+    left: 50,
+    marginRight: 50,
+    fontSize: 25,
+    fontWeight: "700",
     fontStyle: "normal",
     fontFamily: "Montserrat",
     color: "rgba(19, 67, 146, 1)",
