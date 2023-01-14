@@ -111,14 +111,13 @@ const styles = StyleSheet.create({
   },
   text: {
     opacity: 1,
-    position: "absolute",
+
     backgroundColor: "rgba(255, 255, 255, 0)",
     color: "rgba(19, 67, 146, 1)",
     fontSize: 18,
     textAlign: "center",
     lineHeight: 27,
-    width: 276,
-    height: 80,
+
     top: 281.5,
   },
   shadow: {
