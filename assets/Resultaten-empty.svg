@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="43" height="33" viewBox="0 0 43 33">
+  <defs>
+    <style>
+      .cls-1 {
+        clip-path: url(#clip-Resultaten_vol_2);
+      }
+
+      .cls-2 {
+        fill: none;
+        stroke: #134392;
+      }
+    </style>
+    <clipPath id="clip-Resultaten_vol_2">
+      <rect width="43" height="33"/>
+    </clipPath>
+  </defs>
+  <g id="Resultaten_vol_2" data-name="Resultaten vol – 2" class="cls-1">
+    <path id="Icon_awesome-chart-bar" data-name="Icon awesome-chart-bar" class="cls-2" d="M18.8,18.964h2.17a.778.778,0,0,0,.723-.723V10.647a.778.778,0,0,0-.723-.723H18.8a.778.778,0,0,0-.723.723v7.594a.778.778,0,0,0,.723.723Zm5.424,0H26.4a.778.778,0,0,0,.723-.723V5.223A.778.778,0,0,0,26.4,4.5h-2.17a.778.778,0,0,0-.723.723V18.241a.778.778,0,0,0,.723.723Zm-16.272,0h2.17a.778.778,0,0,0,.723-.723V14.263a.778.778,0,0,0-.723-.723H7.955a.778.778,0,0,0-.723.723v3.978a.778.778,0,0,0,.723.723Zm5.424,0h2.17a.778.778,0,0,0,.723-.723V7.031a.778.778,0,0,0-.723-.723h-2.17a.778.778,0,0,0-.723.723v11.21A.778.778,0,0,0,13.379,18.964ZM28.024,22.58H3.616V5.4a.9.9,0,0,0-.9-.9H.9a.9.9,0,0,0-.9.9V24.388A1.808,1.808,0,0,0,1.808,26.2H28.024a.9.9,0,0,0,.9-.9V23.484A.9.9,0,0,0,28.024,22.58Z" transform="translate(7.195 0.6)"/>
+  </g>
+</svg>

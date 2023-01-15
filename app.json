@@ -1,0 +1,40 @@
+{
+  "expo": {
+    "name": "Dilemma App",
+    "slug": "DilemmaApp",
+    "version": "0.0.6",
+    "orientation": "portrait",
+    "icon": "./assets/dilemmaLogo.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "com.Dilemma.App",
+      "versionCode": 6,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    "web": {
+      "favicon": "./assets/dilemmaLogo.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "2ebc7143-989b-4063-b238-1e06af3ee364"
+      }
+    }
+  }
+}
