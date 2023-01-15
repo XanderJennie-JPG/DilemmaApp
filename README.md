@@ -1,18 +1,4 @@
 # Hello! We are team Dilemma! :stethoscope:	
-## We are a group of final year students at THUAS 
 
-We are a team that consists of four students 🧑‍🎓.
-
-Nabil Naou - Software Engineer 💻 
-
-Jarrel - Software engineer 💻
-
-Raphael - Designer 🖌️
-
-Xander Jennie - Communication & Multimedia Design 💬
-
-We have been tasked by The Hague University, in collab with De Haga Ziekenhuis, to make a brand new app called Dilemma. Dilemma's aim is to raise awareness around cybersecurity within healthcare.
-
-
-
+Due to unforeseen circumstances, we have had to cut corners in our project. The departure of some team members and lack of programming experience among others has made development more challenging than expected. As a result, I have created a new repository to improve and enhance the app.
 
