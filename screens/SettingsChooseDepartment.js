@@ -55,7 +55,7 @@ const ChooseDepartment = ({ navigation }) => {
         onPress={() => {
           AsyncStorage.setItem("department", department);
           console.log(department);
-          navigation.navigate("InputName");
+          navigation.navigate("Settings");
         }}
         style={[
           styles.GaDoorButton,
