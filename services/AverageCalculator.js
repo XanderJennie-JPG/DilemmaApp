@@ -1,38 +1,36 @@
-import React, { useState } from "react";
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { React, useState, useEffect } from "react";
 import { db } from "../firebase";
+import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 
-async function AverageCalculator() {
-  //Collection reference
-  const colRef = collection(db, "users");
+export const AverageCalculator = ({ fieldName }) => {
+  const [average, setAverage] = useState(0);
 
-  //Get collection data
-  getDocs(colRef).then((snapshot) => {
-    console.log(snapshot.docs + "aaaaaaaaaaaaaaaaaa");
-  });
+  useEffect(() => {
+    const usersRef = db.collection("users");
+    const query = usersRef
+      .where("scores." + fieldName, ">", 0)
+      .get()
+      .then((snapshot) => {
+        if (snapshot.empty) {
+          console.log("No matching documents.");
+          return;
+        }
+        let sum = 0;
+        let count = 0;
+        snapshot.forEach((doc) => {
+          sum += doc.data().scores[fieldName];
+          count++;
+        });
+        setAverage(sum / count);
+      })
+      .catch((err) => {
+        console.log("Error getting documents", err);
+      });
+  }, [fieldName]);
 
-  const q = query(
-    collection(db, "users"),
-    where("scores", "==", "Informatiebeveiliging")
+  return (
+    <Text>
+      Gemiddelde {fieldName}: {Math.round(average)}%
+    </Text>
   );
-  console.log("query: ", q);
-  const querySnapshot = await getDocs(q);
-  console.log("querySnapshot: ", querySnapshot);
-
-  let sum = 0;
-  let count = 0;
-
-  querySnapshot.forEach((doc) => {
-    console.log("doc" + doc);
-    sum += doc.data().Informatiebeveiliging;
-    console.log("sum" + sum);
-    count++;
-  });
-
-  let average = sum / count;
-  console.log("Average Informatiebeveiliging: ", average);
-
-  return average;
-}
-
-export default AverageCalculator;
+};

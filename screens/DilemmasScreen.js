@@ -85,18 +85,26 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
       // Get the device ID
       const deviceId = await getGuid();
 
-      await setDoc(doc(db, "users", deviceId), {
+      const usersRef = db.collection("users");
+
+      const data = {
         deviceId: deviceId,
         username: username,
         department: department,
         answers: answers,
-        scores: scores,
-      })
-        .then(() => {
-          console.log("Document successfully written!");
+        scores: {
+          Patiëntenbelang: Patiëntenbelang,
+          Integriteit: IntegriteitPoints,
+          Informatiebeveiliging: Informatiebeveiliging,
+        },
+      };
+      usersRef
+        .add(data)
+        .then(function (docRef) {
+          console.log("Document written with ID: ", docRef.id);
         })
-        .catch((error) => {
-          console.error("Error writing document: ", error);
+        .catch(function (error) {
+          console.error("Error adding document: ", error);
         });
 
       navigate("HomeTab", {

@@ -1,8 +1,8 @@
-import { React, useState, useEffect } from "react";
-import { View, StyleSheet, Text, TouchableOpacity, Switch } from "react-native";
+import { React } from "react";
+import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import Container from "../components/Container";
 import TopLogo from "../components/TopLogo";
-import AverageCalculator from "../services/AverageCalculator";
+import { AverageCalculator } from "../services/AverageCalculator";
 import { PieChart, ProgressChart } from "react-native-chart-kit";
 
 //TODO not use absolute positioning
@@ -10,12 +10,6 @@ const ResultScreen = ({ navigation, route }) => {
   let Patiëntenbelang = route.params?.Patiëntenbelang || 0;
   let Integriteit = route.params?.Integriteit || 0;
   let Informatiebeveiliging = route.params?.Informatiebeveiliging || 0;
-
-  const [Ibaverage, setIbAverage] = useState();
-
-  useEffect(() => {
-    AverageCalculator().then(setIbAverage);
-  }, []);
 
   let checkData = () => {
     if (
@@ -99,16 +93,9 @@ const ResultScreen = ({ navigation, route }) => {
         </View>
         {checkData() && (
           <View style={styles.average}>
-            <Text>
-              Gemiddelde Informatiebeveiliging: {Ibaverage} {"\n"}{" "}
-            </Text>
-
-            <Text>
-              Gemiddelde Integriteit: {Ibaverage} {"\n"}
-            </Text>
-            <Text>
-              Gemiddelde Patiëntenbelang: {Ibaverage} {"\n"}
-            </Text>
+            <AverageCalculator fieldName="Informatiebeveiliging" /> 
+            <AverageCalculator fieldName="Integriteit" />
+            <AverageCalculator fieldName="Patiëntenbelang" />
           </View>
         )}
       </View>

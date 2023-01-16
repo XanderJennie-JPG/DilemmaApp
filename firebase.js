@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAuth, signInAnonymously } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -19,12 +19,12 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const SignInAnon = signInAnonymously(auth);
-const firestore = getFirestore();
+const app = firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const SignInAnon = auth.signInAnonymously();
+const firestore = firebase.firestore();
 // Initialize Cloud Firestore and get a reference to the service
-const db = getFirestore(app);
+const db = firebase.firestore();
 
 export { auth };
 export { SignInAnon };
