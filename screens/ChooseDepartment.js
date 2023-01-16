@@ -5,7 +5,6 @@ import Container from "../components/Container";
 import { SelectList } from "react-native-dropdown-select-list";
 import TopLogo from "../components/TopLogo";
 import GlobalStyle from "../components/GlobalStyle";
-import sendDepartment from "../services/DepartmentApi";
 
 const ChooseDepartment = ({ navigation }) => {
   const [selected, setSelected] = React.useState("");
@@ -52,6 +51,7 @@ const ChooseDepartment = ({ navigation }) => {
 
       <TouchableOpacity
         onPress={() => {
+          AsyncStorage.setItem("department", selected);
           navigation.navigate("InputName");
         }}
         style={[

@@ -1,6 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth, signInAnonymously} from "firebase/auth";
+import { getAuth, signInAnonymously } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -13,13 +15,18 @@ const firebaseConfig = {
   storageBucket: "dilemma-app-82643.appspot.com",
   messagingSenderId: "1012981873671",
   appId: "1:1012981873671:web:7c8c01eafb88598747bea2",
-  measurementId: "G-GTS7KCDKJG"
+  measurementId: "G-GTS7KCDKJG",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const SignInAnon = signInAnonymously(auth)
+const SignInAnon = signInAnonymously(auth);
+const firestore = getFirestore();
+// Initialize Cloud Firestore and get a reference to the service
+const db = getFirestore(app);
 
 export { auth };
 export { SignInAnon };
+export { firestore };
+export { db };

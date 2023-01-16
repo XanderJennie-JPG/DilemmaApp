@@ -11,6 +11,7 @@ import {
 import Container from "../components/Container";
 import TopLogo from "../components/TopLogo";
 import { auth, SignInAnon } from "../firebase";
+import { createGuid } from "../components/CreateGuid";
 
 const InputName = ({ navigation }) => {
   const [username, setUsername] = useState("");
@@ -21,10 +22,12 @@ const InputName = ({ navigation }) => {
     } else {
       SignInAnon.then(() => {
         console.log("Anonymous Sign In Successful");
-        navigation.navigate("CommonScreens");
         console.log(username);
         AsyncStorage.setItem("hasSeenWelcome", "true");
         AsyncStorage.setItem("username", username);
+        createGuid();
+        navigation.navigate("CommonScreens");
+        
       }).catch((error) => {
         console.log(error);
       });

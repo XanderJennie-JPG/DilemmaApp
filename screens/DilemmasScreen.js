@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   View,
   Image,
@@ -9,12 +10,13 @@ import {
 } from "react-native";
 import Container from "../components/Container";
 import GlobalStyle from "../components/GlobalStyle";
-import axios from "axios";
 import questions from "../components/Questions";
-import sendData from "../services/ScoreApi";
+import { getGuid } from "../components/CreateGuid";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "../firebase";
 
-//TODO: separate the logic for rendering the question and answers from the DilemmasScreen component to make the code easier to read.
+//TODO: separate the logic for rendering the question and answers from the DilemmasScreen component
 const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
   //Here, we keep track of the current question for rendering purposes.
   const [currentQuestion, setCurrentQuestion] = useState(1);
@@ -22,6 +24,20 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
   const [Patiëntenbelang, setPatiëntenbelang] = useState(0);
   const [IntegriteitPoints, setIntegriteitPoints] = useState(0);
   const [Informatiebeveiliging, setInformatiebeveiliging] = useState(0);
+
+  //Name and dept
+  const [username, setUsername] = React.useState("");
+  const [department, setDepartment] = React.useState("");
+
+  //Get name and dept
+  React.useEffect(() => {
+    AsyncStorage.getItem("department").then((value) => {
+      setDepartment(value);
+    });
+    AsyncStorage.getItem("username").then((value) => {
+      setUsername(value);
+    });
+  }, []);
 
   //State variable that keeps track of the selected answers
   const [answers, setAnswers] = useState({});
@@ -65,8 +81,24 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
         Integriteit: IntegriteitPoints,
         Informatiebeveiliging: Informatiebeveiliging,
       };
-      //const res = await sendData(scores);
-      //console.log(res);
+
+      // Get the device ID
+      const deviceId = await getGuid();
+
+      await setDoc(doc(db, "users", deviceId), {
+        deviceId: deviceId,
+        username: username,
+        department: department,
+        answers: answers,
+        scores: scores,
+      })
+        .then(() => {
+          console.log("Document successfully written!");
+        })
+        .catch((error) => {
+          console.error("Error writing document: ", error);
+        });
+
       navigate("HomeTab", {
         screen: "Results",
         params: {
