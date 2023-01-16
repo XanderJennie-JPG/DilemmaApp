@@ -9,6 +9,7 @@ import ToelichtingScreen from "../screens/ToelichtingScreen";
 import HomeTabScreen from "./HomeTab";
 import ResultScreen from "../screens/ResultsScreen";
 import InputName from "../screens/InputName";
+import SettingsChooseDepartment from "../screens/SettingsChooseDepartment";
 
 const WelcomeStack = createStackNavigator();
 
@@ -60,6 +61,7 @@ function CommonScreensStackScreen() {
         component={ToelichtingScreen}
       />
       <CommonScreensStack.Screen name="Results" component={ResultScreen} />
+      <CommonScreensStack.Screen name="SettingsChooseDepartment" component={SettingsChooseDepartment} />
     </CommonScreensStack.Navigator>
   );
 }
