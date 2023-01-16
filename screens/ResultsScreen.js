@@ -1,7 +1,8 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import { View, StyleSheet, Text, TouchableOpacity, Switch } from "react-native";
 import Container from "../components/Container";
 import TopLogo from "../components/TopLogo";
+import AverageCalculator from "../services/AverageCalculator";
 import { PieChart, ProgressChart } from "react-native-chart-kit";
 
 //TODO not use absolute positioning
@@ -9,6 +10,12 @@ const ResultScreen = ({ navigation, route }) => {
   let Patiëntenbelang = route.params?.Patiëntenbelang || 0;
   let Integriteit = route.params?.Integriteit || 0;
   let Informatiebeveiliging = route.params?.Informatiebeveiliging || 0;
+
+  const [Ibaverage, setIbAverage] = useState();
+
+  useEffect(() => {
+    AverageCalculator().then(setIbAverage);
+  }, []);
 
   let checkData = () => {
     if (
@@ -90,7 +97,22 @@ const ResultScreen = ({ navigation, route }) => {
             </Text>
           )}
         </View>
+        {checkData() && (
+          <View style={styles.average}>
+            <Text>
+              Gemiddelde Informatiebeveiliging: {Ibaverage} {"\n"}{" "}
+            </Text>
+
+            <Text>
+              Gemiddelde Integriteit: {Ibaverage} {"\n"}
+            </Text>
+            <Text>
+              Gemiddelde Patiëntenbelang: {Ibaverage} {"\n"}
+            </Text>
+          </View>
+        )}
       </View>
+
       <TouchableOpacity
         style={[styles.GaDoorButton, styles.shadow, { alignSelf: "flex-end" }]}
         disabled={!checkData()}
@@ -171,6 +193,11 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: "center",
     lineHeight: 27,
+  },
+  average: {
+    top: 350,
+    left: 15,
+    position: "absolute",
   },
   shadow: {
     shadowColor: "#7F5DF0",

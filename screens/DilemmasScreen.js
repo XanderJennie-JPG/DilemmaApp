@@ -130,7 +130,6 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
       setInformatiebeveiliging(Informatiebeveiliging + 10);
     }
 
-    //Here, when the backend is done, we need to add an axios call to store in backend.
     if (currentQuestion < questions.length) {
       setCurrentQuestion(currentQuestion + 1);
     }
