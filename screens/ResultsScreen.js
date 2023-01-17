@@ -14,37 +14,34 @@ const ResultScreen = ({ navigation, route }) => {
   const isFocused = useIsFocused();
 
   useEffect(() => {
-    if(isFocused){
-    const fetchData = async () => {
-      const guid = await getGuid();
-      const usersRef = db.collection("users");
-      const query = usersRef
-        .where("deviceId", "==", guid)
-        .get()
-        .then((snapshot) => {
-          if (snapshot.empty) {
-            console.log("No matching documents.");
-            return;
-          }
-          snapshot.forEach((doc) => {
-            setScores(doc.data().scores);
+    if (isFocused) {
+      const fetchData = async () => {
+        const guid = await getGuid();
+        const usersRef = db.collection("users");
+        const query = usersRef
+          .where("deviceId", "==", guid)
+          .get()
+          .then((snapshot) => {
+            if (snapshot.empty) {
+              console.log("No matching documents.");
+              return;
+            }
+            snapshot.forEach((doc) => {
+              setScores(doc.data().scores);
+            });
+          })
+          .catch((err) => {
+            console.log("Error getting documents", err);
           });
-        })
-        .catch((err) => {
-          console.log("Error getting documents", err);
-        });
-    };
-    
-    fetchData();
-  }
+      };
+
+      fetchData();
+    }
   }, [isFocused]);
 
   let Patiëntenbelang = scores.Patiëntenbelang || 0;
   let Integriteit = scores.Integriteit || 0;
   let Informatiebeveiliging = scores.Informatiebeveiliging || 0;
-  console.log(Patiëntenbelang + "hi patient");
-  console.log(Integriteit + "hi integer");
-  console.log(Informatiebeveiliging + "hi informatie");
 
   let checkData = () => {
     if (

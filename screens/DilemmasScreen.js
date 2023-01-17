@@ -114,11 +114,11 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
         .doc(deviceId)
         .set(data)
         .then(function () {
-          //console.log("Document written with ID: REDACTED");
-          console.log("Document written with ID: ", deviceId);
+          console.log("Document written with ID: REDACTED");
+          //console.log("Document written with ID: ", deviceId);
         })
         .catch(function (error) {
-          console.error("Error adding document: ", deviceId);
+          console.error("Error adding document: REDACTED");
         });
 
       navigate("HomeTab", {
