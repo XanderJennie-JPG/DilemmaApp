@@ -10,8 +10,6 @@ import {
 } from "react-native";
 import Container from "../components/Container";
 import TopLogo from "../components/TopLogo";
-import { auth, SignInAnon } from "../firebase";
-import { createGuid } from "../components/CreateGuid";
 
 const InputName = ({ navigation }) => {
   const [username, setUsername] = useState("");
@@ -20,17 +18,10 @@ const InputName = ({ navigation }) => {
     if (!username.trim()) {
       alert("Vul een naam in");
     } else {
-      SignInAnon.then(() => {
-        console.log("Anonymous Sign In Successful");
-        console.log(username);
-        AsyncStorage.setItem("hasSeenWelcome", "true");
-        AsyncStorage.setItem("username", username);
-        createGuid();
-        navigation.navigate("CommonScreens");
-        
-      }).catch((error) => {
-        console.log(error);
-      });
+      navigation.navigate("CommonScreens");
+      console.log(username);
+      AsyncStorage.setItem("hasSeenWelcome", "true");
+      AsyncStorage.setItem("username", username);
     }
   };
   return (
