@@ -10,9 +10,11 @@ import { db } from "../firebase";
 //TODO not use absolute positioning
 const ResultScreen = ({ navigation, route }) => {
   const [scores, setScores] = useState({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       const guid = await getGuid();
       const usersRef = db.collection("users");
       const query = usersRef
@@ -25,6 +27,7 @@ const ResultScreen = ({ navigation, route }) => {
           }
           snapshot.forEach((doc) => {
             setScores(doc.data().scores);
+            setLoading(false);
           });
         })
         .catch((err) => {
@@ -33,6 +36,10 @@ const ResultScreen = ({ navigation, route }) => {
     };
     fetchData();
   }, []);
+
+  if (loading) {
+    return <Text>Aan het laden...</Text>;
+  }
 
   let Patiëntenbelang = scores.Patiëntenbelang || 0;
   let Integriteit = scores.Integriteit || 0;
@@ -101,7 +108,9 @@ const ResultScreen = ({ navigation, route }) => {
           </Text>
         </View>
         <View style={[{ alignItems: "center", top: 90, right: 110 }]}>
-          {checkData() ? (
+          {loading ? (
+            <Text>Loading...</Text>
+          ) : checkData() ? (
             <PieChart
               data={data}
               width={700}
