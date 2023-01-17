@@ -6,8 +6,9 @@ import { SelectList } from "react-native-dropdown-select-list";
 import TopLogo from "../components/TopLogo";
 import GlobalStyle from "../components/GlobalStyle";
 
-const ChooseDepartment = ({ navigation }) => {
+const SettingsChooseDepartment = ({ navigation, route }) => {
   const [department, setDepartment] = React.useState("");
+  const { setDepartmentChanged } = route.params;
 
   const data = [
     { key: "Urologie", value: "Poli urologie" },
@@ -51,9 +52,12 @@ const ChooseDepartment = ({ navigation }) => {
       />
 
       <TouchableOpacity
-        onPress={() => {
-          AsyncStorage.setItem("department", department);
-          console.log(department);
+        onPress={async () => {
+          await AsyncStorage.removeItem("department");
+          await AsyncStorage.setItem("department", department);
+          setDepartmentChanged(true);
+          console.log("DepartmentChange:" + department);
+
           navigation.navigate("Settings");
         }}
         style={[
@@ -68,7 +72,7 @@ const ChooseDepartment = ({ navigation }) => {
   );
 };
 
-export default ChooseDepartment;
+export default SettingsChooseDepartment;
 
 const styles = StyleSheet.create({
   GaDoorButton: {

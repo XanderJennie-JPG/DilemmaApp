@@ -1,20 +1,24 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Container from "../components/Container";
 import { Divider } from "@rneui/themed";
 import TopLogo from "../components/TopLogo";
+import SettingsChooseDepartment from "../screens/SettingsChooseDepartment";
 
 const SettingsScreen = ({ navigation }) => {
-  const [department, setDepartment] = useState("");
+  let [department, setDepartment] = useState("");
+  const [departmentChanged, setDepartmentChanged] = useState(false);
 
   useEffect(() => {
     const getDepartment = async () => {
-      const department = await AsyncStorage.getItem("department");
-      setDepartment(department);
+      let department2 = await AsyncStorage.getItem("department");
+      setDepartment(department2);
+      console.log(department2);
+      setDepartmentChanged(false);
     };
     getDepartment();
-  }, []);
+  }, [departmentChanged]);
 
   return (
     <Container>
@@ -24,11 +28,15 @@ const SettingsScreen = ({ navigation }) => {
         <Text style={[styles.header1, { top: 100 }]}>Instellingen</Text>
       </View>
       <View style={[{ alignItems: "center" }]}>
-        <Text style={[styles.header2, { top: 150 }]}>{department}</Text>
+        <Text style={[styles.header2, { top: 150 }]}>{department} </Text>
       </View>
-      <View style={{ alignItems: "center"}}>
+      <View style={{ alignItems: "center" }}>
         <TouchableOpacity
-          onPress={() => navigation.navigate("SettingsChooseDepartment")}
+          onPress={() =>
+            navigation.navigate("SettingsChooseDepartment", {
+              setDepartmentChanged,
+            })
+          }
           style={[styles.Options, { top: 308 }]}
         >
           <Image
