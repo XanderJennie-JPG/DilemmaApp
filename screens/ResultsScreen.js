@@ -1,14 +1,42 @@
-import { React, useState } from "react";
-import { View, StyleSheet, Text, TouchableOpacity, Switch } from "react-native";
+import { React, useEffect, useState } from "react";
+import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import Container from "../components/Container";
 import TopLogo from "../components/TopLogo";
+import { AverageCalculator } from "../services/AverageCalculator";
 import { PieChart, ProgressChart } from "react-native-chart-kit";
+import { getGuid } from "../components/CreateGuid";
+import { db } from "../firebase";
 
 //TODO not use absolute positioning
 const ResultScreen = ({ navigation, route }) => {
-  let Patiëntenbelang = route.params?.Patiëntenbelang || 0;
-  let Integriteit = route.params?.Integriteit || 0;
-  let Informatiebeveiliging = route.params?.Informatiebeveiliging || 0;
+  const [scores, setScores] = useState({});
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const guid = await getGuid();
+      const usersRef = db.collection("users");
+      const query = usersRef
+        .where("deviceId", "==", guid)
+        .get()
+        .then((snapshot) => {
+          if (snapshot.empty) {
+            console.log("No matching documents.");
+            return;
+          }
+          snapshot.forEach((doc) => {
+            setScores(doc.data().scores);
+          });
+        })
+        .catch((err) => {
+          console.log("Error getting documents", err);
+        });
+    };
+    fetchData();
+  }, []);
+
+  let Patiëntenbelang = scores.Patiëntenbelang || 0;
+  let Integriteit = scores.Integriteit || 0;
+  let Informatiebeveiliging = scores.Informatiebeveiliging || 0;
 
   let checkData = () => {
     if (
@@ -90,7 +118,15 @@ const ResultScreen = ({ navigation, route }) => {
             </Text>
           )}
         </View>
+        {checkData() && (
+          <View style={styles.average}>
+            <AverageCalculator fieldName="Informatiebeveiliging" />
+            <AverageCalculator fieldName="Integriteit" />
+            <AverageCalculator fieldName="Patiëntenbelang" />
+          </View>
+        )}
       </View>
+
       <TouchableOpacity
         style={[styles.GaDoorButton, styles.shadow, { alignSelf: "flex-end" }]}
         disabled={!checkData()}
@@ -171,6 +207,11 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: "center",
     lineHeight: 27,
+  },
+  average: {
+    top: 350,
+    left: 15,
+    position: "absolute",
   },
   shadow: {
     shadowColor: "#7F5DF0",

@@ -1,14 +1,13 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import React, {useState} from "react";
+import React from "react";
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import Container from "../components/Container";
 import { SelectList } from "react-native-dropdown-select-list";
 import TopLogo from "../components/TopLogo";
 import GlobalStyle from "../components/GlobalStyle";
-import sendDepartment from "../services/DepartmentApi";
 
 const ChooseDepartment = ({ navigation }) => {
-  const [department, setDepartment] = React.useState("");
+  const [selected, setSelected] = React.useState("");
 
   const data = [
     { key: "Urologie", value: "Poli urologie" },
@@ -16,7 +15,6 @@ const ChooseDepartment = ({ navigation }) => {
     { key: "Gynaecologie", value: "Poli gynaecologie" },
     { key: "Cardiologie", value: "Poli cardiologie" },
   ];
-  
   return (
     <Container>
       <TopLogo />
@@ -37,7 +35,7 @@ const ChooseDepartment = ({ navigation }) => {
         <Text style={[styles.header2, { top: 300 }]}>Kies uw afdeling</Text>
       </View>
       <SelectList
-        setSelected={(val) => setDepartment(val)}
+        setSelected={(val) => setSelected(val)}
         data={data}
         save="value"
         search={false}
@@ -53,8 +51,7 @@ const ChooseDepartment = ({ navigation }) => {
 
       <TouchableOpacity
         onPress={() => {
-          AsyncStorage.setItem("department", department);
-          console.log(department);
+          AsyncStorage.setItem("department", selected);
           navigation.navigate("InputName");
         }}
         style={[
