@@ -6,12 +6,15 @@ import { AverageCalculator } from "../services/AverageCalculator";
 import { PieChart, ProgressChart } from "react-native-chart-kit";
 import { getGuid } from "../components/CreateGuid";
 import { db } from "../firebase";
+import { useIsFocused } from "@react-navigation/native";
 
 //TODO not use absolute positioning
 const ResultScreen = ({ navigation, route }) => {
   const [scores, setScores] = useState({});
+  const isFocused = useIsFocused();
 
   useEffect(() => {
+    if(isFocused){
     const fetchData = async () => {
       const guid = await getGuid();
       const usersRef = db.collection("users");
@@ -31,12 +34,17 @@ const ResultScreen = ({ navigation, route }) => {
           console.log("Error getting documents", err);
         });
     };
+    
     fetchData();
-  }, []);
+  }
+  }, [isFocused]);
 
   let Patiëntenbelang = scores.Patiëntenbelang || 0;
   let Integriteit = scores.Integriteit || 0;
   let Informatiebeveiliging = scores.Informatiebeveiliging || 0;
+  console.log(Patiëntenbelang + "hi patient");
+  console.log(Integriteit + "hi integer");
+  console.log(Informatiebeveiliging + "hi informatie");
 
   let checkData = () => {
     if (
