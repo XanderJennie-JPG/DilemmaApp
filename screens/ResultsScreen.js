@@ -37,10 +37,6 @@ const ResultScreen = ({ navigation, route }) => {
     fetchData();
   }, []);
 
-  if (loading) {
-    return <Text>Aan het laden...</Text>;
-  }
-
   let Patiëntenbelang = scores.Patiëntenbelang || 0;
   let Integriteit = scores.Integriteit || 0;
   let Informatiebeveiliging = scores.Informatiebeveiliging || 0;
@@ -108,9 +104,7 @@ const ResultScreen = ({ navigation, route }) => {
           </Text>
         </View>
         <View style={[{ alignItems: "center", top: 90, right: 110 }]}>
-          {loading ? (
-            <Text>Loading...</Text>
-          ) : checkData() ? (
+          {checkData() ? (
             <PieChart
               data={data}
               width={700}
