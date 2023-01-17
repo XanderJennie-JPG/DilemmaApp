@@ -10,11 +10,9 @@ import { db } from "../firebase";
 //TODO not use absolute positioning
 const ResultScreen = ({ navigation, route }) => {
   const [scores, setScores] = useState({});
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true);
       const guid = await getGuid();
       const usersRef = db.collection("users");
       const query = usersRef
@@ -27,7 +25,6 @@ const ResultScreen = ({ navigation, route }) => {
           }
           snapshot.forEach((doc) => {
             setScores(doc.data().scores);
-            setLoading(false);
           });
         })
         .catch((err) => {
