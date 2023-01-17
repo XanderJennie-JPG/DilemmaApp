@@ -8,7 +8,7 @@ const ToelichtingScreen = ({ route, navigation: { goBack, navigate } }) => {
   let Patiëntenbelang = route.params?.Patiëntenbelang || 0;
   let Integriteit = route.params?.Integriteit || 0;
   let Informatiebeveiliging = route.params?.Informatiebeveiliging || 0;
-  console.log(Informatiebeveiliging + "hi");
+  
 
   return (
     <Container>

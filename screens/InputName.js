@@ -22,7 +22,6 @@ const InputName = ({ navigation }) => {
     } else {
       SignInAnon.then(() => {
         console.log("Anonymous Sign In Successful");
-        console.log(username);
         AsyncStorage.setItem("hasSeenWelcome", "true");
         AsyncStorage.setItem("username", username);
         createGuid();

@@ -14,7 +14,7 @@ const SettingsScreen = ({ navigation }) => {
     const getDepartment = async () => {
       let department2 = await AsyncStorage.getItem("department");
       setDepartment(department2);
-      console.log(department2);
+      
       setDepartmentChanged(false);
     };
     getDepartment();

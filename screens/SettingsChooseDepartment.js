@@ -56,7 +56,7 @@ const SettingsChooseDepartment = ({ navigation, route }) => {
           await AsyncStorage.removeItem("department");
           await AsyncStorage.setItem("department", department);
           setDepartmentChanged(true);
-          console.log("DepartmentChange:" + department);
+          
 
           navigation.navigate("Settings");
         }}

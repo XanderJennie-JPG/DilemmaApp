@@ -41,7 +41,6 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
 
   //State variable that keeps track of the selected answers
   const [answers, setAnswers] = useState({});
-  console.log(answers);
 
   //State variable that keeps track of the currently selected answer
   const [selectedAnswer, setSelectedAnswer] = useState(null);
@@ -101,10 +100,14 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
       usersRef
         .add(data)
         .then(function (docRef) {
-          console.log("Document written with ID: ", docRef.id);
+          console.log("Document written with ID: REDACTED");
+          //console.log("Document written with ID: ", docRef.id);
+
         })
         .catch(function (error) {
           console.error("Error adding document: ", error);
+          //console.error("Error adding document: ", error);
+
         });
 
       navigate("HomeTab", {
