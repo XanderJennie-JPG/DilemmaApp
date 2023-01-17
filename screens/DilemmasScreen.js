@@ -62,6 +62,7 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
     setPatiëntenbelang(0);
     setIntegriteitPoints(0);
     setInformatiebeveiliging(0);
+    setCurrentQuestion[1];
   };
 
   //Go back a question
@@ -72,7 +73,6 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
   };
 
   const handleFinish = async () => {
-    resetScores();
     if (currentQuestion === questions.length) {
       // navigate to the results screen when the user reaches the last question
       const scores = {
@@ -80,11 +80,24 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
         Integriteit: IntegriteitPoints,
         Informatiebeveiliging: Informatiebeveiliging,
       };
+      setCurrentQuestion[1];
 
       // Get the device ID
       const deviceId = await getGuid();
 
       const usersRef = db.collection("users");
+
+      const userDoc = usersRef.doc(deviceId);
+
+      // Delete the old document
+      userDoc
+        .delete()
+        .then(() => {
+          console.log("Old scores deleted");
+        })
+        .catch((error) => {
+          console.error("Error deleting old scores", error);
+        });
 
       const data = {
         deviceId: deviceId,
@@ -98,16 +111,14 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
         },
       };
       usersRef
-        .add(data)
-        .then(function (docRef) {
-          console.log("Document written with ID: REDACTED");
-          //console.log("Document written with ID: ", docRef.id);
-
+        .doc(deviceId)
+        .set(data)
+        .then(function () {
+          //console.log("Document written with ID: REDACTED");
+          console.log("Document written with ID: ", deviceId);
         })
         .catch(function (error) {
-          console.error("Error adding document: ", error);
-          //console.error("Error adding document: ", error);
-
+          console.error("Error adding document: ", deviceId);
         });
 
       navigate("HomeTab", {
