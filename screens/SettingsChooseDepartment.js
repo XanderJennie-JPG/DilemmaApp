@@ -1,11 +1,10 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import Container from "../components/Container";
 import { SelectList } from "react-native-dropdown-select-list";
 import TopLogo from "../components/TopLogo";
 import GlobalStyle from "../components/GlobalStyle";
-import sendDepartment from "../services/DepartmentApi";
 
 const ChooseDepartment = ({ navigation }) => {
   const [department, setDepartment] = React.useState("");
@@ -16,7 +15,7 @@ const ChooseDepartment = ({ navigation }) => {
     { key: "Gynaecologie", value: "Poli gynaecologie" },
     { key: "Cardiologie", value: "Poli cardiologie" },
   ];
-  
+
   return (
     <Container>
       <TopLogo />
