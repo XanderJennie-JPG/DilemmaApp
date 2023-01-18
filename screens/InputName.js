@@ -40,7 +40,7 @@ const InputName = ({ navigation }) => {
       </View>
       <View style={[styles.InputContainer, styles.elevation]}>
         <Text style={styles.text}>
-          Vul een naam in{"\n"}die u wilt gebruiken voor de app
+          Vul een nickname in{"\n"}die u wilt gebruiken voor de app
         </Text>
       </View>
       <TextInput
