@@ -26,14 +26,13 @@ const InputName = ({ navigation }) => {
         AsyncStorage.setItem("username", username);
         createGuid();
         navigation.navigate("CommonScreens");
-        
       }).catch((error) => {
         console.log(error);
       });
     }
   };
   return (
-    <Container>
+    <Container style={{ flex: 1 }}>
       <TopLogo />
       <View>
         <Text style={styles.header1}>Dilemma app</Text>
@@ -48,16 +47,24 @@ const InputName = ({ navigation }) => {
         placeholder="Vul hier een naam in..."
         onChangeText={(text) => setUsername(text)}
       />
-      <TouchableOpacity
-        style={[styles.GaDoorButton, styles.shadow, styles.elevation]}
-        onPress={handleName}
+      <View
+        style={{
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: "auto",
+        }}
       >
-        <Text style={styles.buttonText}>Ga door naar de app</Text>
-        <Image
-          style={styles.tinyLogo}
-          source={require("../assets/ArrowRight.png")}
-        />
-      </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.GaDoorButton, styles.shadow, styles.elevation]}
+          onPress={handleName}
+        >
+          <Text style={styles.buttonText}>Ga door naar de app</Text>
+          <Image
+            style={styles.tinyLogo}
+            source={require("../assets/ArrowRight.png")}
+          />
+        </TouchableOpacity>
+      </View>
     </Container>
   );
 };
@@ -81,9 +88,9 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
     width: 286,
     height: 47,
-    left: 50,
-    top: 600,
     flexDirection: "row",
+    justifyContent: "center",
+    alignContent: "center",
   },
   logoContainer: {
     position: "absolute",
@@ -117,7 +124,6 @@ const styles = StyleSheet.create({
   },
   text: {
     opacity: 1,
-    position: "absolute",
     backgroundColor: "rgba(255, 255, 255, 0)",
     color: "rgba(19, 67, 146, 1)",
     fontSize: 18,
