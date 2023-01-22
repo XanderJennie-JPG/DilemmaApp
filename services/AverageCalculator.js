@@ -1,6 +1,7 @@
 import { React, useState, useEffect } from "react";
 import { db } from "../firebase";
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
+import GlobalStyle from "../components/GlobalStyle";
 
 export const AverageCalculator = ({ fieldName }) => {
   const [average, setAverage] = useState(0);
@@ -29,8 +30,10 @@ export const AverageCalculator = ({ fieldName }) => {
   }, [fieldName]);
 
   return (
-    <Text>
-      Gemiddelde {fieldName}: {Math.round(average)}%
-    </Text>
+    <View style={{marginTop: 10}}>
+      <Text style={GlobalStyle.CustomFont}>
+        Gemiddelde {fieldName}: {Math.round(average)}%
+      </Text>
+    </View>
   );
 };
