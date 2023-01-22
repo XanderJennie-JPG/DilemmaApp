@@ -16,53 +16,44 @@ const ChooseDepartment = ({ navigation }) => {
     { key: "Cardiologie", value: "Poli cardiologie" },
   ];
   return (
-    <Container>
-      <TopLogo />
-      <View>
-        <Text
-          style={[
-            GlobalStyle.CustomFontBold,
-            { top: 100, fontSize: 30, alignSelf: "center" },
-          ]}
-        >
-          Dilemma app
-        </Text>
-      </View>
-      <View style={styles.InputContainer}>
-        <Text style={[GlobalStyle.CustomFontBold, { fontSize: 27, top: 275 }]}>
+  <Container>
+    <TopLogo />
+    <View style= {{display: "flex", alignItems: "center", flexDirection: "column", flex: 1, justifyContent: "space-between"}}>
+          <Text style={[GlobalStyle.CustomFontBold, {fontSize: 30, marginTop: 50}]}>
+            Dilemma app
+          </Text>
+        <Text style={[GlobalStyle.CustomFontBold, { fontSize: 27, marginTop: "auto"}]}>
           Hallo!
         </Text>
-        <Text style={[styles.header2, { top: 300 }]}>Kies uw afdeling</Text>
-      </View>
-      <SelectList
-        setSelected={(val) => setSelected(val)}
-        data={data}
-        save="value"
-        search={false}
-        placeholder="Kiezen"
-        searchPlaceholder=""
-        boxStyles={[styles.DropDown, styles.shadow, styles.elevation]}
-        inputStyles={[styles.DropDownText, styles.header2]}
-        dropdownStyles={[styles.DropDownList]}
-        dropdownTextStyles={styles.header2}
-        defaultOption={{ key: "Poli urologie", value: "Poli urologie" }}
-        maxHeight={150}
-      />
-
-      <TouchableOpacity
-        onPress={() => {
-          AsyncStorage.setItem("department", selected);
-          navigation.navigate("InputName");
-        }}
-        style={[
-          styles.GaDoorButton,
-          styles.shadow,
-          { position: "absolute", bottom: 75 },
-        ]}
-      >
-        <Text style={styles.buttonText}>Laten we beginnen!</Text>
-      </TouchableOpacity>
-    </Container>
+        <Text style={[styles.header2]}>Kies uw afdeling</Text>
+        <SelectList
+          setSelected={(val) => setSelected(val)}
+          data={data}
+          save="value"
+          search={false}
+          placeholder="Kiezen"
+          searchPlaceholder=""
+          boxStyles={[styles.DropDown, styles.shadow, styles.elevation]}
+          inputStyles={[styles.DropDownText, styles.header2]}
+          dropdownStyles={[styles.DropDownList]}
+          dropdownTextStyles={styles.header2}
+          defaultOption={{ key: "Poli urologie", value: "Poli urologie" }}
+          maxHeight={150}
+        />
+        <TouchableOpacity
+          onPress={() => {
+            AsyncStorage.setItem("department", selected);
+            navigation.navigate("InputName");
+          }}
+          style={[
+            styles.GaDoorButton,
+            styles.shadow,
+          ]}
+        >
+          <Text style={styles.buttonText}>Laten we beginnen!</Text>
+        </TouchableOpacity>
+    </View>
+  </Container>
   );
 };
 
@@ -72,10 +63,7 @@ const styles = StyleSheet.create({
   GaDoorButton: {
     opacity: 1,
     backgroundColor: "rgba(238, 246, 250, 1)",
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
+    borderRadius: 20,
     shadowColor: "rgb(203,  221,  230)",
     shadowOpacity: 0.8392156862745098,
     shadowOffset: {
@@ -85,48 +73,22 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
     width: 286,
     height: 50,
-    left: 50,
-
-    flexDirection: "row",
+    marginTop: "auto",
   },
   DropDown: {
-    opacity: 1,
     backgroundColor: "rgba(238, 246, 250, 1)",
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
-    shadowColor: "rgb(203,  221,  230)",
-    shadowOpacity: 0.8392156862745098,
-    shadowOffset: {
-      width: 5,
-      height: 5,
-    },
-    shadowRadius: 10,
+    borderRadius: 20,
     width: 286,
     height: 59,
-    left: 50,
-    top: 325,
+    alignSelf: "center",
   },
   DropDownText: {
     fontSize: 25,
     textAlign: "center",
   },
   DropDownList: {
-    top: 330,
-    opacity: 1,
     backgroundColor: "rgba(238, 246, 250, 1)",
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
-    shadowColor: "rgb(203,  221,  230)",
-    shadowOpacity: 0.8392156862745098,
-    shadowOffset: {
-      width: 5,
-      height: 5,
-    },
-    shadowRadius: 10,
+    borderRadius: 20,
   },
   DropDownListText: {},
   logoContainer: {
@@ -189,6 +151,9 @@ const styles = StyleSheet.create({
 
   InputContainer: {
     alignItems: "center",
+    justifyContent: "center",
+    alignSelf: "center",
+    flex: 3,
   },
 
   buttonText: {
