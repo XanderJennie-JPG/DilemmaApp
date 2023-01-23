@@ -56,21 +56,21 @@ const ResultScreen = ({ navigation, route }) => {
 
   let data = [
     {
-      name: "Patiëntenbelang",
+      name: "Efficient",//patientenbelang
       population: Patiëntenbelang,
       color: "#01ED38",
       legendFontColor: "#7F7F7F",
       legendFontSize: 15,
     },
     {
-      name: "Integriteit",
+      name: "Loyaal", //integriteit
       population: Integriteit,
       color: "#F29999",
       legendFontColor: "#7F7F7F",
       legendFontSize: 15,
     },
     {
-      name: "Informatiebeveiliging",
+      name: "Informatiebeveiliging", //informatiebeveiliging
       population: Informatiebeveiliging,
       color: "#01B6ED",
       legendFontColor: "#7F7F7F",

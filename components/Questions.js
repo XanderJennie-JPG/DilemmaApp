@@ -21,14 +21,14 @@ const questions = [
     //2
     text: "Een collega is nogal chaotisch en vergeet snel inloggegevens. Als je langs de werkplek van de collega loopt zie je een post-it briefje op het bureau geplakt met daarop de inloggegevens genoteerd. Vorige week heb je ook al een vervelende woordenwisseling gehad  met deze collega. Wat doe je?",
     answers: [
-      { text: "Je spreekt je collega aan..", value: "A" },
+      { text: "Je spreekt je collega aan..", value: "C" },
       {
         text: "Je laat het er maar bij voor deze keer,  je ziet dat je collega het druk heeft en herinnert je nog de discussie van vorige week.",
         value: "B",
       },
       {
         text: "Er komen toch nooit onbevoegden op deze werkplek, laat maar zitten.",
-        value: "C",
+        value: "A",
       },
     ],
   },
@@ -38,7 +38,7 @@ const questions = [
     answers: [
       {
         text: "Je gooit de extra kopie in een papierversnipperaar of daarvoor bestemde afgesloten bak aan het andere eind van de gang.",
-        value: "A",
+        value: "C",
       },
       {
         text: "Je neemt beide documenten mee en  neemt je voor deze later in de papierversnipperaar te gooien.",
@@ -46,7 +46,7 @@ const questions = [
       },
       {
         text: "Je gooit de extra kopie in de gewone prullenbak naast de printer.",
-        value: "C",
+        value: "A",
       },
     ],
   },
@@ -74,11 +74,11 @@ const questions = [
     answers: [
       {
         text: "Je spreekt collega aan en vergrendelt de PC..",
-        value: "A",
+        value: "B",
       },
       {
         text: "Je draait het scherm zodat de collega niet kan meekijken.",
-        value: "B",
+        value: "A",
       },
       {
         text: "Je doet niets want het kan toch geen kwaad",
@@ -150,11 +150,11 @@ const questions = [
       },
       {
         text: "Deze informatie deel je alleen als de patiënt aantoonbaar akkoord is dat de informatie wordt verstrekt.",
-        value: "B",
+        value: "C",
       },
       {
         text: "Je wil de externe specialist graag helpen en deelt de informatie.",
-        value: "C",
+        value: "B",
       },
     ],
   },
@@ -164,15 +164,15 @@ const questions = [
     answers: [
       {
         text: "Je vraagt aan een collega of zij meer informatie heeft over de betreffende patiënt.",
-        value: "A",
+        value: "C",
       },
       {
         text: "Je zoekt geen informatie op over de patiënt, ook al ben je wel benieuwd.",
-        value: "B",
+        value: "A",
       },
       {
         text: "Als je terug bent op je werkplek kijk je even in het dossier hoe het met haar gesteld is",
-        value: "C",
+        value: "B",
       },
     ],
   },
