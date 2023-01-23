@@ -87,9 +87,9 @@ const WelcomePrivacyPolicy = ({ navigation: { goBack, navigate } }) => {
 export default WelcomePrivacyPolicy;
 
 const styles = StyleSheet.create({
-    TextBetween: {
-        marginBottom: 20,
-      },
+  TextBetween: {
+    marginBottom: 20,
+  },
   nextButton: {
     borderRadius: 125,
     backgroundColor: "#ffffff",
