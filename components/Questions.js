@@ -21,14 +21,14 @@ const questions = [
     //2
     text: "Een collega is nogal chaotisch en vergeet snel inloggegevens. Als je langs de werkplek van de collega loopt zie je een post-it briefje op het bureau geplakt met daarop de inloggegevens genoteerd. Vorige week heb je ook al een vervelende woordenwisseling gehad  met deze collega. Wat doe je?",
     answers: [
-      { text: "Je spreekt je collega aan..", value: "C" },
+      { text: "Je spreekt je collega aan..", value: "A" },
       {
         text: "Je laat het er maar bij voor deze keer,  je ziet dat je collega het druk heeft en herinnert je nog de discussie van vorige week.",
         value: "B",
       },
       {
         text: "Er komen toch nooit onbevoegden op deze werkplek, laat maar zitten.",
-        value: "A",
+        value: "C",
       },
     ],
   },
@@ -38,7 +38,7 @@ const questions = [
     answers: [
       {
         text: "Je gooit de extra kopie in een papierversnipperaar of daarvoor bestemde afgesloten bak aan het andere eind van de gang.",
-        value: "C",
+        value: "A",
       },
       {
         text: "Je neemt beide documenten mee en  neemt je voor deze later in de papierversnipperaar te gooien.",
@@ -46,7 +46,7 @@ const questions = [
       },
       {
         text: "Je gooit de extra kopie in de gewone prullenbak naast de printer.",
-        value: "A",
+        value: "C",
       },
     ],
   },
@@ -74,11 +74,11 @@ const questions = [
     answers: [
       {
         text: "Je spreekt collega aan en vergrendelt de PC..",
-        value: "B",
+        value: "A",
       },
       {
         text: "Je draait het scherm zodat de collega niet kan meekijken.",
-        value: "A",
+        value: "B",
       },
       {
         text: "Je doet niets want het kan toch geen kwaad",
@@ -88,7 +88,7 @@ const questions = [
   },
   {
     //6
-    text: "Je ontdekt een fout in een administratie waar je niets mee te maken hebt. Wat doe je?",
+    text: "Met de paslezer open je de deur naar een afgesloten bouwdeel. Er loopt iemand in een witte jas, zonder pasje, achter je aan naar binnen, die je niet herkent. Wat doe je?",
     answers: [
       {
         text: "Je spreekt de persoon niet aan: het zal wel goed zijn..",
@@ -106,10 +106,10 @@ const questions = [
   },
   {
     //7
-    text: "Je wordt geconfronteerd met persoonlijke informatie van een patiënt waarvan je weet dat het niet relevant is voor de behandeling. Wat doe je?",
+    text: "Je hebt net dhr. Janssen gesproken over het verloop van zijn behandeling. Hij gaf aan zich eenzaam te voelen, omdat hij sinds zijn opname nog geen bezoek heeft gehad. Even later loopt er een mevrouw binnen op de afdeling die vraagt in welke kamer dhr. Janssen ligt. Ze zegt de buurvrouw van dhr. Janssen te zijn. Je moet snel door naar een vergadering.",
     answers: [
       {
-        text: "Je moet snel door naar een vergadering en verwijst mevrouw naar de receptie..",
+        text: "Je verwijst mevrouw naar de receptie.",
         value: "A",
       },
       {
@@ -117,7 +117,7 @@ const questions = [
         value: "B",
       },
       {
-        text: "Je checkt bij de dhr. Janssen of hij wil dat deze mevrouw op bezoek komt..",
+        text: "Je checkt bij de dhr. Janssen of hij wil dat deze mevrouw op bezoek komt.",
         value: "C",
       },
     ],
@@ -127,11 +127,11 @@ const questions = [
     text: "Er is een tekort aan personeel op de afdeling. Er is gelukkig een nieuwe collega ingeroosterd die patiënten aan het helpen is. Ze heeft alleen nog geen account gekregen. Ze vraagt je hulp om toch te kunnen rapporteren.",
     answers: [
       {
-        text: "Je zet je scherm open zodat je collega kan rapporteren op eigen naam..",
+        text: "Je zet je scherm open en zegt tegen je collega dat ze kan rapporteren, mits ze haar eigen naam daarbij zet.",
         value: "A",
       },
       {
-        text: "Je verwijst je collega door naar de leidinggevende..",
+        text: "Je verwijst je collega door naar de leidinggevende.",
         value: "C",
       },
       {
@@ -142,7 +142,7 @@ const questions = [
   },
   {
     //9
-    text: "Een jou bekende specialist (uit een ander ziekenhuis) waarnaar een patiënt verwezen is, vermoedt dat het dossier van een patiënt niet compleet is en wil graag informatie over patiënt die een tijdje op jouw afdeling verbleef.",
+    text: "Een jou bekende specialist (uit een ander ziekenhuis) waarnaar een patiënt verwezen is, belt op omdat zij denkt dat het dossier van een patiënt niet compleet is en eist informatie over de patiënt die een tijdje op jouw afdeling verbleef vanwege een complicatie.",
     answers: [
       {
         text: "Om de beste zorg te kunnen verlenen voor de patiënt deel je de informatie.",
@@ -150,11 +150,11 @@ const questions = [
       },
       {
         text: "Deze informatie deel je alleen als de patiënt aantoonbaar akkoord is dat de informatie wordt verstrekt.",
-        value: "C",
+        value: "B",
       },
       {
         text: "Je wil de externe specialist graag helpen en deelt de informatie.",
-        value: "B",
+        value: "C",
       },
     ],
   },
@@ -164,15 +164,15 @@ const questions = [
     answers: [
       {
         text: "Je vraagt aan een collega of zij meer informatie heeft over de betreffende patiënt.",
-        value: "C",
-      },
-      {
-        text: "Je zoekt geen informatie op over de patiënt, ook al ben je wel benieuwd.",
         value: "A",
       },
       {
-        text: "Als je terug bent op je werkplek kijk je even in het dossier hoe het met haar gesteld is",
+        text: "Je zoekt geen informatie op over de patiënt, ook al ben je wel benieuwd.",
         value: "B",
+      },
+      {
+        text: "Als je terug bent op je werkplek kijk je even in het dossier hoe het met haar gesteld is",
+        value: "C",
       },
     ],
   },
