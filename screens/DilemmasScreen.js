@@ -190,7 +190,7 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
         ]}
         source={require("../assets/background-top.png")}
       />
-      <View style={styles.rowone}>
+      <View style={[styles.rowone]}>
         <TouchableOpacity onPress={() => goBack()}>
           <Image source={require("../assets/Back-arrow.png")} />
         </TouchableOpacity>
@@ -201,13 +201,12 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
           </Text>
         </Text>
       </View>
-      <View style={styles.box} blurRadius={8.5}>
-        <View style={styles.styleA}>
-          <Text style={[styles.ButtonText, styles.question, { marginTop: 25 }]}>
+      <View style={[styles.box]} blurRadius={8.5}>
+          <Text style={[styles.ButtonText, styles.question, {marginTop: 10}]}>
             {questions[currentQuestion - 1].text}
           </Text>
           {questions[currentQuestion - 1].answers.map((answer, index) => (
-            <View style={{ flexDirection: "row" }} key={answer.value}>
+            <View style={{ flexDirection: "row"}} key={answer.value}>
               {/*A, B and C. fromCharCode converts unicode to characters.*/}
               <View style={{ flex: 1 }}>
                 <Text
@@ -215,7 +214,7 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
                     styles.ButtonText,
                     {
                       alignSelf: "center",
-                      top: 50,
+                      marginTop: 50,
                       fontWeight: "bold",
                       fontSize: 23,
                     },
@@ -234,7 +233,6 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
               </TouchableOpacity>
             </View>
           ))}
-        </View>
       </View>
       <View style={styles.rowtwo}>
         <TouchableOpacity
@@ -310,6 +308,7 @@ const styles = StyleSheet.create({
     right: 0,
   },
   backgroundBottom: {
+    marginTop: "auto",
     position: "absolute",
   },
   rowone: {
@@ -319,34 +318,14 @@ const styles = StyleSheet.create({
   rowtwo: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginTop: 15,
+    marginTop: "auto",
   },
   dilemmatext: {
     fontSize: 30,
   },
-  bgmiddle: {
-    backgroundColor: "rgba(255,255,255,0.15)",
-    height: 575,
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.18)",
-    borderRadius: 20,
-    shadowColor: "rgba(31,38,135,0.37)",
-    shadowOffset: {
-      width: 0,
-      height: 8,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
-    elevation: 4,
-  },
   ButtonText: {
     fontSize: 15,
     color: "#134392",
-  },
-  styleA: {
-    alignContent: "center",
-    alignItems: "center",
-    flex: 1,
   },
   Button: {
     backgroundColor: "#ffffff",
@@ -354,7 +333,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: 300,
     height: 95,
-    marginTop: 20,
+    marginTop: 15,
     alignItems: "center",
     alignSelf: "flex-end",
   },
@@ -372,10 +351,10 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255,255,255,0.6)", //change to "rgba(255,255,255,0.8)" for android?
     shadowOpacity: 0.2,
     shadowRadius: 3,
-    width: 360,
-    height: 580,
-    alignSelf: "center",
-    marginTop: 5,
+    borderRadius: 20,
+    alignContent: "center",
+    alignItems: "center",
+    
   },
   question: {
     textAlign: "left",
@@ -383,5 +362,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     width: 275,
     height: 200,
+    alignSelf: "center"
   },
 });

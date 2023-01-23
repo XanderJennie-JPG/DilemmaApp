@@ -16,13 +16,28 @@ const ChooseDepartment = ({ navigation }) => {
     { key: "Cardiologie", value: "Poli cardiologie" },
   ];
   return (
-  <Container>
-    <TopLogo />
-    <View style= {{display: "flex", alignItems: "center", flexDirection: "column", flex: 1, justifyContent: "space-between"}}>
-          <Text style={[GlobalStyle.CustomFontBold, {fontSize: 30, marginTop: 50}]}>
-            Dilemma app
-          </Text>
-        <Text style={[GlobalStyle.CustomFontBold, { fontSize: 27, marginTop: "auto"}]}>
+    <Container>
+      <TopLogo />
+      <View
+        style={{
+          display: "flex",
+          alignItems: "center",
+          flexDirection: "column",
+          flex: 1,
+          justifyContent: "space-between",
+        }}
+      >
+        <Text
+          style={[GlobalStyle.CustomFontBold, { fontSize: 30, marginTop: 50 }]}
+        >
+          Dilemma app
+        </Text>
+        <Text
+          style={[
+            GlobalStyle.CustomFontBold,
+            { fontSize: 27, marginTop: "auto" },
+          ]}
+        >
           Hallo!
         </Text>
         <Text style={[styles.header2]}>Kies uw afdeling</Text>
@@ -45,15 +60,12 @@ const ChooseDepartment = ({ navigation }) => {
             AsyncStorage.setItem("department", selected);
             navigation.navigate("InputName");
           }}
-          style={[
-            styles.GaDoorButton,
-            styles.shadow,
-          ]}
+          style={[styles.GaDoorButton, styles.shadow]}
         >
           <Text style={styles.buttonText}>Laten we beginnen!</Text>
         </TouchableOpacity>
-    </View>
-  </Container>
+      </View>
+    </Container>
   );
 };
 

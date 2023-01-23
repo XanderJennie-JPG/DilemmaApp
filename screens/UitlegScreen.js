@@ -103,7 +103,7 @@ const UitlegScreen = ({ navigation: { goBack, navigate } }) => {
           style={[styles.Button, styles.shadow]}
           onPress={() => navigate("QuizScreen")}
         >
-          <Text style={[styles.ButtonText, GlobalStyle.CustomFontBold, ,]}>
+          <Text style={[styles.ButtonText, GlobalStyle.CustomFontBold]}>
             Door naar het spel
           </Text>
           <Ionicons
