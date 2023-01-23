@@ -367,7 +367,6 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     fontSize: 18,
     width: 275,
-    maxHeight: 200,
     alignSelf: "center"
   },
 });
