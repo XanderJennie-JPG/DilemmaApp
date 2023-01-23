@@ -5,8 +5,10 @@ import {
   Image,
   Text,
   TouchableOpacity,
+  TouchableHighlight,
   StyleSheet,
   ImageBackground,
+  ScrollView,
 } from "react-native";
 import Container from "../components/Container";
 import GlobalStyle from "../components/GlobalStyle";
@@ -202,9 +204,11 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
         </Text>
       </View>
       <View style={[styles.box]} blurRadius={8.5}>
+          <ScrollView style={{maxHeight: 200}}>
           <Text style={[styles.ButtonText, styles.question, {marginTop: 10}]}>
             {questions[currentQuestion - 1].text}
           </Text>
+          </ScrollView>
           {questions[currentQuestion - 1].answers.map((answer, index) => (
             <View style={{ flexDirection: "row"}} key={answer.value}>
               {/*A, B and C. fromCharCode converts unicode to characters.*/}
@@ -223,14 +227,16 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
                   {String.fromCharCode(65 + index)}
                 </Text>
               </View>
-              <TouchableOpacity
+              <TouchableHighlight
+                activeOpacity= {1}
+                underlayColor="#01B6ED"
                 style={[styles.Button, styles.shadow]}
                 onPress={() => handleAnswer(answer.value)}
               >
                 <Text style={[styles.ButtonText, { left: 5 }]}>
                   {answer.text}
                 </Text>
-              </TouchableOpacity>
+              </TouchableHighlight>
             </View>
           ))}
       </View>
@@ -361,7 +367,7 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     fontSize: 18,
     width: 275,
-    height: 200,
+    maxHeight: 200,
     alignSelf: "center"
   },
 });
