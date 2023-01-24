@@ -204,7 +204,7 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
         </Text>
       </View>
       <View style={[styles.box]} blurRadius={8.5}>
-          <ScrollView style={{maxHeight: 200}}>
+          <ScrollView style={{maxHeight: 175}}>
           <Text style={[styles.ButtonText, styles.question, {marginTop: 10}]}>
             {questions[currentQuestion - 1].text}
           </Text>

@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { View, StyleSheet, Text, TouchableOpacity, Image } from "react-native";
 import Container from "../components/Container";
 import TopLogo from "../components/TopLogo";
 import ExplanationText from "../components/ExplanationText";
@@ -15,7 +15,7 @@ const ToelichtingScreen = ({ route, navigation: { goBack, navigate } }) => {
       <TopLogo />
       <View style={styles.box}>
         <View>
-          <Text style={[styles.header1, { top: 25 }]}>Resultaten</Text>
+          <Text style={[styles.header1, { top: 25 }]}>Toelichting</Text>
         </View>
         <View style={[{ alignItems: "center", top: 30 }]}>
           <ExplanationText
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     },
     shadowRadius: 10,
     width: 370,
-    height: 525,
+    height: 400,
     alignSelf: "center",
     top: 100,
   },
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
     width: 160,
     height: 40,
-    top: 110,
+    marginTop: "auto",
   },
 
   header1: {
