@@ -7,7 +7,7 @@ const questions = [
     text: "Je zit aan een balie en vindt daar een afdelingsbezettingsoverzicht (abo). Je staat onder druk om nog snel een rapportage op te stellen. Wat doe je?",
     answers: [
       {
-        text: "Je pakt het abo en gooit het weg in de daarvoor papierbak voor vertrouwelijke informatie. Je spreekt je collega’s niet aan want je vindt dat het ieders eigen verantwoordelijkheid is om de regels na te leven.",
+        text: "Je pakt het abo en gooit het weg in de papierbak. Je spreekt je collega’s niet aan.",
         value: "A",
       },
       {
@@ -19,11 +19,11 @@ const questions = [
   },
   {
     //2
-    text: "Een collega is nogal chaotisch en vergeet snel inloggegevens. Als je langs de werkplek van de collega loopt zie je een post-it briefje op het bureau geplakt met daarop de inloggegevens genoteerd. Vorige week heb je ook al een vervelende woordenwisseling gehad  met deze collega. Wat doe je?",
+    text: "Een collega is nogal chaotisch en vergeet snel inloggegevens. Als je langs de werkplek van de collega loopt zie je een post-it briefje op het bureau geplakt met daarop de inloggegevens genoteerd. Vorige week heb je ook al een vervelende woordenwisseling gehad met deze collega. Wat doe je?",
     answers: [
-      { text: "Je spreekt je collega aan..", value: "C" },
+      { text: "Je verwijdert de post-it en je spreekt je collega aan.", value: "C" },
       {
-        text: "Je laat het er maar bij voor deze keer,  je ziet dat je collega het druk heeft en herinnert je nog de discussie van vorige week.",
+        text: "Je verwijdert de post-it, gezien de drukte spreek je je collega nu niet aan en denkt het op een later moment te doen. Dat moment komt niet.",
         value: "B",
       },
       {
@@ -41,7 +41,7 @@ const questions = [
         value: "C",
       },
       {
-        text: "Je neemt beide documenten mee en  neemt je voor deze later in de papierversnipperaar te gooien.",
+        text: "Je neemt beide documenten mee en neemt je voor deze later in de papierversnipperaar te gooien. Je vindt ze later in de kleedkamer in je zak en gooit ze daar weg.",
         value: "B",
       },
       {
@@ -52,14 +52,14 @@ const questions = [
   },
   {
     //4
-    text: "Je bent patiëntendossiers aan het bijwerken. Een collega vraagt je even te helpen bij een patiënt (om recht op te gaan zitten/gemakkelijk in bed te laten liggen) in de kamer tegenover,  Je bent al een paar keer eerder weggeroepen.",
+    text: "Je bent patiëntendossiers aan het bijwerken. Een collega vraagt je heel even kort te helpen bij een patiënt in de kamer tegenover, Je bent al een paar keer eerder weggeroepen. Inloggen na vergrendelen kost een minuut of twee.",
     answers: [
       {
-        text: "Omdat je snel weer terug bent laat je de PC openstaan (inloggen na vergrendelen kost een minuut of twee).",
+        text: "Als je opstaat vergrendel je altijd je PC, behalve als je weet dat je snel terug bent.",
         value: "A",
       },
       {
-        text: "Je gaat snel helpen en vraagt de collega even op te letten.",
+        text: "Je gaat snel helpen en vraagt een andere collega even op te letten.",
         value: "B",
       },
       {
@@ -73,7 +73,7 @@ const questions = [
     text: "Je bent patiëntendossiers aan het bijwerken, een collega van een andere afdeling, vraagt je wat en kijkt over je schouder mee en ziet daar patiëntengegevens op het scherm.",
     answers: [
       {
-        text: "Je spreekt collega aan en vergrendelt de PC..",
+        text: "Je spreekt je collega aan en vergrendelt de PC.",
         value: "B",
       },
       {
@@ -81,7 +81,7 @@ const questions = [
         value: "A",
       },
       {
-        text: "Je doet niets want het kan toch geen kwaad",
+        text: "Je doet niets want het kan toch geen kwaad.",
         value: "C",
       },
     ],
@@ -91,7 +91,7 @@ const questions = [
     text: "Met de paslezer open je de deur naar een afgesloten bouwdeel. Er loopt iemand in een witte jas, zonder pasje, achter je aan naar binnen, die je niet herkent. Wat doe je?",
     answers: [
       {
-        text: "Je spreekt de persoon niet aan: het zal wel goed zijn..",
+        text: "Je spreekt de persoon niet aan: het zal wel goed zijn.",
         value: "A",
       },
       {
@@ -99,7 +99,7 @@ const questions = [
         value: "B",
       },
       {
-        text: "Je spreekt de persoon aan, “mag ik uw pasje even zien?",
+        text: "Je spreekt de persoon aan, “mag ik uw pasje even zien?”",
         value: "C",
       },
     ],
@@ -171,7 +171,7 @@ const questions = [
         value: "A",
       },
       {
-        text: "Als je terug bent op je werkplek kijk je even in het dossier hoe het met haar gesteld is",
+        text: "Als je terug bent op je werkplek kijk je even in het dossier hoe het met haar gesteld is.",
         value: "B",
       },
     ],
