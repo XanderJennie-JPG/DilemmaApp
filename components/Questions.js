@@ -74,7 +74,7 @@ const questions = [
     answers: [
       {
         text: "Je spreekt je collega aan en vergrendelt de PC.",
-        value: "B",
+        value: "C",
       },
       {
         text: "Je draait het scherm zodat de collega niet kan meekijken.",
@@ -82,7 +82,7 @@ const questions = [
       },
       {
         text: "Je doet niets want het kan toch geen kwaad.",
-        value: "C",
+        value: "B",
       },
     ],
   },
@@ -92,11 +92,11 @@ const questions = [
     answers: [
       {
         text: "Je spreekt de persoon niet aan: het zal wel goed zijn.",
-        value: "A",
+        value: "B",
       },
       {
         text: "Je belt de beveiliging, zodat iemand anders checkt of deze persoon hier mag komen.",
-        value: "B",
+        value: "A",
       },
       {
         text: "Je spreekt de persoon aan, “mag ik uw pasje even zien?”",
@@ -146,7 +146,7 @@ const questions = [
     answers: [
       {
         text: "Om de beste zorg te kunnen verlenen voor de patiënt deel je de informatie.",
-        value: "A",
+        value: "B",
       },
       {
         text: "Deze informatie deel je alleen als de patiënt aantoonbaar akkoord is dat de informatie wordt verstrekt.",
@@ -154,7 +154,7 @@ const questions = [
       },
       {
         text: "Je wil de externe specialist graag helpen en deelt de informatie.",
-        value: "B",
+        value: "A",
       },
     ],
   },
@@ -164,15 +164,15 @@ const questions = [
     answers: [
       {
         text: "Je vraagt aan een collega of zij meer informatie heeft over de betreffende patiënt.",
-        value: "C",
+        value: "B",
       },
       {
         text: "Je zoekt geen informatie op over de patiënt, ook al ben je wel benieuwd.",
-        value: "A",
+        value: "C",
       },
       {
         text: "Als je terug bent op je werkplek kijk je even in het dossier hoe het met haar gesteld is.",
-        value: "B",
+        value: "A",
       },
     ],
   },
