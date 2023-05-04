@@ -14,6 +14,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import TopLogo from "../components/TopLogo";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect, useState } from "react";
+import Greeting from "../components/Greeting";
 
 const HomeScreen = ({ navigation }) => {
   const [username, setUsername] = useState("");
@@ -61,7 +62,7 @@ const HomeScreen = ({ navigation }) => {
 
         <View style={{ marginTop: 30 }}>
           <Text style={[GlobalStyle.CustomFont, styles.Header]}>
-            Goedemiddag, {"\n"}
+            <Greeting/>{"\n"}
             {username}
           </Text>
           <Text style={[GlobalStyle.CustomFont]}>
