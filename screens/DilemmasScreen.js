@@ -27,6 +27,9 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
   const [IntegriteitPoints, setIntegriteitPoints] = useState(0);
   const [Informatiebeveiliging, setInformatiebeveiliging] = useState(0);
 
+  //State variable that keeps track of the currently selected answer
+  const [isActive, setIsActive] = useState(false);
+
   //Name and dept
   const [username, setUsername] = React.useState("");
   const [department, setDepartment] = React.useState("");
@@ -140,6 +143,7 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
       removePreviousAnswer();
       //We set what the user has selected
       setSelectedAnswer(option);
+      setIsActive(true);
       setAnswers({ ...answers, [currentQuestion]: option });
     }
   };
@@ -229,8 +233,13 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
               </View>
               <TouchableHighlight
                 activeOpacity= {1}
-                underlayColor="#01B6ED"
-                style={[styles.Button, styles.shadow]}
+                underlayColor="lightblue"
+                //highlight only the selected answer
+                style={[
+                  styles.Button,
+                  styles.shadow,
+                  selectedAnswer === answer.value && styles.active,
+                ]}
                 onPress={() => handleAnswer(answer.value)}
               >
                 <Text style={[styles.ButtonText, { left: 5 }]}>
@@ -292,6 +301,9 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
 export default DilemmasScreen;
 
 const styles = StyleSheet.create({
+  active: {
+    backgroundColor: "lightblue",
+  },
   nextButton: {
     borderRadius: 125,
     backgroundColor: "#ffffff",
