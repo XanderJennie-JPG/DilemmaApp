@@ -1,6 +1,6 @@
-//A = Efficient (Patientenbelang)
-//B = Loyaal (Integriteit)
-//C = IB Bewust (Informatiebeveiliging)
+//A = Efficient
+//B = Loyaal (Patientenbelang/Collegialiteit)
+//C = Informatiebeveiliging
 const questions = [
   {
     //1
@@ -14,14 +14,16 @@ const questions = [
         text: "Je laat het abo liggen. Een collega heeft dit vast nodig.",
         value: "B",
       },
-      { text: "Je pakt het abo op en spreekt je collega’s aan.", value: "C" },
+      { text: "Je pakt het abo op en spreekt je collega’s aan.",
+       value: "C" },
     ],
   },
   {
     //2
     text: "Een collega is nogal chaotisch en vergeet snel inloggegevens. Als je langs de werkplek van de collega loopt zie je een post-it briefje op het bureau geplakt met daarop de inloggegevens genoteerd. Vorige week heb je ook al een vervelende woordenwisseling gehad met deze collega. Wat doe je?",
     answers: [
-      { text: "Je verwijdert de post-it en je spreekt je collega aan.", value: "C" },
+      { text: "Je verwijdert de post-it en je spreekt je collega aan.",
+       value: "C" },
       {
         text: "Je verwijdert de post-it, gezien de drukte spreek je je collega nu niet aan en denkt het op een later moment te doen. Dat moment komt niet.",
         value: "B",

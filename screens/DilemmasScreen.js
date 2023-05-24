@@ -77,8 +77,16 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
     }
   };
 
-  const handleFinish = async () => {
+  const handleFinish = async (option) => {
     if (currentQuestion === questions.length) {
+      if (selectedAnswer ==="A") {
+        setPatiëntenbelang(Patiëntenbelang + 10);
+      } else if (selectedAnswer === "B") {
+        setIntegriteitPoints(IntegriteitPoints + 10)
+      } else if (selectedAnswer === "C") {
+        setInformatiebeveiliging(Informatiebeveiliging + 10)
+      }
+      setAnswers({ ...answers, [currentQuestion]: option });
       // navigate to the results screen when the user reaches the last question
       const scores = {
         Patiëntenbelang: Patiëntenbelang,
@@ -145,6 +153,13 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
       setSelectedAnswer(option);
       setIsActive(true);
       setAnswers({ ...answers, [currentQuestion]: option });
+    }
+    if (selectedAnswer === "A") {
+      setPatiëntenbelang(Patiëntenbelang + 10);
+    } else if (selectedAnswer === "B") {
+      setIntegriteitPoints(IntegriteitPoints + 10);
+    } else if (selectedAnswer === "C") {
+      setInformatiebeveiliging(Informatiebeveiliging + 10);
     }
   };
 
