@@ -12,9 +12,11 @@ import Container from "../components/Container";
 import TopLogo from "../components/TopLogo";
 import { auth, SignInAnon } from "../firebase";
 import { createGuid } from "../components/CreateGuid";
+import { useWindowDimensions } from "react-native";
 
 const InputName = ({ navigation }) => {
   const [username, setUsername] = useState("");
+  const styles = useStyles();
 
   const handleName = async () => {
     if (!username.trim()) {
@@ -32,7 +34,7 @@ const InputName = ({ navigation }) => {
     }
   };
   return (
-    <Container style={{ flex: 1 }}>
+    <Container>
       <TopLogo />
       <View>
         <Text style={styles.header1}>Dilemma app</Text>
@@ -41,12 +43,13 @@ const InputName = ({ navigation }) => {
         <Text style={styles.text}>
           Vul een nickname in{"\n"}die u wilt gebruiken voor de app
         </Text>
-      </View>
+        </View>
       <TextInput
         style={[styles.input, styles.shadow]}
         placeholder="Vul hier een naam in..."
         onChangeText={(text) => setUsername(text)}
       />
+      
       <View
         style={{
           justifyContent: "center",
@@ -71,7 +74,10 @@ const InputName = ({ navigation }) => {
 
 export default InputName;
 
-const styles = StyleSheet.create({
+function useStyles() {
+  const {width, height} = useWindowDimensions();
+
+return StyleSheet.create({
   GaDoorButton: {
     opacity: 1,
     backgroundColor: "rgba(238, 246, 250, 1)",
@@ -131,7 +137,6 @@ const styles = StyleSheet.create({
     lineHeight: 27,
     width: 276,
     height: 60,
-    top: 281.5,
   },
   input: {
     height: 55,
@@ -171,6 +176,7 @@ const styles = StyleSheet.create({
   },
   InputContainer: {
     alignItems: "center",
+    justifyContent: "center",
   },
   tinyLogo: {
     width: 50,
@@ -185,4 +191,20 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "#134392",
   },
+  root: {
+    flex: 1,
+    flexDirection: "row",
+    backgroundColor: "red",
+  },
+  top: {
+    alignSelf: "center",
+  },
+  middle: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  bottom: {
+  },
 });
+}

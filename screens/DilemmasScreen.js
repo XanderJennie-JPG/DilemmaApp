@@ -17,9 +17,12 @@ import { getGuid } from "../components/CreateGuid";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../firebase";
+import { useWindowDimensions } from "react-native";
 
 //TODO: separate the logic for rendering the question and answers from the DilemmasScreen component
 const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
+  
+  const styles = useStyles();
   //Here, we keep track of the current question for rendering purposes.
   const [currentQuestion, setCurrentQuestion] = useState(1);
   //Here, we store the scores.
@@ -79,12 +82,12 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
 
   const handleFinish = async (option) => {
     if (currentQuestion === questions.length) {
-      if (selectedAnswer ==="A") {
+      if (selectedAnswer === "A") {
         setPatiëntenbelang(Patiëntenbelang + 10);
       } else if (selectedAnswer === "B") {
-        setIntegriteitPoints(IntegriteitPoints + 10)
+        setIntegriteitPoints(IntegriteitPoints + 10);
       } else if (selectedAnswer === "C") {
-        setInformatiebeveiliging(Informatiebeveiliging + 10)
+        setInformatiebeveiliging(Informatiebeveiliging + 10);
       }
       setAnswers({ ...answers, [currentQuestion]: option });
       // navigate to the results screen when the user reaches the last question
@@ -223,46 +226,46 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
         </Text>
       </View>
       <View style={[styles.box]} blurRadius={8.5}>
-          <ScrollView style={{maxHeight: 175}}>
-          <Text style={[styles.ButtonText, styles.question, {marginTop: 10}]}>
+        <ScrollView style={{ maxHeight: 175 }}>
+          <Text style={[styles.ButtonText, styles.question, { marginTop: 10 }]}>
             {questions[currentQuestion - 1].text}
           </Text>
-          </ScrollView>
-          {questions[currentQuestion - 1].answers.map((answer, index) => (
-            <View style={{ flexDirection: "row"}} key={answer.value}>
-              {/*A, B and C. fromCharCode converts unicode to characters.*/}
-              <View style={{ flex: 1 }}>
-                <Text
-                  style={[
-                    styles.ButtonText,
-                    {
-                      alignSelf: "center",
-                      marginTop: 50,
-                      fontWeight: "bold",
-                      fontSize: 23,
-                    },
-                  ]}
-                >
-                  {String.fromCharCode(65 + index)}
-                </Text>
-              </View>
-              <TouchableHighlight
-                activeOpacity= {1}
-                underlayColor="lightblue"
-                //highlight only the selected answer
+        </ScrollView>
+        {questions[currentQuestion - 1].answers.map((answer, index) => (
+          <View style={{ flexDirection: "row" }} key={answer.value}>
+            {/*A, B and C. fromCharCode converts unicode to characters.*/}
+            <View style={{ flex: 1 }}>
+              <Text
                 style={[
-                  styles.Button,
-                  styles.shadow,
-                  selectedAnswer === answer.value && styles.active,
+                  styles.ButtonText,
+                  {
+                    alignSelf: "center",
+                    marginTop: 50,
+                    fontWeight: "bold",
+                    fontSize: 23,
+                  },
                 ]}
-                onPress={() => handleAnswer(answer.value)}
               >
-                <Text style={[styles.ButtonText, { left: 5 }]}>
-                  {answer.text}
-                </Text>
-              </TouchableHighlight>
+                {String.fromCharCode(65 + index)}
+              </Text>
             </View>
-          ))}
+            <TouchableHighlight
+              activeOpacity={1}
+              underlayColor="lightblue"
+              //highlight only the selected answer
+              style={[
+                styles.Button,
+                styles.shadow,
+                selectedAnswer === answer.value && styles.active,
+              ]}
+              onPress={() => handleAnswer(answer.value)}
+            >
+              <Text style={[styles.ButtonText, { left: 5 }]}>
+                {answer.text}
+              </Text>
+            </TouchableHighlight>
+          </View>
+        ))}
       </View>
       <View style={styles.rowtwo}>
         <TouchableOpacity
@@ -315,85 +318,88 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
 
 export default DilemmasScreen;
 
-const styles = StyleSheet.create({
-  active: {
-    backgroundColor: "lightblue",
-  },
-  nextButton: {
-    borderRadius: 125,
-    backgroundColor: "#ffffff",
-    height: 100,
-    width: 100,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  nextButtonText: {
-    alignSelf: "center",
-    fontSize: 15,
-    fontWeight: "bold",
-    color: "#134392",
-  },
-  backgroundTop: {
-    position: "absolute",
-    top: -10,
-    left: 10,
-    right: 0,
-  },
-  backgroundBottom: {
-    marginTop: "auto",
-    position: "absolute",
-  },
-  rowone: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-  rowtwo: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginTop: "auto",
-  },
-  dilemmatext: {
-    fontSize: 30,
-  },
-  ButtonText: {
-    fontSize: 15,
-    color: "#134392",
-  },
-  Button: {
-    backgroundColor: "#ffffff",
-    borderRadius: 20,
-    flexDirection: "row",
-    width: 300,
-    height: 95,
-    marginTop: 15,
-    alignItems: "center",
-    alignSelf: "flex-end",
-  },
-  shadow: {
-    shadowColor: "rgba(31,38,135,0.37)",
-    shadowOffset: {
-      width: 0,
-      height: 8,
+function useStyles() {
+  const {width, height} = useWindowDimensions();
+  
+  return StyleSheet.create({
+    active: {
+      backgroundColor: "lightblue",
     },
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
-    elevation: 4,
-  },
-  box: {
-    backgroundColor: "rgba(255,255,255,0.6)", //change to "rgba(255,255,255,0.8)" for android?
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
-    borderRadius: 20,
-    alignContent: "center",
-    alignItems: "center",
-    
-  },
-  question: {
-    textAlign: "left",
-    lineHeight: 22,
-    fontSize: 18,
-    width: 275,
-    alignSelf: "center"
-  },
-});
+    nextButton: {
+      borderRadius: 125,
+      backgroundColor: "#ffffff",
+      height: 100,
+      width: 100,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    nextButtonText: {
+      alignSelf: "center",
+      fontSize: 15,
+      fontWeight: "bold",
+      color: "#134392",
+    },
+    backgroundTop: {
+      position: "absolute",
+      top: -10,
+      left: 10,
+      right: 0,
+    },
+    backgroundBottom: {
+      marginTop: "auto",
+      position: "absolute",
+    },
+    rowone: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+    },
+    rowtwo: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+      marginTop: "auto",
+    },
+    dilemmatext: {
+      fontSize: 30,
+    },
+    ButtonText: {
+      fontSize: 15,
+      color: "#134392",
+    },
+    Button: {
+      backgroundColor: "#ffffff",
+      borderRadius: 20,
+      flexDirection: "row",
+      width: 300,
+      height: 95,
+      marginTop: 15,
+      alignItems: "center",
+      alignSelf: "flex-end",
+    },
+    shadow: {
+      shadowColor: "rgba(31,38,135,0.37)",
+      shadowOffset: {
+        width: 0,
+        height: 8,
+      },
+      shadowOpacity: 0.2,
+      shadowRadius: 3,
+      elevation: 4,
+    },
+    box: {
+      backgroundColor: "rgba(255,255,255,0.6)", //change to "rgba(255,255,255,0.8)" for android?
+      shadowOpacity: 0.2,
+      shadowRadius: 3,
+      borderRadius: 20,
+      alignContent: "center",
+      alignItems: "center",
+    },
+    question: {
+      textAlign: "left",
+      lineHeight: 22,
+      fontSize: 18,
+      width: 275,
+      alignSelf: "center",
+    },
+  });
+}
