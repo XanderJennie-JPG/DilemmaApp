@@ -14,7 +14,7 @@ import { auth, SignInAnon } from "../firebase";
 import { createGuid } from "../components/CreateGuid";
 import { useWindowDimensions } from "react-native";
 
-const InputName = ({ navigation }) => {
+const InputName = ({ navigation: {goBack} }) => {
   const [username, setUsername] = useState("");
   const styles = useStyles();
 
@@ -37,19 +37,21 @@ const InputName = ({ navigation }) => {
     <Container>
       <TopLogo />
       <View>
-        <Text style={styles.header1}>Dilemma app</Text>
+        <TouchableOpacity onPress={() => goBack()}>
+          <Image source={require("../assets/Back-arrow.png")} />
+        </TouchableOpacity>
+        <Text style={[styles.header1, { marginTop: 10 }]}>Dilemma app</Text>
       </View>
       <View style={[styles.InputContainer, styles.elevation]}>
         <Text style={styles.text}>
           Vul een nickname in{"\n"}die u wilt gebruiken voor de app
         </Text>
-        </View>
-      <TextInput
+        <TextInput
         style={[styles.input, styles.shadow]}
         placeholder="Vul hier een naam in..."
         onChangeText={(text) => setUsername(text)}
       />
-      
+        </View>
       <View
         style={{
           justifyContent: "center",
@@ -126,7 +128,6 @@ return StyleSheet.create({
     fontFamily: "Montserrat",
     color: "rgba(19, 67, 146, 1)",
     textAlign: "center",
-    top: 150,
   },
   text: {
     opacity: 1,
@@ -148,7 +149,6 @@ return StyleSheet.create({
     fontSize: 18,
     lineHeight: 27,
     borderRadius: 20,
-    top: 350,
     opacity: 1,
     backgroundColor: "rgba(238, 246, 250, 1)",
     shadowColor: "rgb(203,  221,  230)",
@@ -177,6 +177,7 @@ return StyleSheet.create({
   InputContainer: {
     alignItems: "center",
     justifyContent: "center",
+    flex: 1,
   },
   tinyLogo: {
     width: 50,
