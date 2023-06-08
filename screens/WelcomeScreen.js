@@ -8,7 +8,7 @@ const WelcomeScreen = ({ navigation }) => {
   return (
     <Container>
       <View>
-        <Text style={[styles.header1, { marginTop: 50 }]}>
+        <Text style={[styles.header1, { marginTop: 25 }]}>
           Welkom op de Dilemma app{"\n"}
         </Text>
         <Text style={styles.text}>Deze app is mogelijk gemaakt door</Text>
