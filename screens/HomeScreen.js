@@ -15,9 +15,12 @@ import TopLogo from "../components/TopLogo";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect, useState } from "react";
 import Greeting from "../components/Greeting";
+import { useWindowDimensions } from "react-native";
+import { Dimensions } from "react-native";
 
 const HomeScreen = ({ navigation }) => {
   const [username, setUsername] = useState("");
+  const styles = useStyles();
 
   useEffect(() => {
     const getUsername = async () => {
@@ -59,8 +62,7 @@ const HomeScreen = ({ navigation }) => {
       />
       <View>
         <TopLogo />
-
-        <View style={{ marginTop: 30 }}>
+        <View>
           <Text style={[GlobalStyle.CustomFont, styles.Header]}>
             <Greeting/>{"\n"}
             {username}
@@ -79,7 +81,7 @@ const HomeScreen = ({ navigation }) => {
           style={styles.backgroundPlus}
           source={require("../assets/Kruis.png")}
         />
-        <View style={[styles.bgmiddle]} blurRadius={8.5}>
+        <View style={[styles.bgmiddle, {marginBottom: 100}]} blurRadius={8.5}>
           <View
             style={{
               alignContent: "center",
@@ -90,7 +92,7 @@ const HomeScreen = ({ navigation }) => {
             <Image
               source={require("../assets/Medtap.png")}
               resizeMode="cover"
-              style={{ width: 300, marginTop: 20 }}
+              style={{ width: Dimensions.get("window").width / 1.5, height: Dimensions.get("window").width / 1.5}}
             ></Image>
           </View>
           <View
@@ -119,22 +121,12 @@ const HomeScreen = ({ navigation }) => {
 };
 
 export default HomeScreen;
+function useStyles() {
+  const {width, height} = useWindowDimensions();
 
-const styles = StyleSheet.create({
+return StyleSheet.create({
   bgmiddle: {
-    backgroundColor: "rgba(255,255,255,0.4)",
-    height: 400,
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.18)",
-    borderRadius: 20,
-    shadowColor: "rgba(31,38,135,0.37)",
-    shadowOffset: {
-      width: 0,
-      height: 8,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
-    elevation: 4,
+    height: Dimensions.get("window").height / 2,
   },
   backgroundTop: {
     position: "absolute",
@@ -156,14 +148,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: -50,
   },
   Button: {
     backgroundColor: "#ffffff",
     borderRadius: 20,
     flexDirection: "row",
     width: 250,
-    marginBottom: 40,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -186,3 +176,4 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
 });
+}
