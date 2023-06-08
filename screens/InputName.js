@@ -14,7 +14,12 @@ import { auth, SignInAnon } from "../firebase";
 import { createGuid } from "../components/CreateGuid";
 import { useWindowDimensions } from "react-native";
 
-const InputName = ({ navigation: {goBack} }) => {
+const InputName = ({ navigation }) => {
+  
+  const navBack = () => {
+    navigation.navigate("ChooseDepartment");
+  };
+
   const [username, setUsername] = useState("");
   const styles = useStyles();
 
@@ -37,7 +42,7 @@ const InputName = ({ navigation: {goBack} }) => {
     <Container>
       <TopLogo />
       <View>
-        <TouchableOpacity onPress={() => goBack()}>
+        <TouchableOpacity onPress={() => navBack()}>
           <Image source={require("../assets/Back-arrow.png")} />
         </TouchableOpacity>
         <Text style={[styles.header1, { marginTop: 10 }]}>Dilemma app</Text>
