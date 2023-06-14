@@ -330,8 +330,8 @@ function useStyles(width, height) {
     nextButton: {
       borderRadius: Math.min(width, height) * 0.125,
       backgroundColor: "#ffffff",
-      height: Math.min(width, height) * 0.2,
-      width: Math.min(width, height) * 0.2,
+      height: Math.min(width, height) * 0.19,
+      width: Math.min(width, height) * 0.19,
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
@@ -378,7 +378,7 @@ function useStyles(width, height) {
       fontSize: 30,
     },
     ButtonText: {
-      fontSize: 15,
+      fontSize: 13,
       color: "#134392",
     },
     Button: {
@@ -386,7 +386,7 @@ function useStyles(width, height) {
       borderRadius: width * 0.04,
       flexDirection: "row",
       width: width * 0.8,
-      height: height * 0.1,
+      height: height * 0.105,
       marginTop: height * 0.015,
       alignItems: "center",
       alignSelf: "flex-end",
