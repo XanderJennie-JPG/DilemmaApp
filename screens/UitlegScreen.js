@@ -9,34 +9,8 @@ import GlobalStyle from "../components/GlobalStyle";
 const UitlegScreen = ({ navigation: { goBack, navigate } }) => {
   return (
     <Container>
-      <View style={{ zIndex: 1 }}>
-        <TouchableOpacity onPress={() => goBack()}>
-          <Image source={require("../assets/Back-arrow.png")} />
-        </TouchableOpacity>
-      </View>
       <TopLogo />
-
-      <ImageBackground
-        resizeMode="cover"
-        style={[
-          styles.backgroundTop,
-          {
-            transform: [{ rotate: "-15deg" }],
-            height: 250,
-            width: 450,
-            top: -20,
-            left: -50,
-          },
-        ]}
-        source={require("../assets/background-top.png")}
-      ></ImageBackground>
-
-      <View
-        style={[
-          { alignContent: "center", alignItems: "center", paddingTop: 60 },
-          styles.TextBetween,
-        ]}
-      >
+      <View style={styles.centeredContainer}>
         <Text
           style={[
             GlobalStyle.CustomFontBold,
@@ -46,59 +20,41 @@ const UitlegScreen = ({ navigation: { goBack, navigate } }) => {
         >
           Dilemma's
         </Text>
+        <Text
+          style={[
+            GlobalStyle.CustomFont,
+            styles.TextBetween,
+            { textAlign: "center" },
+          ]}
+        >
+          In dit spel confronteren we je met dilemma's die je op je werk tegen zou
+          kunnen komen.
+        </Text>
+        <Text
+          style={[
+            GlobalStyle.CustomFont,
+            styles.TextBetween,
+            { textAlign: "center" },
+          ]}
+        >
+          Dit doen we door je te vragen wat je zou doen in 10 verschillende
+          situaties. We hebben geprobeerd steeds drie realistische alternatieven
+          te schetsen.
+        </Text>
+        <Text
+          style={[
+            GlobalStyle.CustomFont,
+            styles.TextBetween,
+            { textAlign: "center" },
+          ]}
+        >
+          Geen van de alternatieven is fout. De bedoeling is om vooral dat aan te
+          kruisen, wat je in de praktijk het meest realistisch lijkt, niet “wat je
+          denkt dat je zou moeten doen”.
+        </Text>
       </View>
-      <Text
-        style={[
-          GlobalStyle.CustomFont,
-          styles.TextBetween,
-          { textAlign: "center" },
-        ]}
-      >
-        In dit spel confronteren we je met dilemma's die je op je werk tegen zou
-        kunnen komen.
-      </Text>
-      <Text
-        style={[
-          GlobalStyle.CustomFont,
-          styles.TextBetween,
-          { textAlign: "center" },
-        ]}
-      >
-        Dit doen we door je te vragen wat je zou doen in 10 verschillende
-        situaties. We hebben geprobeerd steeds drie realistische alternatieven
-        te schetsen.
-      </Text>
-      <Text
-        style={[
-          GlobalStyle.CustomFont,
-          styles.TextBetween,
-          { textAlign: "center" },
-        ]}
-      >
-        Geen van de alternatieven is fout. De bedoeling is om vooral dat aan te
-        kruisen, wat je in de praktijk het meest realistisch lijkt, niet “wat je
-        denkt dat je zou moeten doen”.
-      </Text>
-      <ImageBackground
-        resizeMode="cover"
-        style={[
-          {
-            transform: [{ rotate: "15deg" }],
-            height: 300,
-            width: 450,
-            left: -75,
-            top: 75,
-          },
-        ]}
-        source={require("../assets/background-top.png")}
-      ></ImageBackground>
-      <View
-        style={{
-          justifyContent: "center",
-          alignItems: "center",
-          marginTop: "auto",
-        }}
-      >
+
+      <View style={styles.centeredButtonContainer}>
         <TouchableOpacity
           style={[styles.Button, styles.shadow]}
           onPress={() => navigate("QuizScreen")}
@@ -120,6 +76,16 @@ const UitlegScreen = ({ navigation: { goBack, navigate } }) => {
 export default UitlegScreen;
 
 const styles = StyleSheet.create({
+  centeredContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  centeredButtonContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: "auto",
+  },
   Header: {
     fontSize: 35,
     alignItems: "center",
@@ -138,7 +104,6 @@ const styles = StyleSheet.create({
   TextBetween: {
     marginBottom: 20,
   },
-
   ButtonText: {
     fontSize: 18,
     paddingLeft: 40,
