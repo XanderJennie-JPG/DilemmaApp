@@ -23,13 +23,11 @@ const SettingsScreen = ({ navigation }) => {
   return (
     <Container>
       <TopLogo />
-
       <View>
-        <Text style={[styles.header1, { top: 100 }]}>Instellingen</Text>
+        <Text style={[styles.header1, {justifyContent: "flex-start"}]}>Instellingen</Text>
+        <Text style={[styles.header2, {marginTop: 10}]}>{department} </Text>
       </View>
-      <View style={[{ alignItems: "center" }]}>
-        <Text style={[styles.header2, { top: 150 }]}>{department} </Text>
-      </View>
+      <View style={{flex: 1, justifyContent: "flex-start", backgroundColor: "red"}}>
       <View style={{ alignItems: "center" }}>
         <TouchableOpacity
           onPress={() =>
@@ -37,8 +35,8 @@ const SettingsScreen = ({ navigation }) => {
               setDepartmentChanged,
             })
           }
-          style={[styles.Options, { top: 308 }]}
-        >
+          style={[styles.Options, { justifyContent: "flex-start", flexDirection: "column"}]}
+          >
           <Image
             styles={styles.Icon_Pencil}
             source={require("../assets/Pencil-icon.png")}
@@ -46,12 +44,14 @@ const SettingsScreen = ({ navigation }) => {
           <Text style={[styles.AfdelingWijzigenText]}> Afdeling Wijzigen</Text>
         </TouchableOpacity>
         <Divider
-          style={[styles.Divider, { top: 370 }]}
+          style={[styles.Divider]}
           width={1.5}
           color="#134392"
           inset={true}
           insetType="middle"
         />
+        </View>
+        <View style={{ alignItems: "center" }}>
         <TouchableOpacity
           onPress={() => navigation.navigate("PrivacyPolicy")}
           style={[styles.Options, { top: 389 }]}
@@ -69,6 +69,8 @@ const SettingsScreen = ({ navigation }) => {
           inset={true}
           insetType="middle"
         />
+        </View>
+        <View style={{ alignItems: "center" }}>
         <TouchableOpacity style={[styles.Options, { top: 470 }]}>
           <Image
             styles={styles.Icon_AV}
@@ -82,7 +84,8 @@ const SettingsScreen = ({ navigation }) => {
             Algemene Voorwaarden
           </Text>
         </TouchableOpacity>
-      </View>
+        </View>
+        </View>
     </Container>
   );
 };
