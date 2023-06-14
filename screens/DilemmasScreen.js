@@ -17,11 +17,13 @@ import { getGuid } from "../components/CreateGuid";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../firebase";
+import { Dimensions } from "react-native";
 import { useWindowDimensions } from "react-native";
 
 //TODO: separate the logic for rendering the question and answers from the DilemmasScreen component
 const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
-  const styles = useStyles();
+  const { width, height } = useWindowDimensions();
+  const styles = useStyles(width, height);
   //Here, we keep track of the current question for rendering purposes.
   const [currentQuestion, setCurrentQuestion] = useState(1);
   //Here, we store the scores.
@@ -229,16 +231,15 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
         </ScrollView>
         {questions[currentQuestion - 1].answers.map((answer, index) => (
           <View style={{ flexDirection: "row" }} key={answer.value}>
-            {/*A, B and C. fromCharCode converts unicode to characters.*/}
             <View style={{ flex: 1 }}>
               <Text
                 style={[
                   styles.ButtonText,
                   {
                     alignSelf: "center",
-                    marginTop: 50,
+                    marginTop: height * 0.04,
                     fontWeight: "bold",
-                    fontSize: 23,
+                    fontSize: width * 0.07,
                   },
                 ]}
               >
@@ -248,7 +249,6 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
             <TouchableHighlight
               activeOpacity={1}
               underlayColor="lightblue"
-              //highlight only the selected answer
               style={[
                 styles.Button,
                 styles.shadow,
@@ -322,18 +322,16 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
 
 export default DilemmasScreen;
 
-function useStyles() {
-  const { width, height } = useWindowDimensions();
-
+function useStyles(width, height) {
   return StyleSheet.create({
     active: {
       backgroundColor: "lightblue",
     },
     nextButton: {
-      borderRadius: 125,
+      borderRadius: Math.min(width, height) * 0.125,
       backgroundColor: "#ffffff",
-      height: 100,
-      width: 100,
+      height: Math.min(width, height) * 0.2,
+      width: Math.min(width, height) * 0.2,
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
@@ -349,20 +347,32 @@ function useStyles() {
       top: -10,
       left: 10,
       right: 0,
+      height: Math.min(width, height) * 0.2,
+      width: Math.min(width, height) * 0.45,
     },
     backgroundBottom: {
       marginTop: "auto",
       position: "absolute",
+      height: Math.min(width, height) * 0.2,
+      width: Math.min(width, height) * 0.45,
+      top: Math.min(width, height) * 0.47,
+      alignSelf: "center",
     },
     rowone: {
       flexDirection: "row",
       justifyContent: "space-between",
+      alignItems: "center",
       alignSelf: "flex-end",
+      paddingHorizontal: Math.min(width, height) * 0.03,
+      paddingVertical: Math.min(width, height) * 0.015,
     },
     rowtwo: {
       flexDirection: "row",
       justifyContent: "space-between",
+      alignItems: "center",
       marginTop: "auto",
+      paddingHorizontal: Math.min(width, height) * 0.03,
+      paddingVertical: Math.min(width, height) * 0.015,
     },
     dilemmatext: {
       fontSize: 30,
@@ -373,14 +383,15 @@ function useStyles() {
     },
     Button: {
       backgroundColor: "#ffffff",
-      borderRadius: 20,
+      borderRadius: width * 0.04,
       flexDirection: "row",
-      width: 300,
-      height: 95,
-      marginTop: 15,
+      width: width * 0.8,
+      height: height * 0.1,
+      marginTop: height * 0.015,
       alignItems: "center",
       alignSelf: "flex-end",
     },
+    
     shadow: {
       shadowColor: "rgba(31,38,135,0.37)",
       shadowOffset: {
@@ -392,18 +403,20 @@ function useStyles() {
       elevation: 4,
     },
     box: {
-      backgroundColor: "rgba(255,255,255,0.6)", //change to "rgba(255,255,255,0.8)" for android?
+      backgroundColor: "rgba(255,255,255,0.6)",
       shadowOpacity: 0.2,
       shadowRadius: 3,
-      borderRadius: 20,
+      borderRadius: Math.min(width, height) * 0.04,
       alignContent: "center",
       alignItems: "center",
+      paddingHorizontal: Math.min(width, height) * 0.02,
+      paddingVertical: Math.min(width, height) * 0.02,
+      width: Math.min(width, height) * 0.9,
     },
     question: {
       textAlign: "left",
-      lineHeight: 22,
-      fontSize: 18,
-      width: 275,
+      fontSize: Math.min(width, height) * 0.05,
+      width: Math.min(width, height) * 0.8,
       alignSelf: "center",
     },
   });
