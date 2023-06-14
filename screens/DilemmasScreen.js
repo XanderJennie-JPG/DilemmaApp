@@ -21,7 +21,6 @@ import { useWindowDimensions } from "react-native";
 
 //TODO: separate the logic for rendering the question and answers from the DilemmasScreen component
 const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
-  
   const styles = useStyles();
   //Here, we keep track of the current question for rendering purposes.
   const [currentQuestion, setCurrentQuestion] = useState(1);
@@ -215,12 +214,9 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
         source={require("../assets/background-top.png")}
       />
       <View style={[styles.rowone]}>
-        <TouchableOpacity onPress={() => goBack()}>
-          <Image source={require("../assets/Back-arrow.png")} />
-        </TouchableOpacity>
-        <Text style={[GlobalStyle.CustomFont, { alignSelf: "center" }]}>
+        <Text style={[GlobalStyle.CustomFont]}>
           Dilemma{" "}
-          <Text style={[GlobalStyle.CustomFontBold, { fontSize: 30 }]}>
+          <Text style={[GlobalStyle.CustomFontBold, { fontSize: 30, alignSelf: "flex-end"}]}>
             {currentQuestion}/{questions.length}
           </Text>
         </Text>
@@ -268,19 +264,27 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
         ))}
       </View>
       <View style={styles.rowtwo}>
-        <TouchableOpacity
-          style={styles.nextButton}
-          onPress={handlePrevious}
-          disabled={currentQuestion - 1 == 0}
-        >
-          <Ionicons
-            name="arrow-back"
-            style={{ paddingLeft: 3, fontSize: 30, color: "#134392" }}
-          ></Ionicons>
-          <Text style={[styles.previousButton, styles.nextButtonText]}>
-            Previous
-          </Text>
-        </TouchableOpacity>
+        {currentQuestion == 1 ? (
+          <TouchableOpacity style={styles.nextButton} onPress={() => goBack()}>
+            <Ionicons
+              name="arrow-back"
+              style={{ paddingLeft: 3, fontSize: 30, color: "#134392" }}
+            ></Ionicons>
+            <Text style={[styles.previousButton, styles.nextButtonText]}>
+              Stop
+            </Text>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity style={styles.nextButton} onPress={() => handlePrevious()}>
+            <Ionicons
+              name="arrow-back"
+              style={{ paddingLeft: 3, fontSize: 30, color: "#134392" }}
+            ></Ionicons>
+            <Text style={[styles.previousButton, styles.nextButtonText]}>
+              Previous
+            </Text>
+          </TouchableOpacity>
+          )}
 
         {currentQuestion === questions.length ? (
           <TouchableOpacity
@@ -319,8 +323,8 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
 export default DilemmasScreen;
 
 function useStyles() {
-  const {width, height} = useWindowDimensions();
-  
+  const { width, height } = useWindowDimensions();
+
   return StyleSheet.create({
     active: {
       backgroundColor: "lightblue",
@@ -353,6 +357,7 @@ function useStyles() {
     rowone: {
       flexDirection: "row",
       justifyContent: "space-between",
+      alignSelf: "flex-end",
     },
     rowtwo: {
       flexDirection: "row",
