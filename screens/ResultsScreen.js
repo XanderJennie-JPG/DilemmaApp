@@ -1,5 +1,11 @@
-import { React, useEffect, useState } from "react";
-import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
+import React, { useEffect, useState } from "react";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Dimensions,
+} from "react-native";
 import Container from "../components/Container";
 import TopLogo from "../components/TopLogo";
 import { AverageCalculator } from "../services/AverageCalculator";
@@ -8,7 +14,6 @@ import { getGuid } from "../components/CreateGuid";
 import { db } from "../firebase";
 import { useIsFocused } from "@react-navigation/native";
 
-//TODO not use absolute positioning
 const ResultScreen = ({ navigation, route }) => {
   const [scores, setScores] = useState({});
   const isFocused = useIsFocused();
@@ -45,9 +50,9 @@ const ResultScreen = ({ navigation, route }) => {
 
   let checkData = () => {
     if (
-      Patiëntenbelang == 0 &&
-      Integriteit == 0 &&
-      Informatiebeveiliging == 0
+      Patiëntenbelang === 0 &&
+      Integriteit === 0 &&
+      Informatiebeveiliging === 0
     ) {
       return false;
     }
@@ -56,21 +61,21 @@ const ResultScreen = ({ navigation, route }) => {
 
   let data = [
     {
-      name: "Efficient",//patientenbelang
+      name: "Efficient",
       population: Patiëntenbelang,
       color: "#01ED38",
       legendFontColor: "#7F7F7F",
       legendFontSize: 15,
     },
     {
-      name: "Loyaal", //integriteit
+      name: "Loyaal",
       population: Integriteit,
       color: "#F29999",
       legendFontColor: "#7F7F7F",
       legendFontSize: 15,
     },
     {
-      name: "Informatiebeveiliging", //informatiebeveiliging
+      name: "Informatiebeveiliging",
       population: Informatiebeveiliging,
       color: "#01B6ED",
       legendFontColor: "#7F7F7F",
@@ -82,7 +87,7 @@ const ResultScreen = ({ navigation, route }) => {
     backgroundColor: "#e26a00",
     backgroundGradientFrom: "#fb8c00",
     backgroundGradientTo: "#ffa726",
-    decimalPlaces: 2, // default is 2dp
+    decimalPlaces: 2,
     color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
     labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
     propsForDots: {
@@ -97,54 +102,49 @@ const ResultScreen = ({ navigation, route }) => {
       <TopLogo />
       <View style={styles.box}>
         <View>
-          <Text style={[styles.header1, { top: 25 }]}>Resultaten</Text>
+          <Text style={styles.header1}>Resultaten</Text>
         </View>
-        <View style={[{ alignItems: "center" }]}>
-          <Text style={[styles.text, { top: 30 }]}>
+        <View style={styles.textContainer}>
+          <Text style={styles.text}>
             Hier kunt u uw eigen score en de algemene score van uw afdeling
             bekijken
           </Text>
         </View>
-        <View style={[{ alignItems: "center", top: 90, right: 110 }]}>
+        <View style={styles.chartContainer}>
           {checkData() ? (
             <PieChart
+              style={styles.chart}
               data={data}
-              width={700}
-              height={210}
-              center={[160, 0]}
+              width={Dimensions.get("window").width - 50}
+              height={220}
               chartConfig={chartConfig}
-              accessor="population"
-              backgroundColor="transparent"
-              paddingLeft="15"
+              accessor={"population"}
+              backgroundColor={"transparent"}
+              paddingLeft={"15"}
             />
           ) : (
-            <Text style={[styles.text, { left: 145, top: 50 }]}>
-              Geen data om te laten zien. Maak eerst {"\n"} de quiz af!
+            <Text style={styles.noDataText}>
+              Geen data om te laten zien. Maak eerst de quiz af!
             </Text>
           )}
         </View>
-        {checkData() && (
-          <View style={styles.average}>
-            <AverageCalculator fieldName="Informatiebeveiliging" />
-            <AverageCalculator fieldName="Integriteit" />
-            <AverageCalculator fieldName="Patiëntenbelang" />
-          </View>
-        )}
       </View>
 
-      <TouchableOpacity
-        style={[styles.GaDoorButton, styles.shadow, { alignSelf: "flex-end" }]}
-        disabled={!checkData()}
-        onPress={() =>
-          navigation.navigate("Toelichting", {
-            Patiëntenbelang: Patiëntenbelang,
-            Integriteit: Integriteit,
-            Informatiebeveiliging: Informatiebeveiliging,
-          })
-        }
-      >
-        <Text style={styles.buttonText}>Toelichting</Text>
-      </TouchableOpacity>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity
+          style={[styles.button, styles.shadow]}
+          disabled={!checkData()}
+          onPress={() =>
+            navigation.navigate("Toelichting", {
+              Patiëntenbelang: Patiëntenbelang,
+              Integriteit: Integriteit,
+              Informatiebeveiliging: Informatiebeveiliging,
+            })
+          }
+        >
+          <Text style={styles.buttonText}>Toelichting</Text>
+        </TouchableOpacity>
+      </View>
     </Container>
   );
 };
@@ -155,39 +155,26 @@ const styles = StyleSheet.create({
   box: {
     opacity: 1,
     backgroundColor: "#FFFFFF",
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
-    shadowColor: "rgb(203,  221,  230)",
+    borderRadius: 20,
+    shadowColor: "rgb(203, 221, 230)",
     shadowOpacity: 0.8392156862745098,
     shadowOffset: {
       width: 5,
       height: 5,
     },
     shadowRadius: 10,
-    width: 390,
-    height: 525,
+    width: Dimensions.get("window").width * 0.9,
+    height: Dimensions.get("window").height * 0.6,
     alignSelf: "center",
-    top: 65,
+    marginTop: Dimensions.get("window").height * 0.1,
   },
-  GaDoorButton: {
-    opacity: 1,
-    backgroundColor: "rgba(238, 246, 250, 1)",
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
-    shadowColor: "rgb(203,  221,  230)",
-    shadowOpacity: 0.8392156862745098,
-    shadowOffset: {
-      width: 5,
-      height: 5,
-    },
-    shadowRadius: 10,
-    width: 160,
-    height: 40,
-    top: 75,
+  textContainer: {
+    alignItems: "center",
+    marginTop: "5%",
+  },
+  chartContainer: {
+    alignItems: "center",
+    marginTop: "10%",
   },
   header1: {
     fontSize: 25,
@@ -196,27 +183,48 @@ const styles = StyleSheet.create({
     fontFamily: "Montserrat",
     color: "rgba(19, 67, 146, 1)",
     textAlign: "center",
-  },
-  header2: {
-    fontSize: 25,
-    fontStyle: "normal",
-    fontFamily: "Montserrat",
-    color: "rgba(19, 67, 146, 1)",
-    textAlign: "center",
+    marginBottom: 10,
   },
   text: {
     opacity: 1,
-    position: "absolute",
     backgroundColor: "rgba(255, 255, 255, 0)",
     color: "rgba(19, 67, 146, 1)",
     fontSize: 18,
     textAlign: "center",
     lineHeight: 27,
   },
-  average: {
-    top: 350,
-    left: 15,
-    position: "absolute",
+  noDataText: {
+    left: "25%",
+    marginTop: "15%",
+    color: "rgba(19, 67, 146, 1)",
+    fontSize: 18,
+    textAlign: "center",
+    lineHeight: 27,
+  },
+  buttonContainer: {
+    bottom: Dimensions.get("window").height * 0.05,
+    alignSelf: "flex-end",
+  },
+  button: {
+    opacity: 1,
+    backgroundColor: "rgba(238, 246, 250, 1)",
+    borderRadius: 20,
+    shadowColor: "rgb(203, 221, 230)",
+    shadowOpacity: 0.8392156862745098,
+    shadowOffset: {
+      width: 5,
+      height: 5,
+    },
+    shadowRadius: 10,
+    width: Dimensions.get("window").width * 0.3,
+    height: Dimensions.get("window").height * 0.05,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  buttonText: {
+    fontSize: 20,
+    textAlign: "center",
+    color: "#134392",
   },
   shadow: {
     shadowColor: "#7F5DF0",
@@ -227,17 +235,5 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.5,
     elevation: 5,
-  },
-  elevation: {
-    elevation: 10, //original was 20
-    shadowColor: "#52006A",
-  },
-  buttonText: {
-    marginTop: 6,
-    marginLeft: 6,
-    fontSize: 20,
-    flex: 1,
-    textAlign: "center",
-    color: "#134392",
   },
 });
