@@ -22,12 +22,12 @@ const styles = StyleSheet.create({
 		marginTop: 35,
 		width: 125,
 		height: 25,
-		right: -20,
+		right: -30,
 	},
 	hmcLogo: {
 		position: "absolute",
 		width: 125,
 		height: 35,
-		right: -20,
+		right: -30,
 	},
 });

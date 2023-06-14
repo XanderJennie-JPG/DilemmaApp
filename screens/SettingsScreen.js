@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 import Container from "../components/Container";
 import { Divider } from "@rneui/themed";
 import TopLogo from "../components/TopLogo";
-import SettingsChooseDepartment from "../screens/SettingsChooseDepartment";
 
 const SettingsScreen = ({ navigation }) => {
   let [department, setDepartment] = useState("");
@@ -23,69 +22,62 @@ const SettingsScreen = ({ navigation }) => {
   return (
     <Container>
       <TopLogo />
-      <View>
-        <Text style={[styles.header1, {justifyContent: "flex-start"}]}>Instellingen</Text>
-        <Text style={[styles.header2, {marginTop: 10}]}>{department} </Text>
+      <View style={styles.container}>
+        <Text style={styles.header1}>Instellingen</Text>
+        <Text style={styles.header2}>{department}</Text>
       </View>
-      <View style={{flex: 1, justifyContent: "flex-start", backgroundColor: "red"}}>
-      <View style={{ alignItems: "center" }}>
+      <View style={styles.centeredContainer}>
         <TouchableOpacity
           onPress={() =>
             navigation.navigate("SettingsChooseDepartment", {
               setDepartmentChanged,
             })
           }
-          style={[styles.Options, { justifyContent: "flex-start", flexDirection: "column"}]}
-          >
-          <Image
-            styles={styles.Icon_Pencil}
-            source={require("../assets/Pencil-icon.png")}
-          />
-          <Text style={[styles.AfdelingWijzigenText]}> Afdeling Wijzigen</Text>
-        </TouchableOpacity>
-        <Divider
-          style={[styles.Divider]}
-          width={1.5}
-          color="#134392"
-          inset={true}
-          insetType="middle"
-        />
-        </View>
-        <View style={{ alignItems: "center" }}>
-        <TouchableOpacity
-          onPress={() => navigation.navigate("PrivacyPolicy")}
-          style={[styles.Options, { top: 389 }]}
+          style={styles.optionContainer}
         >
           <Image
-            styles={styles.Icon_PP}
-            source={require("../assets/PP-icon.png")}
+            style={styles.icon}
+            source={require("../assets/Pencil-icon.png")}
           />
-          <Text style={[styles.PrivacyPolicyText]}> Privacy Policy</Text>
+          <Text style={styles.optionText}>Afdeling Wijzigen</Text>
         </TouchableOpacity>
         <Divider
-          style={[styles.Divider, { top: 450 }]}
+          style={styles.divider}
           width={1.5}
           color="#134392"
           inset={true}
           insetType="middle"
         />
-        </View>
-        <View style={{ alignItems: "center" }}>
-        <TouchableOpacity style={[styles.Options, { top: 470 }]}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("PrivacyPolicy")}
+          style={styles.optionContainer}
+        >
           <Image
-            styles={styles.Icon_AV}
+            style={styles.icon}
+            source={require("../assets/PP-icon.png")}
+          />
+          <Text style={styles.optionText}>Privacy Policy</Text>
+        </TouchableOpacity>
+        <Divider
+          style={styles.divider}
+          width={1.5}
+          color="#134392"
+          inset={true}
+          insetType="middle"
+        />
+        <TouchableOpacity style={styles.optionContainer}>
+          <Image
+            style={styles.icon}
             source={require("../assets/AV-icon.png")}
           />
           <Text
             onPress={() => navigation.navigate("AlgemeneVoorwaarden")}
-            style={[styles.AlgemeneVoorwaardenText]}
+            style={styles.optionText}
           >
-            {" "}
             Algemene Voorwaarden
           </Text>
         </TouchableOpacity>
-        </View>
-        </View>
+      </View>
     </Container>
   );
 };
@@ -93,127 +85,48 @@ const SettingsScreen = ({ navigation }) => {
 export default SettingsScreen;
 
 const styles = StyleSheet.create({
-  logoContainer: {
-    position: "absolute",
-    top: 5,
-    right: 1,
+  container: {
+    alignItems: "center",
+    marginBottom: 20,
   },
-  hhsLogo: {
-    opacity: 1,
-    position: "absolute",
-    width: 175,
-    height: 50,
-    right: 6,
-    top: 105,
-  },
-  hmcLogo: {
-    opacity: 1,
-    position: "absolute",
-    width: 175,
-    height: 50,
-    right: 6,
-    top: 50,
+  centeredContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
   header1: {
     fontSize: 25,
     fontWeight: "700",
-    fontStyle: "normal",
     fontFamily: "Montserrat",
     color: "rgba(19, 67, 146, 1)",
     textAlign: "center",
+    marginTop: 20,
   },
   header2: {
     fontSize: 25,
-    fontStyle: "normal",
     fontFamily: "Montserrat",
     color: "rgba(19, 67, 146, 1)",
     textAlign: "center",
+    marginTop: 10,
   },
-  text: {
-    opacity: 1,
-    position: "absolute",
-    backgroundColor: "rgba(255, 255, 255, 0)",
-    color: "rgba(19, 67, 146, 1)",
-    fontSize: 18,
-    textAlign: "center",
-    lineHeight: 27,
-    width: 276,
-    height: 60,
-    top: 281.5,
-  },
-  Options: {
-    opacity: 1,
-    position: "absolute",
-    backgroundColor: "transparent",
-    width: 320,
-    height: 53,
-    left: 35,
+  optionContainer: {
     flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 20,
+    marginTop: 20,
   },
-  AfdelingWijzigenText: {
-    //need to add custom Gill Sans MT 400 font
-    opacity: 1,
-    position: "absolute",
-    backgroundColor: "rgba(255, 255, 255, 0)",
+  optionText: {
     color: "rgba(19, 67, 146, 1)",
     fontSize: 18,
-    // fontWeight: "bold",
     lineHeight: 26,
     height: 29,
-    left: 53,
-    top: 5,
+    marginLeft: 10,
   },
-  PrivacyPolicyText: {
-    opacity: 1,
-    position: "absolute",
-    backgroundColor: "rgba(255, 255, 255, 0)",
-    color: "rgba(19, 67, 146, 1)",
-    fontSize: 18,
-    // fontWeight: "bold",
-    lineHeight: 26,
-    height: 29,
-    left: 53,
-    top: 5,
+  icon: {
+    width: 35,
+    height: 35,
   },
-  AlgemeneVoorwaardenText: {
-    opacity: 1,
-    position: "absolute",
-    backgroundColor: "rgba(255, 255, 255, 0)",
-    color: "rgba(19, 67, 146, 1)",
-    fontSize: 18,
-    // fontWeight: "bold",
-    lineHeight: 26,
-    height: 29,
-    left: 53,
-  },
-  Icon_Pencil: {
-    opacity: 1,
-    position: "absolute",
-    width: 33.98,
-    height: 33.98,
-    left: 10.02,
-    top: 9.86,
-  },
-  Icon_PP: {
-    opacity: 1,
-    position: "absolute",
-    width: 34,
-    height: 27.2,
-    left: 10,
-    top: 12.55,
-  },
-  Icon_AV: {
-    opacity: 1,
-    position: "absolute",
-    backgroundColor: "transparent",
-    width: 31.5,
-    height: 27,
-    left: 10,
-    top: 18,
-  },
-  Divider: {
-    opacity: 1,
-    position: "absolute",
+  divider: {
     width: 271,
   },
 });
