@@ -121,6 +121,7 @@ const ResultScreen = ({ navigation, route }) => {
               accessor={"population"}
               backgroundColor={"transparent"}
               paddingLeft={"15"}
+              absolute //THIS REMOVES PERCENTAGE
             />
           ) : (
             <Text style={styles.noDataText}>
@@ -194,7 +195,6 @@ const styles = StyleSheet.create({
     lineHeight: 27,
   },
   noDataText: {
-    left: "25%",
     marginTop: "15%",
     color: "rgba(19, 67, 146, 1)",
     fontSize: 18,

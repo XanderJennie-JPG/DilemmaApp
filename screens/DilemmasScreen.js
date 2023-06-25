@@ -91,53 +91,12 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
         setInformatiebeveiliging(Informatiebeveiliging + 10);
       }
       setAnswers({ ...answers, [currentQuestion]: option });
-      // navigate to the results screen when the user reaches the last question
-      const scores = {
-        Patiëntenbelang: Patiëntenbelang,
-        Integriteit: IntegriteitPoints,
-        Informatiebeveiliging: Informatiebeveiliging,
-      };
+      console.log(answers);
       setCurrentQuestion[1];
+      sendScores();
 
-      // Get the device ID
-      const deviceId = await getGuid();
-
-      const usersRef = db.collection("users");
-
-      const userDoc = usersRef.doc(deviceId);
-
-      // Delete the old document
-      userDoc
-        .delete()
-        .then(() => {
-          console.log("Old scores deleted");
-        })
-        .catch((error) => {
-          console.error("Error deleting old scores", error);
-        });
-
-      const data = {
-        deviceId: deviceId,
-        username: username,
-        department: department,
-        answers: answers,
-        scores: {
-          Patiëntenbelang: Patiëntenbelang,
-          Integriteit: IntegriteitPoints,
-          Informatiebeveiliging: Informatiebeveiliging,
-        },
-      };
-      usersRef
-        .doc(deviceId)
-        .set(data)
-        .then(function () {
-          console.log("Document written with ID: REDACTED");
-          //console.log("Document written with ID: ", deviceId);
-        })
-        .catch(function (error) {
-          console.error("Error adding document: REDACTED");
-        });
-
+      // navigate to the results screen when the user reaches the last question
+      console.log("Navigating to results screen");
       navigate("HomeTab", {
         screen: "Results",
         params: {
@@ -146,8 +105,59 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
           Informatiebeveiliging: Informatiebeveiliging,
         },
       });
+      
     }
   };
+
+  //send scores to DB
+  const sendScores = async () => {
+    
+    const scores = {
+      Patiëntenbelang: Patiëntenbelang,
+      Integriteit: IntegriteitPoints,
+      Informatiebeveiliging: Informatiebeveiliging,
+    };
+
+    // Get the device ID
+    const deviceId = await getGuid();
+
+    const usersRef = db.collection("users");
+
+    const userDoc = usersRef.doc(deviceId);
+
+    // Delete the old document
+    userDoc
+      .delete()
+      .then(() => {
+        console.log("Old scores deleted");
+      })
+      .catch((error) => {
+        console.error("Error deleting old scores", error);
+      });
+
+    const data = {
+      deviceId: deviceId,
+      username: username,
+      department: department,
+      answers: answers,
+      scores: {
+        Patiëntenbelang: Patiëntenbelang,
+        Integriteit: IntegriteitPoints,
+        Informatiebeveiliging: Informatiebeveiliging,
+      },
+    };
+    console.log(data);
+    usersRef
+      .doc(deviceId)
+      .set(data)
+      .then(function () {
+        console.log("Document written with ID: ", deviceId);
+      })
+      .catch(function (error) {
+        console.error("Error adding document: REDACTED");
+      });
+      console.log("Scores sent to DB");
+    };
 
   const handleAnswer = async (option) => {
     //We check if the users answer is different from the previously selected answer in the current question. If yes then..
@@ -158,23 +168,19 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
       setIsActive(true);
       setAnswers({ ...answers, [currentQuestion]: option });
     }
-    if (selectedAnswer === "A") {
-      setPatiëntenbelang(Patiëntenbelang + 10);
-    } else if (selectedAnswer === "B") {
-      setIntegriteitPoints(IntegriteitPoints + 10);
-    } else if (selectedAnswer === "C") {
-      setInformatiebeveiliging(Informatiebeveiliging + 10);
-    }
   };
 
   //The handling of the users chosen questions when pressing next.
   const handleNext = async (option) => {
     if (selectedAnswer === "A") {
       setPatiëntenbelang(Patiëntenbelang + 10);
+      console.log("patientenbelang = " + Patiëntenbelang);
     } else if (selectedAnswer === "B") {
       setIntegriteitPoints(IntegriteitPoints + 10);
+      console.log("integriteitpoints = " + IntegriteitPoints);
     } else if (selectedAnswer === "C") {
       setInformatiebeveiliging(Informatiebeveiliging + 10);
+      console.log("informatiebeveiliging = " + Informatiebeveiliging);
     }
 
     if (currentQuestion < questions.length) {
