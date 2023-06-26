@@ -19,6 +19,7 @@ import { doc, setDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import { Dimensions } from "react-native";
 import { useWindowDimensions } from "react-native";
+import { useRef } from "react";
 
 //TODO: separate the logic for rendering the question and answers from the DilemmasScreen component
 const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
@@ -27,7 +28,7 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
   //Here, we keep track of the current question for rendering purposes.
   const [currentQuestion, setCurrentQuestion] = useState(1);
   //Here, we store the scores.
-  const [Patiëntenbelang, setPatiëntenbelang] = useState(0);
+  const Patiëntenbelang = useRef(0);
   const [IntegriteitPoints, setIntegriteitPoints] = useState(0);
   const [Informatiebeveiliging, setInformatiebeveiliging] = useState(0);
 
@@ -55,9 +56,9 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
 
   //Randomizes the answers so the user doesnt ''game'' the system
-  const shuffleAnswers = (answers) => {
+/*   const shuffleAnswers = (answers) => {
     return answers.sort(() => Math.random() - 0.5);
-  };
+  }; */
 
   //Remove previous answer when selecting a new one
   const removePreviousAnswer = () => {
@@ -173,8 +174,8 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
   //The handling of the users chosen questions when pressing next.
   const handleNext = async (option) => {
     if (selectedAnswer === "A") {
-      setPatiëntenbelang(Patiëntenbelang + 10);
-      console.log("patientenbelang = " + Patiëntenbelang);
+      Patiëntenbelang.current =+ 10;
+      console.log("patientenbelang = " + Patiëntenbelang.current);
     } else if (selectedAnswer === "B") {
       setIntegriteitPoints(IntegriteitPoints + 10);
       console.log("integriteitpoints = " + IntegriteitPoints);
