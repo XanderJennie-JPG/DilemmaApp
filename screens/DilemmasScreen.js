@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   View,
@@ -188,21 +188,54 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
     }
   };
 
-  //The handling of the users chosen questions when pressing next.
   const handleNext = async (option) => {
+    switch (selectedAnswer) {
+      case "A":
+        setOldPatiëntenbelang(Patiëntenbelang);
+        await setPatiëntenbelang(Patiëntenbelang + 10);
+        console.log(Patiëntenbelang);
+        break;
+      case "B":
+        setOldIntegriteitPoints(IntegriteitPoints);
+        await setIntegriteitPoints(IntegriteitPoints + 10);
+        console.log(IntegriteitPoints);
+        break;
+      case "C":
+        setOldInformatiebeveiliging(Informatiebeveiliging);
+        await setInformatiebeveiliging(Informatiebeveiliging + 10);
+        console.log(Informatiebeveiliging);
+        break;
+      default:
+        break;
+    }
+  
+    if (currentQuestion < questions.length) {
+      setCurrentQuestion(currentQuestion + 1);
+    }
+  
+    setSelectedAnswer(null);
+  };
+  
+
+  //The handling of the users chosen questions when pressing next.
+/*   const handleNext = async (option) => {
     if (selectedAnswer === "A") {
-      /* oldPatiëntenbelang.current == Patiëntenbelang.current;
-      Patiëntenbelang.current =+ 10; */
+      //oldPatiëntenbelang.current == Patiëntenbelang.current;
+      //console.log("+patientenbelang = " + Patiëntenbelang.current);
+      //Patiëntenbelang.current =+ 10;
+      //console.log("-patientenbelang = " + Patiëntenbelang.current);
       setOldPatiëntenbelang(Patiëntenbelang);
+      console.log(Patiëntenbelang);
       setPatiëntenbelang(Patiëntenbelang + 10);
+      console.log(Patiëntenbelang);
     } else if (selectedAnswer === "B") {
-      /* oldIntegriteitPoints.current == IntegriteitPoints.current;
-      IntegriteitPoints.current =+ 10; */
+      //oldIntegriteitPoints.current == IntegriteitPoints.current;
+      //IntegriteitPoints.current =+ 10;
       setOldIntegriteitPoints(IntegriteitPoints);
       setIntegriteitPoints(IntegriteitPoints + 10);
     } else if (selectedAnswer === "C") {
-      /* oldInformatiebeveiliging.current == Informatiebeveiliging.current;
-      Informatiebeveiliging.current =+ 10; */
+      //oldInformatiebeveiliging.current == Informatiebeveiliging.current;
+      //Informatiebeveiliging.current =+ 10;
       setOldInformatiebeveiliging(Informatiebeveiliging);
       setInformatiebeveiliging(Informatiebeveiliging + 10);
     }
@@ -210,15 +243,15 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
     if (currentQuestion < questions.length) {
       setCurrentQuestion(currentQuestion + 1);
     }
-/*     console.log("patientenbelang = " + Patiëntenbelang.current);
-    console.log("integriteitpoints = " + IntegriteitPoints.current);
-    console.log("informatiebeveiliging = " + Informatiebeveiliging.current); */
+    //console.log("patientenbelang = " + Patiëntenbelang.current);
+    //console.log("integriteitpoints = " + IntegriteitPoints.current);
+    //console.log("informatiebeveiliging = " + Informatiebeveiliging.current);
     console.log("patientenbelang = " + Patiëntenbelang);
     console.log("integriteitpoints = " + IntegriteitPoints);
     console.log("informatiebeveiliging = " + Informatiebeveiliging);
     //Reset selected answer when going to next.
     setSelectedAnswer(null);
-  };
+  }; */
 
   return (
     <Container>
