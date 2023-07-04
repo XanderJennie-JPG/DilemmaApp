@@ -27,9 +27,18 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
   //Here, we keep track of the current question for rendering purposes.
   const [currentQuestion, setCurrentQuestion] = useState(1);
   //Here, we store the scores.
+/*   const Patiëntenbelang = useRef(0);
+  const IntegriteitPoints= useRef(0);
+  const Informatiebeveiliging = useRef(0);
+  const oldPatiëntenbelang = useRef(0);
+  const oldIntegriteitPoints = useRef(0);
+  const oldInformatiebeveiliging = useRef(0); */
   const [Patiëntenbelang, setPatiëntenbelang] = useState(0);
   const [IntegriteitPoints, setIntegriteitPoints] = useState(0);
   const [Informatiebeveiliging, setInformatiebeveiliging] = useState(0);
+  const [oldPatiëntenbelang, setOldPatiëntenbelang] = useState(0);
+  const [oldIntegriteitPoints, setOldIntegriteitPoints] = useState(0);
+  const [oldInformatiebeveiliging, setOldInformatiebeveiliging] = useState(0);
 
   //State variable that keeps track of the currently selected answer
   const [isActive, setIsActive] = useState(false);
@@ -79,6 +88,18 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
     if (currentQuestion > 1) {
       setCurrentQuestion(currentQuestion - 1);
     }
+    setPatiëntenbelang(oldPatiëntenbelang);
+    setIntegriteitPoints(oldIntegriteitPoints);
+    setInformatiebeveiliging(oldInformatiebeveiliging);
+    console.log("Patiëntenbelang: " + Patiëntenbelang);
+    console.log("Integriteit: " + IntegriteitPoints);
+    console.log("Informatiebeveiliging: " + Informatiebeveiliging);
+/*     Patiëntenbelang.current = oldPatiëntenbelang.current;
+    IntegriteitPoints.current = oldIntegriteitPoints.current;
+    Informatiebeveiliging.current = oldInformatiebeveiliging.current;
+    console.log("Patiëntenbelang: " + Patiëntenbelang.current);
+    console.log("Integriteit: " + IntegriteitPoints.current);
+    console.log("Informatiebeveiliging: " + Informatiebeveiliging.current); */
   };
 
   const handleFinish = async (option) => {
@@ -170,17 +191,31 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
   //The handling of the users chosen questions when pressing next.
   const handleNext = async (option) => {
     if (selectedAnswer === "A") {
+      /* oldPatiëntenbelang.current == Patiëntenbelang.current;
+      Patiëntenbelang.current =+ 10; */
+      setOldPatiëntenbelang(Patiëntenbelang);
       setPatiëntenbelang(Patiëntenbelang + 10);
     } else if (selectedAnswer === "B") {
+      /* oldIntegriteitPoints.current == IntegriteitPoints.current;
+      IntegriteitPoints.current =+ 10; */
+      setOldIntegriteitPoints(IntegriteitPoints);
       setIntegriteitPoints(IntegriteitPoints + 10);
     } else if (selectedAnswer === "C") {
+      /* oldInformatiebeveiliging.current == Informatiebeveiliging.current;
+      Informatiebeveiliging.current =+ 10; */
+      setOldInformatiebeveiliging(Informatiebeveiliging);
       setInformatiebeveiliging(Informatiebeveiliging + 10);
     }
 
     if (currentQuestion < questions.length) {
       setCurrentQuestion(currentQuestion + 1);
     }
-
+/*     console.log("patientenbelang = " + Patiëntenbelang.current);
+    console.log("integriteitpoints = " + IntegriteitPoints.current);
+    console.log("informatiebeveiliging = " + Informatiebeveiliging.current); */
+    console.log("patientenbelang = " + Patiëntenbelang);
+    console.log("integriteitpoints = " + IntegriteitPoints);
+    console.log("informatiebeveiliging = " + Informatiebeveiliging);
     //Reset selected answer when going to next.
     setSelectedAnswer(null);
   };
