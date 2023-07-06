@@ -89,6 +89,10 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
       }
         
       setAnswers({ ...answers, [currentQuestion]: option });
+      console.log(answers);
+      setCurrentQuestion[1];
+      sendScores();
+
       // navigate to the results screen when the user reaches the last question
       const scores = {
         Patiëntenbelang: Patiëntenbelang.current,
@@ -96,24 +100,23 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
         Informatiebeveiliging: Informatiebeveiliging.current,
       };
       setCurrentQuestion[1];
-      sendScores();
 
-      // Get the device ID
-      const deviceId = await getGuid();
+    // Get the device ID
+    const deviceId = await getGuid();
 
-      const usersRef = db.collection("users");
+    const usersRef = db.collection("users");
 
-      const userDoc = usersRef.doc(deviceId);
+    const userDoc = usersRef.doc(deviceId);
 
-      // Delete the old document
-      userDoc
-        .delete()
-        .then(() => {
-          console.log("Old scores deleted");
-        })
-        .catch((error) => {
-          console.error("Error deleting old scores", error);
-        });
+    // Delete the old document
+    userDoc
+      .delete()
+      .then(() => {
+        console.log("Old scores deleted");
+      })
+      .catch((error) => {
+        console.error("Error deleting old scores", error);
+      });
 
       const data = {
         deviceId: deviceId,
@@ -143,59 +146,8 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
           Informatiebeveiliging: Informatiebeveiliging,
         },
       });
-      
     }
   };
-
-  //send scores to DB
-  const sendScores = async () => {
-    
-    const scores = {
-      Patiëntenbelang: Patiëntenbelang,
-      Integriteit: IntegriteitPoints,
-      Informatiebeveiliging: Informatiebeveiliging,
-    };
-
-    // Get the device ID
-    const deviceId = await getGuid();
-
-    const usersRef = db.collection("users");
-
-    const userDoc = usersRef.doc(deviceId);
-
-    // Delete the old document
-    userDoc
-      .delete()
-      .then(() => {
-        console.log("Old scores deleted");
-      })
-      .catch((error) => {
-        console.error("Error deleting old scores", error);
-      });
-
-    const data = {
-      deviceId: deviceId,
-      username: username,
-      department: department,
-      answers: answers,
-      scores: {
-        Patiëntenbelang: Patiëntenbelang,
-        Integriteit: IntegriteitPoints,
-        Informatiebeveiliging: Informatiebeveiliging,
-      },
-    };
-    console.log(data);
-    usersRef
-      .doc(deviceId)
-      .set(data)
-      .then(function () {
-        console.log("Document written with ID: ", deviceId);
-      })
-      .catch(function (error) {
-        console.error("Error adding document: REDACTED");
-      });
-      console.log("Scores sent to DB");
-    };
 
   const handleAnswer = async (option) => {
     //We check if the users answer is different from the previously selected answer in the current question. If yes then..
