@@ -91,7 +91,6 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
       setAnswers({ ...answers, [currentQuestion]: option });
       console.log(answers);
       setCurrentQuestion[1];
-      sendScores();
 
       // navigate to the results screen when the user reaches the last question
       const scores = {
