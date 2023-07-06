@@ -30,12 +30,6 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
   const Patiëntenbelang = useRef(0);
   const IntegriteitPoints= useRef(0);
   const Informatiebeveiliging = useRef(0);
-/*   const [Patiëntenbelang, setPatiëntenbelang] = useState(0);
-  const [IntegriteitPoints, setIntegriteitPoints] = useState(0);
-  const [Informatiebeveiliging, setInformatiebeveiliging] = useState(0);
-  const [oldPatiëntenbelang, setOldPatiëntenbelang] = useState(0);
-  const [oldIntegriteitPoints, setOldIntegriteitPoints] = useState(0);
-  const [oldInformatiebeveiliging, setOldInformatiebeveiliging] = useState(0); */
 
   //State variable that keeps track of the currently selected answer
   const [isActive, setIsActive] = useState(false);
@@ -70,14 +64,6 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
     if (answers[currentQuestion]) {
       answers[currentQuestion] = null;
     }
-  };
-
-  //Resets scores incase of re-take
-  const resetScores = () => {
-    setPatiëntenbelang(0);
-    setIntegriteitPoints(0);
-    setInformatiebeveiliging(0);
-    setCurrentQuestion[1];
   };
 
   //Go back a question
@@ -144,8 +130,6 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
         .doc(deviceId)
         .set(data)
         .then(function () {
-          console.log("Document written with ID: REDACTED");
-          //console.log("Document written with ID: ", deviceId);
         })
         .catch(function (error) {
           console.error("Error adding document: REDACTED");

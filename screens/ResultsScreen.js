@@ -8,12 +8,10 @@ import {
 } from "react-native";
 import Container from "../components/Container";
 import TopLogo from "../components/TopLogo";
-import { AverageCalculator } from "../services/AverageCalculator";
-import { PieChart, ProgressChart } from "react-native-chart-kit";
+import { PieChart } from "react-native-chart-kit";
 import { getGuid } from "../components/CreateGuid";
 import { db } from "../firebase";
 import { useIsFocused } from "@react-navigation/native";
-import { useRef } from "react";
 
 const ResultScreen = ({ navigation, route }) => {
   const [results, setResults] = useState({});
