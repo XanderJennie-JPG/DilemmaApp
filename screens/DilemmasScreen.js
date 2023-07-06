@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   View,
@@ -29,8 +29,8 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
   const [currentQuestion, setCurrentQuestion] = useState(1);
   //Here, we store the scores.
   const Patiëntenbelang = useRef(0);
-  const [IntegriteitPoints, setIntegriteitPoints] = useState(0);
-  const [Informatiebeveiliging, setInformatiebeveiliging] = useState(0);
+  const IntegriteitPoints= useRef(0);
+  const Informatiebeveiliging = useRef(0);
 
   //State variable that keeps track of the currently selected answer
   const [isActive, setIsActive] = useState(false);
@@ -67,37 +67,76 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
     }
   };
 
-  //Resets scores incase of re-take
-  const resetScores = () => {
-    setPatiëntenbelang(0);
-    setIntegriteitPoints(0);
-    setInformatiebeveiliging(0);
-    setCurrentQuestion[1];
-  };
-
   //Go back a question
   const handlePrevious = () => {
     if (currentQuestion > 1) {
-      setCurrentQuestion(currentQuestion - 1);
+      setCurrentQuestion(1);
     }
+    Patiëntenbelang.current = 0;
+    IntegriteitPoints.current = 0;
+    Informatiebeveiliging.current = 0;
+    console.log("Patiëntenbelang: " + Patiëntenbelang.current);
+    console.log("Integriteit: " + IntegriteitPoints.current);
+    console.log("Informatiebeveiliging: " + Informatiebeveiliging.current);
   };
 
   const handleFinish = async (option) => {
     if (currentQuestion === questions.length) {
       if (selectedAnswer === "A") {
-        setPatiëntenbelang(Patiëntenbelang + 10);
+        Patiëntenbelang.current += 10;
       } else if (selectedAnswer === "B") {
-        setIntegriteitPoints(IntegriteitPoints + 10);
+        IntegriteitPoints.current += 10;
       } else if (selectedAnswer === "C") {
-        setInformatiebeveiliging(Informatiebeveiliging + 10);
+        Informatiebeveiliging.current += 10;
       }
+        
       setAnswers({ ...answers, [currentQuestion]: option });
-      console.log(answers);
+      // navigate to the results screen when the user reaches the last question
+      const scores = {
+        Patiëntenbelang: Patiëntenbelang.current,
+        Integriteit: IntegriteitPoints.current,
+        Informatiebeveiliging: Informatiebeveiliging.current,
+      };
       setCurrentQuestion[1];
       sendScores();
 
-      // navigate to the results screen when the user reaches the last question
-      console.log("Navigating to results screen");
+      // Get the device ID
+      const deviceId = await getGuid();
+
+      const usersRef = db.collection("users");
+
+      const userDoc = usersRef.doc(deviceId);
+
+      // Delete the old document
+      userDoc
+        .delete()
+        .then(() => {
+          console.log("Old scores deleted");
+        })
+        .catch((error) => {
+          console.error("Error deleting old scores", error);
+        });
+
+      const data = {
+        deviceId: deviceId,
+        username: username,
+        department: department,
+        answers: answers,
+        scores: {
+          Patiëntenbelang: Patiëntenbelang.current,
+          Integriteit: IntegriteitPoints.current,
+          Informatiebeveiliging: Informatiebeveiliging.current,
+        },
+      };
+      usersRef
+        .doc(deviceId)
+        .set(data)
+        .then(function () {
+        })
+        .catch(function (error) {
+          console.error("Error adding document: REDACTED");
+        });
+
       navigate("HomeTab", {
         screen: "Results",
         params: {
@@ -171,22 +210,23 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
     }
   };
 
+
   //The handling of the users chosen questions when pressing next.
   const handleNext = async (option) => {
     if (selectedAnswer === "A") {
-      Patiëntenbelang.current =+ 10;
-      console.log("patientenbelang = " + Patiëntenbelang.current);
+      Patiëntenbelang.current += 10;
     } else if (selectedAnswer === "B") {
-      setIntegriteitPoints(IntegriteitPoints + 10);
-      console.log("integriteitpoints = " + IntegriteitPoints);
+      IntegriteitPoints.current += 10;
     } else if (selectedAnswer === "C") {
-      setInformatiebeveiliging(Informatiebeveiliging + 10);
-      console.log("informatiebeveiliging = " + Informatiebeveiliging);
+      Informatiebeveiliging.current += 10;
     }
 
     if (currentQuestion < questions.length) {
       setCurrentQuestion(currentQuestion + 1);
     }
+    console.log("patientenbelang = " + Patiëntenbelang.current);
+    console.log("integriteitpoints = " + IntegriteitPoints.current);
+    console.log("informatiebeveiliging = " + Informatiebeveiliging.current);
 
     //Reset selected answer when going to next.
     setSelectedAnswer(null);
@@ -288,7 +328,7 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
               style={{ paddingLeft: 3, fontSize: 30, color: "#134392" }}
             ></Ionicons>
             <Text style={[styles.previousButton, styles.nextButtonText]}>
-              Previous
+              Restart
             </Text>
           </TouchableOpacity>
           )}

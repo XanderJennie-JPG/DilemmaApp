@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState} from "react";
 import {
   View,
   Text,
@@ -8,14 +8,13 @@ import {
 } from "react-native";
 import Container from "../components/Container";
 import TopLogo from "../components/TopLogo";
-import { AverageCalculator } from "../services/AverageCalculator";
-import { PieChart, ProgressChart } from "react-native-chart-kit";
+import { PieChart } from "react-native-chart-kit";
 import { getGuid } from "../components/CreateGuid";
 import { db } from "../firebase";
 import { useIsFocused } from "@react-navigation/native";
 
 const ResultScreen = ({ navigation, route }) => {
-  const [scores, setScores] = useState({});
+  const [results, setResults] = useState({});
   const isFocused = useIsFocused();
 
   useEffect(() => {
@@ -32,7 +31,7 @@ const ResultScreen = ({ navigation, route }) => {
               return;
             }
             snapshot.forEach((doc) => {
-              setScores(doc.data().scores);
+              setResults(doc.data().scores);
             });
           })
           .catch((err) => {
@@ -44,9 +43,9 @@ const ResultScreen = ({ navigation, route }) => {
     }
   }, [isFocused]);
 
-  let Patiëntenbelang = scores.Patiëntenbelang || 0;
-  let Integriteit = scores.Integriteit || 0;
-  let Informatiebeveiliging = scores.Informatiebeveiliging || 0;
+  let Patiëntenbelang = results.Patiëntenbelang || 0;
+  let Integriteit = results.Integriteit || 0;
+  let Informatiebeveiliging = results.Informatiebeveiliging || 0;
 
   let checkData = () => {
     if (
@@ -121,7 +120,6 @@ const ResultScreen = ({ navigation, route }) => {
               accessor={"population"}
               backgroundColor={"transparent"}
               paddingLeft={"15"}
-              absolute //THIS REMOVES PERCENTAGE
             />
           ) : (
             <Text style={styles.noDataText}>
