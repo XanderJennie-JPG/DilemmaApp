@@ -122,7 +122,6 @@ const ResultScreen = ({ navigation, route }) => {
               accessor={"population"}
               backgroundColor={"transparent"}
               paddingLeft={"15"}
-              absolute
             />
           ) : (
             <Text style={styles.noDataText}>

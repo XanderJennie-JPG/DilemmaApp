@@ -30,9 +30,6 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
   const Patiëntenbelang = useRef(0);
   const IntegriteitPoints= useRef(0);
   const Informatiebeveiliging = useRef(0);
-  const oldPatiëntenbelang = useRef(0);
-  const oldIntegriteitPoints = useRef(0);
-  const oldInformatiebeveiliging = useRef(0);
 /*   const [Patiëntenbelang, setPatiëntenbelang] = useState(0);
   const [IntegriteitPoints, setIntegriteitPoints] = useState(0);
   const [Informatiebeveiliging, setInformatiebeveiliging] = useState(0);
@@ -86,11 +83,11 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
   //Go back a question
   const handlePrevious = () => {
     if (currentQuestion > 1) {
-      setCurrentQuestion(currentQuestion - 1);
+      setCurrentQuestion(1);
     }
-    Patiëntenbelang.current = oldPatiëntenbelang.current;
-    IntegriteitPoints.current = oldIntegriteitPoints.current;
-    Informatiebeveiliging.current = oldInformatiebeveiliging.current;
+    Patiëntenbelang.current = 0;
+    IntegriteitPoints.current = 0;
+    Informatiebeveiliging.current = 0;
     console.log("Patiëntenbelang: " + Patiëntenbelang.current);
     console.log("Integriteit: " + IntegriteitPoints.current);
     console.log("Informatiebeveiliging: " + Informatiebeveiliging.current);
@@ -99,13 +96,10 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
   const handleFinish = async (option) => {
     if (currentQuestion === questions.length) {
       if (selectedAnswer === "A") {
-        oldPatiëntenbelang.current == Patiëntenbelang.current;
         Patiëntenbelang.current += 10;
       } else if (selectedAnswer === "B") {
-        oldIntegriteitPoints.current == IntegriteitPoints.current;
         IntegriteitPoints.current += 10;
       } else if (selectedAnswer === "C") {
-        oldInformatiebeveiliging.current == Informatiebeveiliging.current;
         Informatiebeveiliging.current += 10;
       }
         
@@ -182,9 +176,6 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
 
   //The handling of the users chosen questions when pressing next.
   const handleNext = async (option) => {
-    oldPatiëntenbelang.current = Patiëntenbelang.current;
-    oldIntegriteitPoints.current = IntegriteitPoints.current;
-    oldInformatiebeveiliging.current = Informatiebeveiliging.current;
     if (selectedAnswer === "A") {
       Patiëntenbelang.current += 10;
     } else if (selectedAnswer === "B") {
@@ -197,11 +188,8 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
       setCurrentQuestion(currentQuestion + 1);
     }
     console.log("patientenbelang = " + Patiëntenbelang.current);
-    console.log("oldpatientenbelang = " + oldPatiëntenbelang.current);
     console.log("integriteitpoints = " + IntegriteitPoints.current);
-    console.log("oldintegriteitpoints = " + oldIntegriteitPoints.current);
     console.log("informatiebeveiliging = " + Informatiebeveiliging.current);
-    console.log("oldinformatiebeveiliging = " + oldInformatiebeveiliging.current);
 
     //Reset selected answer when going to next.
     setSelectedAnswer(null);
@@ -303,7 +291,7 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
               style={{ paddingLeft: 3, fontSize: 30, color: "#134392" }}
             ></Ionicons>
             <Text style={[styles.previousButton, styles.nextButtonText]}>
-              Previous
+              Restart
             </Text>
           </TouchableOpacity>
           )}
