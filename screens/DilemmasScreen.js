@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   View,
@@ -15,9 +15,7 @@ import GlobalStyle from "../components/GlobalStyle";
 import questions from "../components/Questions";
 import { getGuid } from "../components/CreateGuid";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { doc, setDoc } from "firebase/firestore";
 import { db } from "../firebase";
-import { Dimensions } from "react-native";
 import { useWindowDimensions } from "react-native";
 import { useRef } from "react";
 
