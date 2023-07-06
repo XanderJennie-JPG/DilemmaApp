@@ -27,18 +27,18 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
   //Here, we keep track of the current question for rendering purposes.
   const [currentQuestion, setCurrentQuestion] = useState(1);
   //Here, we store the scores.
-/*   const Patiëntenbelang = useRef(0);
+  const Patiëntenbelang = useRef(0);
   const IntegriteitPoints= useRef(0);
   const Informatiebeveiliging = useRef(0);
   const oldPatiëntenbelang = useRef(0);
   const oldIntegriteitPoints = useRef(0);
-  const oldInformatiebeveiliging = useRef(0); */
-  const [Patiëntenbelang, setPatiëntenbelang] = useState(0);
+  const oldInformatiebeveiliging = useRef(0);
+/*   const [Patiëntenbelang, setPatiëntenbelang] = useState(0);
   const [IntegriteitPoints, setIntegriteitPoints] = useState(0);
   const [Informatiebeveiliging, setInformatiebeveiliging] = useState(0);
   const [oldPatiëntenbelang, setOldPatiëntenbelang] = useState(0);
   const [oldIntegriteitPoints, setOldIntegriteitPoints] = useState(0);
-  const [oldInformatiebeveiliging, setOldInformatiebeveiliging] = useState(0);
+  const [oldInformatiebeveiliging, setOldInformatiebeveiliging] = useState(0); */
 
   //State variable that keeps track of the currently selected answer
   const [isActive, setIsActive] = useState(false);
@@ -105,18 +105,22 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
   const handleFinish = async (option) => {
     if (currentQuestion === questions.length) {
       if (selectedAnswer === "A") {
-        setPatiëntenbelang(Patiëntenbelang + 10);
+        oldPatiëntenbelang.current == Patiëntenbelang.current;
+        Patiëntenbelang.current += 10;
       } else if (selectedAnswer === "B") {
-        setIntegriteitPoints(IntegriteitPoints + 10);
+        oldIntegriteitPoints.current == IntegriteitPoints.current;
+        IntegriteitPoints.current += 10;
       } else if (selectedAnswer === "C") {
-        setInformatiebeveiliging(Informatiebeveiliging + 10);
+        oldInformatiebeveiliging.current == Informatiebeveiliging.current;
+        Informatiebeveiliging.current += 10;
       }
+        
       setAnswers({ ...answers, [currentQuestion]: option });
       // navigate to the results screen when the user reaches the last question
       const scores = {
-        Patiëntenbelang: Patiëntenbelang,
-        Integriteit: IntegriteitPoints,
-        Informatiebeveiliging: Informatiebeveiliging,
+        Patiëntenbelang: Patiëntenbelang.current,
+        Integriteit: IntegriteitPoints.current,
+        Informatiebeveiliging: Informatiebeveiliging.current,
       };
       setCurrentQuestion[1];
 
@@ -143,9 +147,9 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
         department: department,
         answers: answers,
         scores: {
-          Patiëntenbelang: Patiëntenbelang,
-          Integriteit: IntegriteitPoints,
-          Informatiebeveiliging: Informatiebeveiliging,
+          Patiëntenbelang: Patiëntenbelang.current,
+          Integriteit: IntegriteitPoints.current,
+          Informatiebeveiliging: Informatiebeveiliging.current,
         },
       };
       usersRef
@@ -179,79 +183,32 @@ const DilemmasScreen = ({ navigation: { goBack, navigate } }) => {
       setIsActive(true);
       setAnswers({ ...answers, [currentQuestion]: option });
     }
-    if (selectedAnswer === "A") {
-      setPatiëntenbelang(Patiëntenbelang + 10);
-    } else if (selectedAnswer === "B") {
-      setIntegriteitPoints(IntegriteitPoints + 10);
-    } else if (selectedAnswer === "C") {
-      setInformatiebeveiliging(Informatiebeveiliging + 10);
-    }
   };
 
-  const handleNext = async (option) => {
-    switch (selectedAnswer) {
-      case "A":
-        setOldPatiëntenbelang(Patiëntenbelang);
-        await setPatiëntenbelang(Patiëntenbelang + 10);
-        console.log(Patiëntenbelang);
-        break;
-      case "B":
-        setOldIntegriteitPoints(IntegriteitPoints);
-        await setIntegriteitPoints(IntegriteitPoints + 10);
-        console.log(IntegriteitPoints);
-        break;
-      case "C":
-        setOldInformatiebeveiliging(Informatiebeveiliging);
-        await setInformatiebeveiliging(Informatiebeveiliging + 10);
-        console.log(Informatiebeveiliging);
-        break;
-      default:
-        break;
-    }
-  
-    if (currentQuestion < questions.length) {
-      setCurrentQuestion(currentQuestion + 1);
-    }
-  
-    setSelectedAnswer(null);
-  };
-  
 
   //The handling of the users chosen questions when pressing next.
-/*   const handleNext = async (option) => {
+  const handleNext = async (option) => {
     if (selectedAnswer === "A") {
-      //oldPatiëntenbelang.current == Patiëntenbelang.current;
-      //console.log("+patientenbelang = " + Patiëntenbelang.current);
-      //Patiëntenbelang.current =+ 10;
-      //console.log("-patientenbelang = " + Patiëntenbelang.current);
-      setOldPatiëntenbelang(Patiëntenbelang);
-      console.log(Patiëntenbelang);
-      setPatiëntenbelang(Patiëntenbelang + 10);
-      console.log(Patiëntenbelang);
+      oldPatiëntenbelang.current == Patiëntenbelang.current;
+      Patiëntenbelang.current += 10;
     } else if (selectedAnswer === "B") {
-      //oldIntegriteitPoints.current == IntegriteitPoints.current;
-      //IntegriteitPoints.current =+ 10;
-      setOldIntegriteitPoints(IntegriteitPoints);
-      setIntegriteitPoints(IntegriteitPoints + 10);
+      oldIntegriteitPoints.current == IntegriteitPoints.current;
+      IntegriteitPoints.current += 10;
     } else if (selectedAnswer === "C") {
-      //oldInformatiebeveiliging.current == Informatiebeveiliging.current;
-      //Informatiebeveiliging.current =+ 10;
-      setOldInformatiebeveiliging(Informatiebeveiliging);
-      setInformatiebeveiliging(Informatiebeveiliging + 10);
+      oldInformatiebeveiliging.current == Informatiebeveiliging.current;
+      Informatiebeveiliging.current += 10;
     }
 
     if (currentQuestion < questions.length) {
       setCurrentQuestion(currentQuestion + 1);
     }
-    //console.log("patientenbelang = " + Patiëntenbelang.current);
-    //console.log("integriteitpoints = " + IntegriteitPoints.current);
-    //console.log("informatiebeveiliging = " + Informatiebeveiliging.current);
-    console.log("patientenbelang = " + Patiëntenbelang);
-    console.log("integriteitpoints = " + IntegriteitPoints);
-    console.log("informatiebeveiliging = " + Informatiebeveiliging);
+    console.log("patientenbelang = " + Patiëntenbelang.current);
+    console.log("integriteitpoints = " + IntegriteitPoints.current);
+    console.log("informatiebeveiliging = " + Informatiebeveiliging.current);
+
     //Reset selected answer when going to next.
     setSelectedAnswer(null);
-  }; */
+  };
 
   return (
     <Container>
