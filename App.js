@@ -24,6 +24,7 @@ const App = () => {
   useEffect(() => {
     (async () => {
       try {
+        //asyncstorage clear clears all cache and makes it like a fresh install
         //AsyncStorage.clear();
         const value = await AsyncStorage.getItem("hasSeenWelcome");
         if (value !== null) {
