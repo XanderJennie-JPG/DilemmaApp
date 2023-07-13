@@ -7,7 +7,7 @@ export function Greeting() {
 	} else if (time < 18) {
 		return "Goedemiddag,";
 	} else {
-		return "Goedenavond,";
+		return "Goedendag,";
 	}
 }
 
