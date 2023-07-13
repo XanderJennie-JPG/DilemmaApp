@@ -6,7 +6,7 @@ Nabil Naou - Software Engineer (Full-stack) 💻
 Raphael - Designer (UI/UX Design, communication) 🖌️
 Xander Jennie - Innovative Development & front-end Dev 💬
 
-##After the project was over...
+## After the project was over...
 After the project was over, Xander continued working on the app to make it production ready for The Hague University and Haga Ziekenhuis.
 He worked on finalizing some key components for the app such as the score calculations, responsive front-end components and deployed it to Production on the Play Store. 
 
