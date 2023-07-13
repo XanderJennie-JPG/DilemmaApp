@@ -1,13 +1,14 @@
-# Hello! We are team Dilemma! :stethoscope:	
-## We are a group of final year students at THUAS 
-
-We are a team that consists of three students 🧑‍🎓
+# Hello, welcome to the Dilemma App's Repo! :stethoscope:	
+## Who built this?
+The app was started by a team of three students 🧑‍🎓
 
 Nabil Naou - Software Engineer (Full-stack) 💻 
-
 Raphael - Designer (UI/UX Design, communication) 🖌️
+Xander Jennie - Innovative Development & front-end Dev 💬
 
-Xander Jennie - Innovative Development 💬
+##After the project was over...
+After the project was over, Xander continued working on the app to make it production ready for The Hague University and Haga Ziekenhuis.
+He worked on finalizing some key components for the app such as the score calculations, responsive front-end components and deployed it to Production on the Play Store. 
 
 This repository contains the code for Dilemma, a quiz application developed by Team Dilemma in collaboration with The Hague University and De Haga Ziekenhuis. The goal of the application is to raise awareness about cybersecurity within the healthcare industry. Dilemma aims to educate users about the risks and best practices for protecting sensitive information in a healthcare setting.
 
@@ -17,7 +18,8 @@ The application includes a set of multiple-choice questions that cover a variety
 React Native, Node.js, FireBase
 
 # Author
-Name: Team Dilemma
+Started by: Team Dilemma (until 11th of January)
+Continued and maintained by: Xander Jennie (until 13th of July 2023)
 
 # Acknowledgments
 This project was developed as a way to raise awareness about cybersecurity in healthcare and educate users about the importance of protecting sensitive information. We hope that Dilemma will be a valuable tool for people working in the healthcare industry to improve their knowledge and best practices in cybersecurity. We are grateful to The Hague University and De Haga Ziekenhuis for giving us the opportunity to work on this project.
