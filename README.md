@@ -10,6 +10,7 @@ Xander Jennie - Innovative Development & front-end Dev 💬
 After the project was over, Xander continued working on the app to make it production ready for The Hague University and Haga Ziekenhuis.
 He worked on finalizing some key components for the app such as the score calculations, responsive front-end components and deployed it to Production on the Play Store. 
 
+### About the repo
 This repository contains the code for Dilemma, a quiz application developed by Team Dilemma in collaboration with The Hague University and De Haga Ziekenhuis. The goal of the application is to raise awareness about cybersecurity within the healthcare industry. Dilemma aims to educate users about the risks and best practices for protecting sensitive information in a healthcare setting.
 
 The application includes a set of multiple-choice questions that cover a variety of topics related to cybersecurity in healthcare. Once the user completes the quiz, they will receive a score and a breakdown of their results. The user will also have the opportunity to learn more about the topics they missed through a set of educational resources.
